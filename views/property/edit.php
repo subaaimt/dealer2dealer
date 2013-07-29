@@ -6,34 +6,154 @@
         <div class="controls">
             <select name="propertyfor" id="propertyfor">
                 <option value="">Select</option>
-                <option <?php echo ('buy' == $properties['category']) ? 'selected' : '' ?> value="buy">Buy</option>
-                <option  <?php echo ('sell' == $properties['category']) ? 'selected' : '' ?> value="sell">Sell</option>
-                <option <?php echo ('rent' == $properties['category']) ? 'selected' : '' ?> value="rent">Rent</option>
+
+                <option  <?php echo ('sell' == $properties['for']) ? 'selected' : '' ?> value="sell">Sell</option>
+                <option <?php echo ('rent' == $properties['for']) ? 'selected' : '' ?> value="rent">Rent</option>
             </select>
         </div>
     </div>
+
     <div class="control-group " >
         <label class="control-label"  for="propertytype">Property Type</label>
         <div class="controls ">
             <select name="propertytype" id="propertytype">
-                <option value="">Select</option>
-                <option value="1" <?php echo ('1' == $properties['type']) ? 'selected' : '' ?>>1 Bedroom</option>
-                <option value="2" <?php echo ('2' == $properties['type']) ? 'selected' : '' ?>>2 Bedroom</option>
-                <option value="3" <?php echo ('3' == $properties['type']) ? 'selected' : '' ?>>3 Bedroom</option>
+                <option>--Select--</option>
+                <?php
+                foreach ($categories as $cat) {
+                    ?> <optgroup label="<?php echo $cat['category'] ?>"></optgroup>
+
+                    <?php
+                    foreach ($propertytypes[$cat['id']] as $key => $value) {
+                        ?>
+                        <option <?php echo ($properties['type'] == $value['id']) ? 'selected' : '' ?> value="<?php echo $value['id'] ?>"><?php echo $value['type'] ?></option>
+                        <?php
+                    }
+                }
+                ?>
             </select>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="propertyprice">Price</label>
+        <label class="control-label" for="transactiontype">Transaction Type</label>
         <div class="controls">
-            <input type="text"  value="<?php echo $properties['price'] ?>" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">
+            <label class="radio-inline">
+                <input <?php echo ('new' == $properties['transType']) ? 'checked' : '' ?> type="radio" id="newproperty" name="transactiontype" value="new"> New Property
+            </label>
+            <label class="radio-inline">
+                <input  <?php echo ('resale' == $properties['transType']) ? 'checked' : '' ?> type="radio" id="relsale" name="transactiontype" value="resale"> Resale
+            </label>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="bedrooms">Bedrooms</label>
+        <div class="controls ">
+            <select name="bedrooms" id="bedrooms">
+                <option>--Select--</option>
+                <?php
+                foreach ($rooms as $room) {
+                    ?> 
+                    <option <?php echo ($room == $properties['bedroom']) ? 'selected' : '' ?> value="<?php echo $room; ?>"><?php echo $room; ?></option>
+
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="bathrooms">Bathrooms</label>
+        <div class="controls ">
+            <select name="bathrooms" id="bathrooms">
+                <option>--Select--</option>
+                <?php
+                foreach ($rooms as $room) {
+                    ?> 
+                    <option <?php echo ($room == $properties['bathroom']) ? 'selected' : '' ?> value="<?php echo $room; ?>"><?php echo $room; ?></option>
+
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="furnished">Furnished</label>
+        <div class="controls ">
+            <select name="furnished" id="furnished">
+                <option>--Select--</option>
+                <option <?php echo ('furnished' == $properties['furnished']) ? 'selected' : '' ?> value="furnished">Furnished</option>
+                <option <?php echo ('unfurnished' == $properties['furnished']) ? 'selected' : '' ?> value="unfurnished">Unfurnished</option>
+                <option <?php echo ('semi-furnished' == $properties['furnished']) ? 'selected' : '' ?> value="semi-furnished">Semi-Furnished</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="coveredarea">Covered Area</label>
+        <div class="controls">
+            <input value="<?php echo $properties['coveredArea'] ?>"  type="text"  id="coveredarea" name="coveredarea" placeholder="Covered Area" autocomplete="off">
+            <select  style="width:100px" name="coveredAreaUnit" id="coveredAreaUnit">
+
+                <option selected="selected" value="Sq-ft">Sq-ft</option>
+                <option  <?php echo ('Sq-m' == $properties['coveredAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
+                <option <?php echo ('Sq-yrd' == $properties['coveredAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="plotLandArea">Plot/Land Area</label>
+        <div class="controls">
+            <input  value="<?php echo $properties['plotLandArea'] ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off">
+            <select  style="width:100px" name="plotLandAreaUnit" id="plotLandAreaUnit">
+
+                <option selected="selected" value="Sq-ft">Sq-ft</option>
+                <option <?php echo ('Sq-m' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
+                <option <?php echo ('Sq-yrd' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="propertyprice">Total Price</label>
+        <div class="controls">
+            <input value="<?php echo $properties['price']?>" type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">&nbsp;Rs.
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="displayPriceUsers">Display Price to Users</label>
+        <div class="controls">
+            <label class="radio-inline">
+                <input type="radio" <?php echo ('yes' == $properties['displayProperty']) ? 'checked' : '' ?> id="displayyes" name="displayPriceUsers" value="yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio"  <?php echo ('no' == $properties['displayProperty']) ? 'checked' : '' ?> id="displayno" name="displayPriceUsers" value="no">No
+            </label>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="floors">Floor No</label>
+        <div class="controls ">
+            <select name="floors" id="floors">
+                <option>--Select--</option>
+                <?php
+                foreach ($floors as $floor) {
+                    ?> 
+                    <option <?php echo ($floor == $properties['floorNo']) ? 'selected' : '' ?>  value="<?php echo $floor; ?>"><?php echo $floor; ?></option>
+
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="totalfloors">Total floors</label>
+        <div class="controls">
+            <input type="text" value="<?php echo $properties['totalFloor']?>" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="propertydescription">Description</label>
         <div class="controls">
             <textarea   id="propertydescription" name="propertydescription" rows="5" cols="20"> <?php echo $properties['description'] ?></textarea>
-
         </div>
     </div>
     <div class="control-group">
@@ -82,7 +202,7 @@
             <input type="file" id="propertyimage" name="propertyimage" placeholder="Property Image" autocomplete="off">
         </div>
     </div>
-    <input type="hidden" id="pid" name="pid" value="<?php echo $properties['id']?>" />
+    <input type="hidden" id="pid" name="pid" value="<?php echo $properties['id'] ?>" />
     <div class="control-group">
 
         <div class="controls">

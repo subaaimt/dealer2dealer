@@ -6,7 +6,7 @@
         <div class="controls">
             <select name="propertyfor" id="propertyfor">
                 <option value="">Select</option>
-                <option value="buy">Buy</option>
+
                 <option value="sell">Sell</option>
                 <option value="rent">Rent</option>
             </select>
@@ -16,17 +16,137 @@
         <label class="control-label"  for="propertytype">Property Type</label>
         <div class="controls ">
             <select name="propertytype" id="propertytype">
-                <option value="">Select</option>
-                <option value="1">1 Bedroom</option>
-                <option value="2">2 Bedroom</option>
-                <option value="3">3 Bedroom</option>
+                <option>--Select--</option>
+                <?php
+                foreach ($categories as $cat) {
+                    ?> <optgroup label="<?php echo $cat['category'] ?>"></optgroup>
+
+                    <?php
+                    foreach ($propertytypes[$cat['id']] as $key => $value) {
+                        ?>
+                        <option value="<?php echo $value['id'] ?>"><?php echo $value['type'] ?></option>
+                        <?php
+                    }
+                }
+                ?>
             </select>
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="propertyprice">Price</label>
+        <label class="control-label" for="transactiontype">Transaction Type</label>
         <div class="controls">
-            <input type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">
+            <label class="radio-inline">
+                <input type="radio" id="newproperty" name="transactiontype" value="new"> New Property
+            </label>
+            <label class="radio-inline">
+                <input type="radio" id="relsale" name="transactiontype" value="resale"> Resale
+            </label>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="bedrooms">Bedrooms</label>
+        <div class="controls ">
+            <select name="bedrooms" id="bedrooms">
+                <option>--Select--</option>
+                <?php
+                foreach ($rooms as $room) {
+                    ?> 
+                    <option value="<?php echo $room; ?>"><?php echo $room; ?></option>
+
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="bathrooms">Bathrooms</label>
+        <div class="controls ">
+            <select name="bathrooms" id="bathrooms">
+                <option>--Select--</option>
+                <?php
+                foreach ($rooms as $room) {
+                    ?> 
+                    <option value="<?php echo $room; ?>"><?php echo $room; ?></option>
+
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="furnished">Furnished</label>
+        <div class="controls ">
+            <select name="furnished" id="furnished">
+                <option>--Select--</option>
+                <option value="furnished">Furnished</option>
+                <option value="unfurnished">Unfurnished</option>
+                <option value="semi-furnished">Semi-Furnished</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="coveredarea">Covered Area</label>
+        <div class="controls">
+            <input  type="text"  id="coveredarea" name="coveredarea" placeholder="Covered Area" autocomplete="off">
+            <select  style="width:100px" name="coveredAreaUnit" id="coveredAreaUnit">
+             
+                <option selected="selected" value="Sq-ft">Sq-ft</option>
+                <option value="Sq-m">Sq-m</option>
+                <option value="Sq-yrd">Sq-yrd</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="plotLandArea">Plot/Land Area</label>
+        <div class="controls">
+            <input  type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off">
+            <select  style="width:100px" name="plotLandAreaUnit" id="plotLandAreaUnit">
+             
+                <option selected="selected" value="Sq-ft">Sq-ft</option>
+                <option value="Sq-m">Sq-m</option>
+                <option value="Sq-yrd">Sq-yrd</option>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="propertyprice">Total Price</label>
+        <div class="controls">
+            <input type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">&nbsp;Rs.
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="displayPriceUsers">Display Price to Users</label>
+        <div class="controls">
+            <label class="radio-inline">
+                <input type="radio" id="newproperty" name="displayPriceUsers" value="Yes">Yes
+            </label>
+            <label class="radio-inline">
+                <input type="radio" id="relsale" name="displayPriceUsers" value="No">No
+            </label>
+        </div>
+    </div>
+    <div class="control-group " >
+        <label class="control-label"  for="floors">Floor No</label>
+        <div class="controls ">
+            <select name="floors" id="floors">
+                <option>--Select--</option>
+                <?php
+                foreach ($floors as $floor) {
+                    ?> 
+                    <option value="<?php echo $floor; ?>"><?php echo $floor; ?></option>
+
+                    <?php
+                }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="totalfloors">Total floors</label>
+        <div class="controls">
+            <input type="text" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off">
         </div>
     </div>
     <div class="control-group">

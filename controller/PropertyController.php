@@ -10,13 +10,24 @@ class PropertyController {
     }
 
     function actionIndex($args) {
-
+        $propertyobj = new Property();
         if (!empty($_POST)) {
             $filename = mt_rand() . '__' . $_FILES['propertyimage']['name'];
             $data = array(
-                'category' => $_POST['propertyfor'],
+                'for' => $_POST['propertyfor'],
                 'type' => $_POST['propertytype'],
+                'transType' => $_POST['transactiontype'],
+                'bedroom' => $_POST['bedrooms'],
+                'bathroom' => $_POST['bathrooms'],
+                'furnished' => $_POST['furnished'],
+                'coveredArea' => $_POST['coveredarea'],
+                'plotLandArea' => $_POST['plotLandArea'],
+                'coveredAreaUnit' => $_POST['coveredAreaUnit'],
+                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
                 'price' => ($_POST['propertyprice']),
+                'floorNo' => ($_POST['floors']),
+                'totalFloor' => ($_POST['totalfloors']),
+                'displayProperty' => ($_POST['displayPriceUsers']),
                 'description' => $_POST['propertydescription'],
                 'title' => $_POST['propertytitle'],
                 'location' => $_POST['propertylocation'],
@@ -27,9 +38,8 @@ class PropertyController {
                 'created' => time(),
                 'modified' => time()
             );
-            $propertyobj = new Property();
-            $propertyobj->addProperty($data);
 
+            $propertyobj->addProperty($data);
             move_uploaded_file($_FILES['propertyimage']['tmp_name'], 'media/property/' . $filename);
 
             redirect('property');
@@ -37,9 +47,18 @@ class PropertyController {
         $cityobj = new City;
         $cities = $cityobj->getCities();
 
-        $categoryobj = new Category;
+        $categoryobj = new PropertyCategory;
         $categories = $categoryobj->getCategories();
-        return array('title' => 'Dashboard', 'cities' => $cities, 'layout' => 'dealerlayout', 'categories' => $categories);
+        $propertytypeyobj = new PropertyType;
+        $propertytypes = $propertytypeyobj->getPropertyTypes();
+
+
+
+        return array('title' => 'Dashboard', 'cities' => $cities,
+            'layout' => 'dealerlayout', 'categories' => $categories,
+            'propertytypes' => $propertytypes,
+            'floors' => $propertyobj->floors(),
+            'rooms' => $propertyobj->rooms());
     }
 
     function actionMyProperty() {
@@ -67,9 +86,20 @@ class PropertyController {
         if (!empty($_POST)) {
 
             $data = array(
-                'category' => $_POST['propertyfor'],
+                'for' => $_POST['propertyfor'],
                 'type' => $_POST['propertytype'],
+                'transType' => $_POST['transactiontype'],
+                'bedroom' => $_POST['bedrooms'],
+                'bathroom' => $_POST['bathrooms'],
+                'furnished' => $_POST['furnished'],
+                'coveredArea' => $_POST['coveredarea'],
+                'plotLandArea' => $_POST['plotLandArea'],
+                'coveredAreaUnit' => $_POST['coveredAreaUnit'],
+                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
                 'price' => ($_POST['propertyprice']),
+                'floorNo' => ($_POST['floors']),
+                'totalFloor' => ($_POST['totalfloors']),
+                'displayProperty' => ($_POST['displayPriceUsers']),
                 'description' => $_POST['propertydescription'],
                 'title' => $_POST['propertytitle'],
                 'location' => $_POST['propertylocation'],
@@ -78,6 +108,7 @@ class PropertyController {
                 'user_id' => $_SESSION['userdata']['id'],
                 'modified' => time()
             );
+
             if (!empty($_FILES['propertyimage']['tmp_name'])) {
                 $filename = mt_rand() . '__' . $_FILES['propertyimage']['name'];
                 move_uploaded_file($_FILES['propertyimage']['tmp_name'], 'media/property/' . $filename);
@@ -102,8 +133,20 @@ class PropertyController {
 
         $areaobj = new Area;
         $areas = $areaobj->getAreas();
+        $categoryobj = new PropertyCategory;
+        $categories = $categoryobj->getCategories();
+        $propertytypeyobj = new PropertyType;
+        $propertytypes = $propertytypeyobj->getPropertyTypes();
 
-        return(array('layout' => 'dealerlayout', 'properties' => $result, 'areas' => $areas, 'cities' => $cities));
+
+        return array('layout' => 'dealerlayout',
+            'properties' => $result,
+            'areas' => $areas,
+            'cities' => $cities,
+            'categories' => $categories,
+            'propertytypes' => $propertytypes,
+            'floors' => $property->floors(),
+            'rooms' => $property->rooms());
     }
 
     function actionSearch($args) {
@@ -121,7 +164,7 @@ class PropertyController {
         $rq = getrequesturi();
         $query = '';
         if (isset($rq['q']) && !empty($rq['q'])) {
-            $query .= ' AND title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'].'%"';
+            $query .= ' AND title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%"';
         }
         if (isset($rq['city']) && !empty($rq['city'])) {
             $query .= ' AND city =' . $rq['city'];
