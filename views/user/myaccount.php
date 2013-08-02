@@ -2,15 +2,21 @@
 <div class="alert alert-success"><?php echo getmessage(); ?></div>
 <form class="form-horizontal" method="post" id="updateformregister" onsubmit="return validatemyaccount();">
     <div class="control-group">
-        <label class="control-label" for="firstname">First Name</label>
+        <label class="control-label" for="name">Name</label>
         <div class="controls">
-            <input type="text" id="updatefirstname" name="firstname" placeholder="First Name" value="<?php echo $userresults['first'] ?>">
+            <input type="text" id="updatename" name="name" placeholder="Name" value="<?php echo $userresults['name'] ?>">
         </div>
     </div>
     <div class="control-group ">
-        <label class="control-label" for="lastname">Last  Name</label>
+        <label class="control-label" for="mobileNo">Mobile No.</label>
         <div class="controls ">
-            <input type="text" id="updatelastname" name="lastname" placeholder="Last Name" value="<?php echo $userresults['last'] ?>">
+            <input type="text" id="updatemobileNo" name="mobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['mobileNo'] ?>">
+        </div>
+    </div>
+    <div class="control-group ">
+        <label class="control-label" for="phoneNo">Phone No.</label>
+        <div class="controls ">
+            <input type="text" id="updatephoneNo" name="phoneNo" placeholder="" maxlength="12" value="<?php echo $userresults['phoneNo'] ?>">
         </div>
     </div>
 
@@ -18,13 +24,13 @@
     <div class="control-group">
         <label class="control-label" for="companyname">Company Name</label>
         <div class="controls">
-            <input type="text" id="updatecompanyname" name="companyname" placeholder="Company Name" value="<?php echo $userresults['cmp_name'] ?>">
+            <input type="text" id="updatecompanyname" name="companyname" placeholder="Company Name" value="<?php echo $userresults['companyName'] ?>">
         </div>
     </div>
     <div class="control-group">
         <label class="control-label" for="address">Address</label>
         <div class="controls">
-            <input type="text" id="updateaddress" name="address" placeholder="Address" value="<?php echo $userresults['address'] ?>">
+            <textarea  id="updateaddress" name="address" placeholder="Address" ><?php echo $userresults['address'] ?></textarea>
         </div>
     </div>
 

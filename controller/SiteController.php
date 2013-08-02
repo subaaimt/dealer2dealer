@@ -37,22 +37,24 @@ class SiteController {
     function actionRegister() {
 
         if (!empty($_POST)) {
-            $data = array('first' => $_POST['firstname'],
-                'last' => $_POST['lastname'],
+            $data = array(
+                'name' => $_POST['name'],
                 'email' => $_POST['emailid'],
                 'password' => md5($_POST['passwd']),
                 'usertype' => $_POST['accnttype'],
-                'cmp_name' => $_POST['companyname'],
+                'companyName' => $_POST['companyname'],
                 'address' => $_POST['address'],
                 'city' => $_POST['city'],
                 'area' => $_POST['area'],
+                'mobileNo' => $_POST['mobileNo'],
+                'phoneNo' => $_POST['phoneNo'],
                 'created' => time(),
                 'modified' => time(),
             );
             $userobj = new User();
             $userobj->addUser($data);
             setmessage('Thanks for registering. We will contact you soon.');
-            redirect('site/register');
+            //redirect('site/register');
         }
 
         $stateobj = new State;

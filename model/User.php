@@ -8,7 +8,7 @@ class User {
     }
 
     function checkemailid($email) {
-        return $this->db->query_first('SELECT first,last,email,imagepath FROM ' . $this->tbl . ' WHERE email="' . $email . '"');
+        return $this->db->query_first('SELECT name,email,imagepath FROM ' . $this->tbl . ' WHERE email="' . $email . '"');
     }
 
     function addUser($data) {

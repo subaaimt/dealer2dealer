@@ -48,6 +48,3 @@ RewriteCond %{REQUEST_URI} !\.(css|gif|ico|jpg|js|png|swf|txt|ttf|woff)$
 RewriteRule ^(.*)$ index.php?q=$1 [PT,L]
 
 </IfModule>
-
-
-

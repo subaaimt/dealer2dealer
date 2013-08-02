@@ -26,7 +26,7 @@
                             <h2> Quick Search </h2>
                         </div>
                         <div class="welcome">
-                            <p><b> WELCOME: <font color="green"><?php echo $_SESSION['userdata']['first'].'&nbsp;'.$_SESSION['userdata']['last']?> </font></b> &nbsp &nbsp &nbsp &nbsp <a href="<?php echo BASE_URL?>user/logout"> Logout </a> </p>
+                            <p><b> WELCOME: <font color="green"><?php echo $_SESSION['userdata']['name']?> </font></b> &nbsp &nbsp &nbsp &nbsp <a href="<?php echo BASE_URL?>user/logout"> Logout </a> </p>
                         </div>
                         <div class="buttons">
                             <div class="button1">

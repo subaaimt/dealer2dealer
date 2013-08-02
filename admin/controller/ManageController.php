@@ -63,7 +63,7 @@ class ManageController {
     function actionActivate($arg) {
         $user = new User;
         $user->updateUser(array('status' => 1), 'id=' . $arg['id']);
-        //  redirect('manage/user');
+       redirect('manage/user');
     }
 
     function actionDeActivate($arg) {

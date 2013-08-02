@@ -1,6 +1,7 @@
 function validatesignup(){
-    var firstname = $.trim($('#firstname').val());
-    var lastname = $.trim($('#lastname').val());
+    var name = $.trim($('#name').val());
+    var mobileNo = $.trim($('#mobileNo').val());
+    var phoneNo = $.trim($('#phoneNo').val());
     var emailid = $.trim($('#emailid').val());
     var password = $.trim($('#password').val());
     var confirmPassword = $.trim($('#confirmPassword').val()); 
@@ -13,18 +14,24 @@ function validatesignup(){
     var reg = /^([a-zA-Z0-9]+[a-zA-Z0-9._%-]*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4})$/;
     
     var strmsg = '';
-    if(firstname==''){
-        strmsg = strmsg + 'Please enter your first name.'+"\n";
-        
+    if(name==''){
+        strmsg = strmsg + 'Please enter your  name.'+"\n";        
     }
-    if(lastname==''){
-        strmsg = strmsg + 'Please enter your last name.'+"\n";
-    }
+   
     if(emailid==''){
         strmsg = strmsg + 'Please enter your email address.'+"\n";
     }
     if(reg.test(emailid) == false && emailid!=''){
         strmsg = strmsg + 'Please enter a vaild email address.'+"\n";
+    }
+    if(mobileNo=='' && phoneNo==''){
+         strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
+    }
+    if(mobileNo!='' && isNaN(mobileNo)){
+         strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
+    }
+    if(phoneNo!='' && isNaN(phoneNo)){
+         strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
     }
     if(password==''){
         strmsg = strmsg + 'Please enter your password.'+"\n";

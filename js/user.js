@@ -20,9 +20,9 @@ function getLocalityforRegister(this_){
 
 
 function validatemyaccount(){
-    var firstname = $.trim($('#updatefirstname').val());
-    var lastname = $.trim($('#updatelastname').val());
-
+   var name = $.trim($('#updatename').val());
+    var mobileNo = $.trim($('#updatemobileNo').val());
+    var phoneNo = $.trim($('#updatephoneNo').val());
     var companyname = $.trim($('#updatecompanyname').val());
     var address = $.trim($('#updateaddress').val());
     var city = $.trim($('#updatecity').val());
@@ -31,12 +31,17 @@ function validatemyaccount(){
     
     
     var strmsg = '';
-    if(firstname==''){
-        strmsg = strmsg + 'Please enter your first name.'+"\n";
-        
+    if(name==''){
+        strmsg = strmsg + 'Please enter your  name.'+"\n";        
     }
-    if(lastname==''){
-        strmsg = strmsg + 'Please enter your last name.'+"\n";
+    if(mobileNo=='' && phoneNo==''){
+         strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
+    }
+    if(mobileNo!='' && isNaN(mobileNo)){
+         strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
+    }
+    if(phoneNo!='' && isNaN(phoneNo)){
+         strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
     }
     
     if(companyname==''){

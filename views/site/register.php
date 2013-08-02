@@ -2,23 +2,31 @@
 <div class="alert alert-success"><?php echo getmessage();?></div>
 <form class="form-horizontal" method="post" id="formregister">
     <div class="control-group">
-        <label class="control-label" for="firstname">First Name</label>
+        <label class="control-label" for="name">Name</label>
         <div class="controls">
-            <input type="text" id="firstname" name="firstname" placeholder="First Name">
+            <input type="text" id="name" name="name" placeholder="Name">
         </div>
     </div>
-    <div class="control-group ">
-        <label class="control-label" for="lastname">Last  Name</label>
-        <div class="controls ">
-            <input type="text" id="lastname" name="lastname" placeholder="Last Name" >
-        </div>
-    </div>
+    
     <div class="control-group">
-        <label class="control-label" for="email">EmailId</label>
+        <label class="control-label" for="email">Email Id</label>
         <div class="controls">
             <input type="text" id="emailid" name="emailid" placeholder="Email address" autocomplete="off">
         </div>
     </div>
+    <div class="control-group ">
+        <label class="control-label" for="mobileNo">Mobile No.</label>
+        <div class="controls ">
+            <input type="text" id="mobileNo" name="mobileNo" placeholder=""  maxlength="10">
+        </div>
+    </div>
+    <div class="control-group ">
+        <label class="control-label" for="phoneNo">Phone No.</label>
+        <div class="controls ">
+            <input type="text" id="phoneNo" name="phoneNo" placeholder="" maxlength="12">
+        </div>
+    </div>
+    
     <div class="control-group">
         <label class="control-label" for="password">Password</label>
         <div class="controls">
@@ -51,7 +59,7 @@
     <div class="control-group">
         <label class="control-label" for="address">Address</label>
         <div class="controls">
-            <input type="text" id="address" name="address" placeholder="Address">
+            <textarea type="text" id="address" name="address" placeholder="Address"></textarea>
         </div>
     </div>
     

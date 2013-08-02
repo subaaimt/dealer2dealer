@@ -16,9 +16,11 @@ class UserController {
     function actionMyaccount() {
         
         if(!empty($_POST)){
-               $data = array('first' => $_POST['firstname'],
-                'last' => $_POST['lastname'],
-                'cmp_name' => $_POST['companyname'],
+               $data = array(
+                'name' => $_POST['name'],
+                'companyName' => $_POST['companyname'],
+                   'mobileNo' => $_POST['mobileNo'],
+                'phoneNo' => $_POST['phoneNo'],
                 'address' => $_POST['address'],
                 'city' => $_POST['city'],
                 'area' => $_POST['area'],
