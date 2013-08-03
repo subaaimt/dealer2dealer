@@ -25,13 +25,13 @@ function validatesignup(){
         strmsg = strmsg + 'Please enter a vaild email address.'+"\n";
     }
     if(mobileNo=='' && phoneNo==''){
-         strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
+        strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
     }
     if(mobileNo!='' && isNaN(mobileNo)){
-         strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
+        strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
     }
     if(phoneNo!='' && isNaN(phoneNo)){
-         strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
+        strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
     }
     if(password==''){
         strmsg = strmsg + 'Please enter your password.'+"\n";
@@ -103,22 +103,22 @@ function validatelogin(){
         strmsg = strmsg + 'Please enter your password.'+"\n";
     }
     if($.trim(strmsg)==''){
-         $('#signinform').ajaxloader();
-            $.ajax({
-        url: baseurl+"site/login",
-        type: 'POST',
-        data: $('#signinform').serialize(),
-        dataType:'json',
-        success: function(response){
-            $('#signinform').ajaxloader('hide');
-            if(response.status=='0'){
-                alert('Username and Password did not match');
-            }else if(response.status=='1')
-                location.href=baseurl+'user/myaccount';
+        $('#signinform').ajaxloader();
+        $.ajax({
+            url: baseurl+"site/login",
+            type: 'POST',
+            data: $('#signinform').serialize(),
+            dataType:'json',
+            success: function(response){
+                $('#signinform').ajaxloader('hide');
+                if(response.status=='0'){
+                    alert('Username and Password did not match');
+                }else if(response.status=='1')
+                    location.href=baseurl+'user';
             
-            $('#area').html(response);
-        }
-    });
+                $('#area').html(response);
+            }
+        });
         
         return false;
     }else{

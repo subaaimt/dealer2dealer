@@ -67,3 +67,28 @@ function validatemyaccount(){
     }
 
 }
+
+function updatepassword(){
+    var currentpassword = $.trim($('#currentpassword').val());
+    var newpassword = $.trim($('#newpassword').val());
+    var confirmPassword = $.trim($('#confirmPassword').val());
+   
+   var strmsg = '';
+    if(currentpassword==''){
+        strmsg = strmsg + 'Please enter your  current Password.'+"\n";        
+    }
+   
+    if(newpassword==''){
+        strmsg = strmsg + 'Please enter your  new Password.'+"\n";
+    }
+    if(confirmPassword!=newpassword){
+        strmsg = strmsg + 'Confirm Password do not match.'+"\n";
+    }
+    
+    if($.trim(strmsg)==''){
+        return true;
+    }else{
+        alert(strmsg);
+        return false;
+    }
+}

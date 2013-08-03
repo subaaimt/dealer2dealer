@@ -20,15 +20,25 @@ class User {
     }
 
     function startusersession($userdata) {
-         $_SESSION['userdata'] = $userdata;
+        $_SESSION['userdata'] = $userdata;
+        $this->updateLogin($userdata['id']);
     }
 
     function getuserById($id) {
         return $this->db->query_first('SELECT * FROM ' . $this->tbl . ' WHERE id="' . $id . '"');
     }
+
+    function getUserProfile($id) {
+        return $this->db->query_first('SELECT name,mobileNo,phoneNo,address,city,area,email,companyName,lastLogin,localityName, city_name FROM `users` JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
+`users`.city=`cities`.id WHERE `users`.id=' . $id);
+    }
+
+    function updateUser($data, $uid) {
+        return $this->db->query_update($this->tbl, $data, 'id=' . $uid);
+    }
     
-     function updateUser($data,$uid){
-         return $this->db->query_update($this->tbl,$data,'id='.$uid );
-     }
+    function updateLogin($uid) {
+        return $this->db->query_update($this->tbl, array('lastLogin'=>time()), 'id=' . $uid);
+    }
 
 }

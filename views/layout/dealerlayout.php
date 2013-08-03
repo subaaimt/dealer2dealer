@@ -7,14 +7,14 @@
 
         <link rel="stylesheet" type="text/css" href="css/jqueryslidemenu.css" />
 
-  <?php getCss(); ?>
+        <?php getCss(); ?>
 
         <link rel="stylesheet" type="text/css" href="css/elastislide.css" />
         <script src="js/modernizr.custom.17475.js"></script>
- <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.min.js"></script>
-        
+        <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.min.js"></script>
+
         <script type="text/javascript" src="js/jqueryslidemenu.js"></script>
-  <?php getJs(); ?>
+        <?php getJs(); ?>
         <script type="text/javascript">
             var baseurl = '<?php echo BASE_URL; ?>';
         </script>
@@ -22,9 +22,9 @@
 
     <body>
         <div class="container">
-            
-             <?php include_once('views/layout/elements/header_dealer.php'); ?>
-            
+
+            <?php include_once('views/layout/elements/header_dealer.php'); ?>
+
             <div class="main">
 
                 <div>
@@ -91,7 +91,7 @@
             </div>
 
             <div class="footer_container">
-                 <?php include_once('views/layout/elements/footer_dealer.php'); ?>
+                <?php include_once('views/layout/elements/footer_dealer.php'); ?>
             </div>
 
             <div class="copyright">Copyright &copy; 2013 <a href=""> Deals 2 Dealers </a> - All Rights Reserved. </div>
