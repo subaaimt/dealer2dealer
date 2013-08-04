@@ -171,7 +171,7 @@ class PropertyController {
             $query .= ' AND city =' . $rq['city'];
         }
         if (isset($rq['area']) && !empty($rq['area'])) {
-            $query .= ' AND city =' . $rq['city'];
+            $query .= ' AND area =' . $rq['area'];
         }
 
         $result = $property->fetchProperties($query . ' AND  status = "published"');

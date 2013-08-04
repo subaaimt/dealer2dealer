@@ -161,7 +161,7 @@ class ProjectController {
             $query .= ' AND city =' . $rq['city'];
         }
         if (isset($rq['area']) && !empty($rq['area'])) {
-            $query .= ' AND city =' . $rq['city'];
+            $query .= ' AND area =' . $rq['area'];
         }
 
         $result = $property->fetchProjects($query . ' AND  status = "published"');

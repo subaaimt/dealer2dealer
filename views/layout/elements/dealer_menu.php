@@ -31,8 +31,8 @@
    <li class='has-sub'><a href='#'><span>Agents</span></a>
    
 	<ul>
-         <li><a href='#'><span>Agents List</span></a></li>
-		 <li><a href='#'><span>Agents Search</span></a></li>
+         
+		 <li><a href='<?php echo BASE_URL?>agent/search'><span>Agents Search</span></a></li>
       </ul>
    </li>
    

@@ -36,9 +36,14 @@ class User {
     function updateUser($data, $uid) {
         return $this->db->query_update($this->tbl, $data, 'id=' . $uid);
     }
-    
+
     function updateLogin($uid) {
-        return $this->db->query_update($this->tbl, array('lastLogin'=>time()), 'id=' . $uid);
+        return $this->db->query_update($this->tbl, array('lastLogin' => time()), 'id=' . $uid);
+    }
+
+    function fetchUsers($cond = 1) {
+
+        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE 1 ' . $cond);
     }
 
 }

@@ -33,10 +33,10 @@
                                 <a href="<?php echo BASE_URL?>property/search"> <img src="<?php echo BASE_URL ?>img/button7.png"/> </a>
                             </div>
                             <div class="button2">
-                                <a href=""> <img src="<?php echo BASE_URL ?>img/button8.png"/> </a>
+                                <a href="<?php echo BASE_URL?>project/search"> <img src="<?php echo BASE_URL ?>img/button8.png"/> </a>
                             </div>
                             <div class="button3">
-                                <a href=""> <img src="<?php echo BASE_URL ?>img/button9.png"/> </a>
+                                <a href="<?php echo BASE_URL?>agent/search"> <img src="<?php echo BASE_URL ?>img/button9.png"/> </a>
                             </div>
 <!--                            <div class="button4">
                                 <a href=""> <img src="<?php echo BASE_URL ?>img/button10.png"/> </a>
