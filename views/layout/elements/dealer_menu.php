@@ -23,8 +23,8 @@
    
 	<ul>
          <li><a href='#'><span>Projects</span></a></li>
-		 <li><a href='#'><span>Add Project</span></a></li>
-		 <li><a href='#'><span>Edit Projects</span></a></li>
+		 <li><a href='<?php echo BASE_URL?>project/add'><span>Add Project</span></a></li>
+		 <li><a href='<?php echo BASE_URL?>project/manage'><span>Manage Projects</span></a></li>
       </ul>
    </li>
    

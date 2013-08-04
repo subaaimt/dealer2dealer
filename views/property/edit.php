@@ -105,7 +105,7 @@
             <input  value="<?php echo $properties['plotLandArea'] ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off">
             <select  style="width:100px" name="plotLandAreaUnit" id="plotLandAreaUnit">
 
-                <option selected="selected" value="Sq-ft">Sq-ft</option>
+                <option <?php echo ('Sq-ft' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?>  value="Sq-ft">Sq-ft</option>
                 <option <?php echo ('Sq-m' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
                 <option <?php echo ('Sq-yrd' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
             </select>

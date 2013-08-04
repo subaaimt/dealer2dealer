@@ -38,9 +38,9 @@
                             <div class="button3">
                                 <a href=""> <img src="<?php echo BASE_URL ?>img/button9.png"/> </a>
                             </div>
-                            <div class="button4">
+<!--                            <div class="button4">
                                 <a href=""> <img src="<?php echo BASE_URL ?>img/button10.png"/> </a>
-                            </div>
+                            </div>-->
                         </div>
 
                     </div>

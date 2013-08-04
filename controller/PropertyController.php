@@ -64,6 +64,7 @@ class PropertyController {
     function actionMyProperty() {
         $property = new Property;
         $result = $property->fetchProperties('AND user_id = ' . $_SESSION['userdata']['id'] . ' AND status = "published"');
+       
         return(array('layout' => 'dealerlayout', 'properties' => $result));
     }
 
