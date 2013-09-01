@@ -38,7 +38,7 @@ function __autoload($class_name) {
         include(DIRECTORY_ROOT . '/controller/' . $class_name . '.php');
     else if (file_exists(DIRECTORY_ROOT . '/model/' . $class_name . '.php'))
         include(DIRECTORY_ROOT . '/model/' . $class_name . '.php');
-     else if (file_exists(DIRECTORY_ROOT . '/component/' . $class_name . '.php'))
+    else if (file_exists(DIRECTORY_ROOT . '/component/' . $class_name . '.php'))
         include(DIRECTORY_ROOT . '/component/' . $class_name . '.php');
 }
 
@@ -56,6 +56,12 @@ function remove_null_values($oldvalues) {
 function getmessage($type = 'success') {
     $message = isset($_SESSION['message']) ? ($_SESSION['message']) : '';
     unset($_SESSION['message']);
+    if (!empty($message)) {
+        $message = '<div class="alert alert-success">' . $message . '</div>';
+    } else {
+        $message = '';
+    }
+
     return $message;
 }
 
@@ -89,5 +95,16 @@ function getrequesturi() {
 
         return $request_keyval;
     }
+}
+
+function getThumbnail($path, $h, $w) {
+    
+   
+      $_GET['src'] = MEDIA_PATH . $path;
+
+    $_GET['w'] = $h;
+    $_GET['h'] = $w;
+    include 'component/timthumb.php';
+   
 }
 

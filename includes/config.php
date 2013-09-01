@@ -9,4 +9,6 @@ define('BASE_URL', 'http://localhost/dealer2dealer/');
 define('SITE_NAME', 'Dealer2Dealer');
 
 define('DIRECTORY_ROOT', dirname(dirname(__FILE__)));
+
+define('MEDIA_PATH', dirname(dirname((__FILE__))).DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR);
 session_start();

@@ -6854,3 +6854,4 @@ input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%;
 }
+.icon-calendar{cursor: pointer;}

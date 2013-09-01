@@ -1,11 +1,12 @@
+<div ><?php echo getmessage(); ?></div>
+<h2>Add Banner</h2>
+<?php addJs(array('js/admin.js')); ?>
 
-<?php //addJs(array('js/user.js')); ?>
-<div class="alert alert-success"><?php echo getmessage(); ?></div>
-<form class="form-horizontal" method="post" id="adbanner" enctype="multipart/form-data" >
+<form class="form-horizontal" method="post" id="adbanner" enctype="multipart/form-data" onsubmit="return validateBannerform()">
     <div class="control-group">
         <label class="control-label" for="title">Banner Title</label>
         <div class="controls">
-            <input type="text" id="title" name="title" placeholder="Title" value="<?php //echo $userresults['first']  ?>">
+            <input type="text" id="title" name="title" placeholder="Title" value="<?php //echo $userresults['first']   ?>">
         </div>
     </div>
     <div class="control-group ">
@@ -19,10 +20,11 @@
     <div class="control-group">
         <label class="control-label" for="companyname">Banner Position</label>
         <div class="controls">
-             <select id="bannerposition" name="position" onchange="getLocalityforRegister(this)">
+            <select id="bannerposition" name="position" onchange="getLocalityforRegister(this)">
                 <option value="">--Select--</option>
-                <option value="left">Left</option>
-                <option value="right">Right</option>  
+                <option value="left">Left 200x58 </option>
+                <option value="center">Center 470x250</option>
+                <option value="right">Right 200x142</option>  
             </select>
         </div>
     </div>

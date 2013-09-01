@@ -1,16 +1,21 @@
-<?php addJs(array('js/user.js')); ?>
-<div class="alert alert-success"><?php echo getmessage(); ?></div>
+
+<?php 
+addCss(array( 'asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'));
+addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js','js/user.js'));
+?>
+<div ><?php echo getmessage(); ?></div>
 <form class="form-horizontal" method="post" id="updateformregister" onsubmit="return validatemyaccount();">
-    <div class="control-group">
-        <label class="control-label" for="name">Name</label>
-        <div class="controls">
-            <input type="text" id="updatename" name="name" placeholder="Name" value="<?php echo $userresults['name'] ?>">
-        </div>
-    </div>
+    
     <div class="control-group ">
         <label class="control-label" for="mobileNo">Mobile No.</label>
         <div class="controls ">
             <input type="text" id="updatemobileNo" name="mobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['mobileNo'] ?>">
+        </div>
+    </div>
+    <div class="control-group ">
+        <label class="control-label" for="mobileNo">Optional Mobile No.</label>
+        <div class="controls ">
+            <input type="text" id="optionalmobileNo" name="optionalmobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['optionalmobileNo'] ?>">
         </div>
     </div>
     <div class="control-group ">
@@ -21,11 +26,15 @@
     </div>
 
 
-    <div class="control-group">
-        <label class="control-label" for="companyname">Company Name</label>
-        <div class="controls">
-            <input type="text" id="updatecompanyname" name="companyname" placeholder="Company Name" value="<?php echo $userresults['companyName'] ?>">
+   <div class="control-group">
+        <label class="control-label" for="email">Date of Birth</label>
+        <div class="controls" id="datetimepicker1">
+            <input type="text" id="dob" name="dob" data-format="yyyy-MM-dd"  autocomplete="off" class="input-append date"><span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar">
+      </i>
+    </span>
         </div>
+       
     </div>
     <div class="control-group">
         <label class="control-label" for="address">Address</label>
@@ -48,16 +57,36 @@
     <div class="control-group">
         <label class="control-label" for="area">Area</label>
         <div class="controls">
-            <select id="updatearea" name="area">
+            <select id="updatearea" name="area" onchange="changeArea(this, <?php echo $userresults['city']?>)">
                 <option value="">--Select--</option>
 
-                <?php foreach ($areas as $ar) { ?>
-                    <option <?php echo ($ar['id'] == $userresults['area']) ? 'selected' : '' ?> value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
+                <?php $otherflag=TRUE;
+                foreach ($areas as $ar) { ?>
+                    <option <?php  if($ar['id'] == $userresults['area']) { echo 'selected'; $otherflag=FALSE; }else{ echo '';} ?> value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
                 <?php } ?>
+                    <option value="otherarea" <?php echo ($otherflag)?'selected':''?>>Other</option>
             </select>
 
         </div>
     </div>
+    
+    <div class="control-group" id="otherArea" style="display:none">
+        <label class="control-label" for="avtar">&nbsp;</label>
+        <div class="controls">
+            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName'])?$otherareaname['localityName']:''?>" >            
+            
+        </div>
+    </div>
+    <?php if($otherareaname){    ?>
+    
+    <div class="control-group" id="otherAreaRegis" style="display:<?php echo ($otherflag)?'':'none'?>;">
+        <label class="control-label" for="avtar">&nbsp;</label>
+        <div class="controls">
+            <input type="text" id="otherAreainRegis" name="otherAreaRegis" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName'])?$otherareaname['localityName']:''?>" >            
+            <input type="hidden" value="<?php echo $userresults['area']?>"  name="othaid" />
+        </div>
+    </div>
+    <?php }?>
     <div class="control-group">
 
         <div class="controls">
@@ -65,3 +94,10 @@
         </div>
     </div>
 </form>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+     pickTime: false
+    });
+  });
+</script>

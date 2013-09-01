@@ -18,8 +18,8 @@ function addCss($cssarray = array()) {
     $css = array_merge($css, $cssarray);
 }
 
-function getJs($jsarray = array()) {
-    global $js;
+function getJs() {
+    global $js;  
     foreach ($js as $jsfile) {
         echo '<script type="text/javascript" src="' . BASE_URL . $jsfile . '"></script>' . "\n";
     }
@@ -53,14 +53,23 @@ function remove_null_values($oldvalues) {
     return $newarray;
 }
 
-function getmessage($type = 'success') {
+function getmessage() {
     $message = isset($_SESSION['message']) ? ($_SESSION['message']) : '';
+    $type = isset($_SESSION['msgtype']) ? ($_SESSION['msgtype']) : '';
     unset($_SESSION['message']);
+    unset($_SESSION['msgtype']);
+    if (!empty($message)) {
+        $message = '<div class="alert alert-'.$type.'">' . $message . '</div>';
+    } else {
+        $message = '';
+    }
+
     return $message;
 }
 
-function setmessage($msg) {
+function setmessage($msg, $type='success') {
     $_SESSION['message'] = $msg;
+    $_SESSION['msgtype']=$type;
 }
 
 function filerender($contentfile, $data) {

@@ -16,10 +16,11 @@
 
         <?php getCss(); ?>
 
-        <script type="text/javascript" src="<?php echo BASE_URL ?>js/calendar.js"></script>
-        <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.min.js"></script>
+        
+        <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL ?>js/jqueryslidemenu.js"></script>
-        <script src="<?php echo BASE_URL ?>js/jquery.js"></script>
+       
+        <script src="<?php echo BASE_URL ?>js/bootstrap.min.js"></script>
        <script src="<?php echo BASE_URL ?>asset/ajaxloader/jquery.ajaxloader.1.5.1.js"></script>
         <script src="<?php echo BASE_URL ?>js/site.js"></script>
         

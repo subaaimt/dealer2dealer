@@ -1,6 +1,9 @@
-<?php addJs(array('js/site.js'));?>
-<div class="alert alert-success"><?php echo getmessage();?></div>
-<form class="form-horizontal" method="post" id="formregister">
+<?php 
+addCss(array( 'asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'));
+addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'));
+?>
+<div ><?php echo getmessage();?></div>
+<form class="form-horizontal" method="post" id="formregister" enctype="multipart/form-data">
     <div class="control-group">
         <label class="control-label" for="name">Name</label>
         <div class="controls">
@@ -12,6 +15,15 @@
         <label class="control-label" for="email">Email Id</label>
         <div class="controls">
             <input type="text" id="emailid" name="emailid" placeholder="Email address" autocomplete="off">
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="email">Date of Birth</label>
+        <div class="controls" id="datetimepicker1">
+            <input readonly type="text" id="dob" name="dob" data-format="yyyy-MM-dd"  autocomplete="off" class="input-append date"><span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar">
+      </i>
+    </span>
         </div>
     </div>
     <div class="control-group ">
@@ -77,11 +89,23 @@
      <div class="control-group">
         <label class="control-label" for="area">Area</label>
         <div class="controls">
-             <select id="area" name="area">
+             <select id="area" name="area" onchange="changeArea(this)">
                 <option value="">--Select--</option>
                  
              </select>
             
+        </div>
+    </div>
+    <div class="control-group" id="otherArea" style="display:none;">
+        <label class="control-label" for="avtar">&nbsp;</label>
+        <div class="controls">
+            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" >
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="avtar">Profile Pic/ Logo</label>
+        <div class="controls">
+            <input type="file" id="pic" name="pic" >
         </div>
     </div>
      <div class="control-group">
@@ -91,3 +115,10 @@
         </div>
     </div>
 </form>
+<script type="text/javascript">
+  $(function() {
+    $('#datetimepicker1').datetimepicker({
+     pickTime: false
+    });
+  });
+</script>

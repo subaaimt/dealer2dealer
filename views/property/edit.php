@@ -1,5 +1,5 @@
 <?php addJs(array('js/property.js')); ?>
-<div class="alert alert-success"><?php echo getmessage(); ?></div>
+<div class=""><?php echo getmessage(); ?></div>
 <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyupdateform();">
     <div class="control-group">
         <label class="control-label" for="propertyfor">Property For</label>
@@ -114,7 +114,7 @@
     <div class="control-group">
         <label class="control-label" for="propertyprice">Total Price</label>
         <div class="controls">
-            <input value="<?php echo $properties['price']?>" type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">&nbsp;Rs.
+            <input value="<?php echo $properties['price'] ?>" type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">&nbsp;Rs.
         </div>
     </div>
     <div class="control-group">
@@ -147,7 +147,7 @@
     <div class="control-group">
         <label class="control-label" for="totalfloors">Total floors</label>
         <div class="controls">
-            <input type="text" value="<?php echo $properties['totalFloor']?>" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off">
+            <input type="text" value="<?php echo $properties['totalFloor'] ?>" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off">
         </div>
     </div>
     <div class="control-group">
@@ -185,17 +185,40 @@
     <div class="control-group">
         <label class="control-label" for="propertyarea">Area</label>
         <div class="controls">
-            <select id="propertyarea" name="propertyarea">
+            <select id="propertyarea" name="propertyarea" onchange="changeAreUpdate(this)">
                 <option value="">--Select--</option>
 
-                <?php foreach ($areas as $ar) { ?>
-                    <option <?php echo ($ar['id'] == $properties['area']) ? 'selected' : '' ?> value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
-                <?php } ?>
+                <?php $otherflag = TRUE;
+                foreach ($areas as $ar) { ?>
+                    <option <?php if ($ar['id'] == $properties['area']) {
+                        echo 'selected';
+                        $otherflag = FALSE;
+                    } else {
+                        echo '';
+                    } ?> value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
+<?php } ?>
+                <option value="otherarea" <?php echo ($otherflag) ? 'selected' : '' ?>>Other</option>
             </select>
 
         </div>
     </div>
+    <div class="control-group" id="otherArea" style="display:none">
+        <label class="control-label" for="avtar">&nbsp;</label>
+        <div class="controls">
+            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" value="" >            
 
+        </div>
+    </div>
+<?php if ($otherareaname) { ?>
+
+        <div class="control-group" id="otherAreaRegis" style="display:<?php echo ($otherflag) ? '' : 'none' ?>;">
+            <label class="control-label" for="avtar">&nbsp;</label>
+            <div class="controls">
+                <input type="text" id="otherAreainRegis" name="otherAreaRegis" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName']) ? $otherareaname['localityName'] : '' ?>" >            
+                <input type="hidden" value="<?php echo $properties['area'] ?>"  name="othaid" />
+            </div>
+        </div>
+<?php } ?>
     <div class="control-group">
         <label class="control-label" for="propertyimage">Property Image</label>
         <div class="controls">

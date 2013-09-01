@@ -1,6 +1,6 @@
 <html>
 	<head>
-    <title> DEALS 2 DEALERS </title>
+    <title> DEALS 2 DEALERS1 </title>
     
     <link href="css/bar/bar.css" rel="stylesheet" type="text/css" />
     <link href="css/dark/dark.css" rel="stylesheet" type="text/css" />
@@ -8,11 +8,10 @@
     <link href="css/light/light.css" rel="stylesheet" type="text/css" />
     <link href="css/nivo-slider.css" rel="stylesheet" type="text/css" />
     <link href="style.css" rel="stylesheet" type="text/css" />
-    
-    <link rel="stylesheet" media="screen, print, handheld" type="text/css" href="calendar.css" />
-        <script type="text/javascript" src="calendar.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/jqueryslidemenu.css" />
+   
+      
     <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
 <script type="text/javascript" src="js/jqueryslidemenu.js"></script>
 	</head>
     

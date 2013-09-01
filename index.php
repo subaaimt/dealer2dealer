@@ -74,5 +74,5 @@ if (file_exists($contentfile)) {
     else
         include "views/layout/" . (isset($layout) ? $layout : 'layout') . ".php";
 }else {
-    die('ss');
+    redirect('site/notfound');
 }

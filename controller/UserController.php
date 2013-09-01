@@ -13,7 +13,16 @@ class UserController {
 
         $userobj = new User;
         $useresults = $userobj->getUserProfile($_SESSION['userdata']['id']);
-        return array('title' => 'My Account', 'userresult' => $useresults, 'layout' => 'dealerlayout');
+        var_dump($useresults);
+        die;
+        $package = new Package;
+        $userPackage = new UserPackage;
+        $status = $userPackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
+        return array('title' => 'My Account',
+            'userresult' => $useresults, 
+            'layout' => 'dealerlayout',
+            'pkdata'=>$package->fetchPackagedata($useresults['currentPackId']),
+              'status'=> $status );
     }
 
     function actionChangePassword() {
@@ -38,16 +47,30 @@ class UserController {
     }
 
     function actionMyaccount() {
-
+        $userobj = new User;
+        $useresults = $userobj->getuserById($_SESSION['userdata']['id']);
         if (!empty($_POST)) {
+
+            if ($_POST['area'] == 'otherarea') {
+                $area = new Area();
+                if (isset($_POST['othaid'])) {
+                    if ($useresults['city'] == $_POST['city']) {
+                       
+                        $areaid = $useresults['area'];
+                        $area->updatearea($useresults['area'], $_POST['otherAreaRegis']);
+                    }
+                } else {                    
+                    $areaid = $area->addarea($_POST['city'], $_POST['otherArea']);
+                }
+            }
+
             $data = array(
-                'name' => $_POST['name'],
-                'companyName' => $_POST['companyname'],
+                'optionalmobileNo'=> $_POST['optionalmobileNo'],
                 'mobileNo' => $_POST['mobileNo'],
                 'phoneNo' => $_POST['phoneNo'],
                 'address' => $_POST['address'],
                 'city' => $_POST['city'],
-                'area' => $_POST['area'],
+                'area' => isset($areaid) ? $areaid : $_POST['area'],
                 'modified' => time(),
             );
 
@@ -57,8 +80,7 @@ class UserController {
             setmessage('Account updated successfully');
             redirect('user/myaccount');
         }
-        $userobj = new User;
-        $useresults = $userobj->getuserById($_SESSION['userdata']['id']);
+
         $_SESSION['userdata']['name'] = $useresults['name'];
         $stateobj = new State;
         $state = $stateobj->getStates();
@@ -68,7 +90,15 @@ class UserController {
 
         $areaobj = new Area;
         $areas = $areaobj->getAreas();
-        return array('title' => 'My Account', 'layout' => 'dealerlayout', 'userresults' => $useresults, 'state' => $state, 'cities' => $cities, 'areas' => $areas);
+        $otherareaname = $areaobj->getAreasNameBy($useresults['area'], 0);
+
+       
+        return array('title' => 'My Account', 'layout' => 'dealerlayout',
+            'userresults' => $useresults,
+            'state' => $state,
+            'cities' => $cities,
+            'areas' => $areas,
+            'otherareaname' => $otherareaname);
     }
 
     function actionLogout() {

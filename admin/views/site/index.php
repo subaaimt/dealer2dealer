@@ -3,7 +3,7 @@
 
       <form class="form-signin" method="post">
         <h2 class="form-signin-heading">Admin Login</h2>
-        <input type="text" name="admin_user" class="input-block-level" placeholder="Email address">
+        <input type="text" name="admin_user" class="input-block-level" placeholder="Username">
         <input type="password" name="admin_pass" class="input-block-level" placeholder="Password">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me

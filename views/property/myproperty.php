@@ -1,6 +1,6 @@
 <table  class="table table-bordered">
     <thead><th>Property for</th><th>Type</th><th>Title</th><th>Description</th><th>&nbsp;</th></thead>
-<?php 
+<?php if(!empty($properties)){
 foreach ($properties as $property){
 ?>
     <tr>
@@ -21,5 +21,8 @@ foreach ($properties as $property){
     </tr>
 
 
-<?php }?>
+<?php }}else{
+    ?><tr><td colspan="5" style="text-align: center;    ">No record found</td></tr><?php
+}
+?>
 </table>

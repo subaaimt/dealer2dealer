@@ -15,7 +15,7 @@
         
 		 <li><a href='<?php echo BASE_URL?>property'><span>Post Properties</span></a></li>
 		 <li><a href='<?php echo BASE_URL?>property/myproperty'><span>Edit And Delete Properties</span></a></li>
-         <li class='last'><a href='#'><span>Expire Properties</span></a></li>
+         <li class='last'><a href='<?php echo BASE_URL?>property/expiredproperty'><span>Expire Properties</span></a></li>
       </ul>
    </li>
    <li><a href='#'><span>Property Search</span></a></li>

@@ -16,14 +16,17 @@ function getLocalityforRegister(this_){
             $('#updatearea').html(response);
         }
     });
+    
+     $('#otherAreaRegis').hide();
+            $('#otherArea').hide();
 }
 
 
 function validatemyaccount(){
-   var name = $.trim($('#updatename').val());
+    
     var mobileNo = $.trim($('#updatemobileNo').val());
     var phoneNo = $.trim($('#updatephoneNo').val());
-    var companyname = $.trim($('#updatecompanyname').val());
+    
     var address = $.trim($('#updateaddress').val());
     var city = $.trim($('#updatecity').val());
     var area = $.trim($('#updatearea').val()); 
@@ -31,22 +34,17 @@ function validatemyaccount(){
     
     
     var strmsg = '';
-    if(name==''){
-        strmsg = strmsg + 'Please enter your  name.'+"\n";        
-    }
+   
     if(mobileNo=='' && phoneNo==''){
-         strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
+        strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
     }
     if(mobileNo!='' && isNaN(mobileNo)){
-         strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
+        strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
     }
     if(phoneNo!='' && isNaN(phoneNo)){
-         strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
+        strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
     }
-    
-    if(companyname==''){
-        strmsg = strmsg + 'Please enter your company name.'+"\n";
-    }
+   
     if(address==''){
         strmsg = strmsg + 'Please enter your address.'+"\n";
     }
@@ -73,7 +71,7 @@ function updatepassword(){
     var newpassword = $.trim($('#newpassword').val());
     var confirmPassword = $.trim($('#confirmPassword').val());
    
-   var strmsg = '';
+    var strmsg = '';
     if(currentpassword==''){
         strmsg = strmsg + 'Please enter your  current Password.'+"\n";        
     }
@@ -90,5 +88,21 @@ function updatepassword(){
     }else{
         alert(strmsg);
         return false;
+    }
+}
+
+function changeArea(this_,cid){   
+    if($(this_).val()==='otherarea'){
+        if($('#updatecity').val()==cid && $('#otherAreaRegis').length){
+            $('#otherAreaRegis').show();
+            $('#otherArea').hide();
+        }else{
+            $('#otherAreaRegis').hide();
+            $('#otherArea').show();
+            $('#otherAreain').val('');
+        }
+    }else{
+        $('#otherArea').hide();
+         $('#otherAreaRegis').hide();
     }
 }

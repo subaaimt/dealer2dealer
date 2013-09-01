@@ -18,6 +18,7 @@ function getLocality(this_){
     });
 }
 
+
 function validatepopertyform(){
     var propertyfor = $.trim($('#propertyfor').val());
     var propertytype = $.trim($('#propertytype').val());
@@ -26,7 +27,7 @@ function validatepopertyform(){
     var propertytitle = $.trim($('#propertytitle').val()); 
     var propertycity = $.trim($('#propertycity').val());
     var propertyarea = $.trim($('#propertyarea').val());
-    var propertyimage = $.trim($('#propertyimage').val());
+    //var propertyimage = $.trim($('#propertyimage').val());
     
     var strmsg = '';
     
@@ -56,9 +57,9 @@ function validatepopertyform(){
     if(propertyarea==''){
         strmsg = strmsg + 'Please select property area.'+"\n";
     }
-    if(propertyimage==''){
-        strmsg = strmsg + 'Please select a propety image.'+"\n";
-    }
+//    if(propertyimage==''){
+//        strmsg = strmsg + 'Please select a propety image.'+"\n";
+//    }
     if($.trim(strmsg)!=''){
         alert(strmsg);
         return false;
@@ -112,4 +113,28 @@ function validatepopertyupdateform(){
     }
     else
         return true;
+}
+
+function changeArea(this_){    
+   if($(this_).val()==='otherarea'){       
+       $('#otherArea').show();
+   }else{
+       $('#otherArea').hide();
+   }
+}
+
+function changeAreUpdate(this_,cid){   
+    if($(this_).val()==='otherarea'){
+        if($('#updatecity').val()==cid && $('#otherAreaRegis').length){
+            $('#otherAreaRegis').show();
+            $('#otherArea').hide();
+        }else{
+            $('#otherAreaRegis').hide();
+            $('#otherArea').show();
+            $('#otherAreain').val('');
+        }
+    }else{
+        $('#otherArea').hide();
+         $('#otherAreaRegis').hide();
+    }
 }

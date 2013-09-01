@@ -3,6 +3,7 @@ function validatesignup(){
     var mobileNo = $.trim($('#mobileNo').val());
     var phoneNo = $.trim($('#phoneNo').val());
     var emailid = $.trim($('#emailid').val());
+    var dob = $.trim($('#dob').val());
     var password = $.trim($('#password').val());
     var confirmPassword = $.trim($('#confirmPassword').val()); 
     var accounttype = $.trim($('input[name="accnttype"]:checked').val());
@@ -10,6 +11,7 @@ function validatesignup(){
     var address = $.trim($('#address').val());
     var city = $.trim($('#city').val());
     var area = $.trim($('#area').val()); 
+    var otherAreain = $.trim($('#otherAreain').val());
     //alert(accounttype);
     var reg = /^([a-zA-Z0-9]+[a-zA-Z0-9._%-]*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4})$/;
     
@@ -21,11 +23,14 @@ function validatesignup(){
     if(emailid==''){
         strmsg = strmsg + 'Please enter your email address.'+"\n";
     }
+     if(dob==''){
+        strmsg = strmsg + 'Please enter your date of birth.'+"\n";
+    }
     if(reg.test(emailid) == false && emailid!=''){
         strmsg = strmsg + 'Please enter a vaild email address.'+"\n";
     }
-    if(mobileNo=='' && phoneNo==''){
-        strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
+    if(mobileNo==''){
+        strmsg = strmsg + 'Please enter the mobile number.'+"\n";
     }
     if(mobileNo!='' && isNaN(mobileNo)){
         strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
@@ -56,6 +61,9 @@ function validatesignup(){
     }
     if(area==''){
         strmsg = strmsg + 'Please enter your area.'+"\n";
+    }
+    if(area=='otherarea' && otherAreain==''){
+        strmsg = strmsg + 'Please enter the other area.'+"\n";
     }
     
     if($.trim(strmsg)==''){
@@ -128,6 +136,7 @@ function validatelogin(){
 }
 
 function getLocalityforRegister(this_){
+    $(this_).attr('disabled', true);
     $.ajax({
         url: baseurl+"city",
         type: 'POST',
@@ -136,7 +145,17 @@ function getLocalityforRegister(this_){
         },
       
         success: function(response){
+            $(this_).attr('disabled', false);
             $('#area').html(response);
         }
     });
+}
+function changeArea(this_){
+    
+   if($(this_).val()==='otherarea'){
+       
+       $('#otherArea').show();
+   }else{
+       $('#otherArea').hide();
+   }
 }

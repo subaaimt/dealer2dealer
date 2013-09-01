@@ -1,7 +1,10 @@
+<div><?php echo getmessage();?></div>
+<h2>Manage Banner</h2>
+<?php addJs(array('js/admin.js')); ?>
+
 <table  class="table table-bordered">
     <thead><th>ID</th><th>Title</th><th>Position</th><th>&nbsp;</th></thead>
-<h2>Banners</h2>
-    
+
         <?php 
 
 foreach ($banners as $banner){
@@ -14,19 +17,20 @@ foreach ($banners as $banner){
         <td>
             <?php echo $banner['position']?>
         </td>
+        
     <td>
         <?php if($banner['status']==0){?>
         <a href="<?php echo BASE_URL?>manage/changebannerstatus/id/<?php echo $banner['id']?>/status/1">Activate</a>
         <?php }else{?>
        <a href="<?php echo BASE_URL?>manage/changebannerstatus/id/<?php echo $banner['id']?>/status/0">De-Activate</a>
         <?php }?>
-        
+        | <a href="<?php echo BASE_URL?>manage/editbanner/id/<?php echo $banner['id']?>">Edit</a>
+        | <a onclick="return confirmationbanner()" href="<?php echo BASE_URL?>manage/editbanner/delete/<?php echo $banner['id']?>">Delete</a>
         </td>
-        <td>
-           <a href="<?php echo BASE_URL?>manage/editbanner/id/<?php echo $banner['id']?>">Edit</a>
-        </td>
+       
     </tr>
 
 
 <?php }?>
 </table>
+<?php echo $pagination['pagination']?>

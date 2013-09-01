@@ -10,10 +10,10 @@
         <?php getCss(); ?>
 
         <link rel="stylesheet" type="text/css" href="css/elastislide.css" />
-        <script src="js/modernizr.custom.17475.js"></script>
-        <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.min.js"></script>
-
-        <script type="text/javascript" src="js/jqueryslidemenu.js"></script>
+        
+        <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.js"></script>
+ <script src="<?php echo BASE_URL ?>js/bootstrap.js"></script>
+       
         <?php getJs(); ?>
         <script type="text/javascript">
             var baseurl = '<?php echo BASE_URL; ?>';
@@ -98,16 +98,7 @@
         </div>
 
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script type="text/javascript" src="js/jquerypp.custom.js"></script>
-        <script type="text/javascript" src="js/jquery.elastislide.js"></script>
-        <script type="text/javascript">
-			
-            $( '#carousel' ).elastislide( {
-                orientation : 'vertical'
-            } );
-			
-        </script>
+       
 
     </body>
 </html>

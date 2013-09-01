@@ -1,10 +1,10 @@
   
-                        <div class="video_widget">
+<!--                        <div class="video_widget">
                             <h2> Video </h2>
                             <p>
                                 <iframe width="200" height="130" src="http://www.youtube.com/embed/qzkx7ScbZ4I" frameborder="0" allowfullscreen></iframe>
                             </p>
-                        </div>  			
+                        </div>  			-->
 
                         <div>
 

@@ -1,5 +1,6 @@
+<?php if($status){?>
 <?php addJs(array('js/property.js')); ?>
-<div class="alert alert-success"><?php echo getmessage(); ?></div>
+<div ><?php echo getmessage(); ?></div>
 <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyform();">
     <div class="control-group">
         <label class="control-label" for="propertyfor">Property For</label>
@@ -185,11 +186,17 @@
     <div class="control-group">
         <label class="control-label" for="propertyarea">Area</label>
         <div class="controls">
-            <select id="propertyarea" name="propertyarea">
+            <select id="propertyarea" name="propertyarea" onchange="changeArea(this)">
                 <option value="">--Select--</option>
 
             </select>
 
+        </div>
+    </div>
+    <div class="control-group" id="otherArea" style="display:none;">
+        <label class="control-label" for="avtar">&nbsp;</label>
+        <div class="controls">
+            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" >
         </div>
     </div>
 
@@ -206,3 +213,7 @@
         </div>
     </div>
 </form>
+<?php }else{?>
+
+<div style="text-align:center; color:red;">Membership Expired or not taken</div>
+<?php } ?>

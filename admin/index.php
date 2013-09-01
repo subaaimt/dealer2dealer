@@ -41,7 +41,7 @@ if (count($queryparam) > 2) {
 //Redirect if Controller method not found
 $method_exist = (int) method_exists($mastercntrlobj, $invokemodelfunc);
 if (!$method_exist) {
-    redirect('site/notfound');
+    redirect('manage/notfound');
 }
 
 //Invoke Controller method 
@@ -74,5 +74,5 @@ if (file_exists($contentfile)) {
     else
         include "views/layout/" . (isset($layout) ? $layout : 'layout') . ".php";
 }else {
-    die('ss');
+  redirect('manage/notfound');
 }

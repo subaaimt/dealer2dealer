@@ -21,7 +21,8 @@ class Property {
     }
 
     function deleteProperty($cond) {
-        return $this->db->query_update($this->tbl, array('status' => 'deleted'), $cond);
+
+        return $this->db->query('DELETE FROM ' . $this->tbl . ' WHERE  ' . $cond);
     }
 
     function updateProperty($data, $cond) {
@@ -36,8 +37,13 @@ class Property {
 
     function floors() {
         $range = range(1, 100);
-        
-        return array_merge( array('Lower Basement', 'Upper Basement', 'Ground'),$range);
+
+        return array_merge(array('Lower Basement', 'Upper Basement', 'Ground'), $range);
+    }
+
+    function expireProperty($uid) {
+        $this->updateProperty(array('status'=>'expired'), 'user_id='.$uid);
+     
     }
 
 }
