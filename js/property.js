@@ -18,7 +18,6 @@ function getLocality(this_){
     });
 }
 
-
 function validatepopertyform(){
     var propertyfor = $.trim($('#propertyfor').val());
     var propertytype = $.trim($('#propertytype').val());
