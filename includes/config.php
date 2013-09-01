@@ -12,3 +12,4 @@ define('DIRECTORY_ROOT', dirname(dirname(__FILE__)));
 
 define('MEDIA_PATH', dirname(dirname((__FILE__))).DIRECTORY_SEPARATOR.'media'.DIRECTORY_SEPARATOR);
 session_start();
+
