@@ -1,12 +1,9 @@
 <div class="slider">
                             <div class="slider-wrapper theme-default">
                                 <div class="nivoSlider" id="slider">
-                                    <img src="<?php echo BASE_URL;?>img/house1.jpg" alt=""/>
-                                    <img src="<?php echo BASE_URL;?>img/house2.jpg" alt="" title=""/>
-                                    <img src="<?php echo BASE_URL;?>img/house3.jpg" alt=""/>
-                                    <img src="<?php echo BASE_URL;?>img/house4.jpg" alt="" title=""/>
-                                    <img src="<?php echo BASE_URL;?>img/house5.jpg" alt="" title=""/>
-                                    <img src="<?php echo BASE_URL;?>img/house6.jpg" alt="" title=""/>
+                                    <?php foreach ($_SESSION['banners'] as $center){if($center['position']=='center'){?>
+                                    <img width="470" height="250" src="<?php echo BASE_URL.'media/banner/'.$center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />                                    
+                                    <?php }}?>
                                 </div>
 
                             </div>

@@ -52,37 +52,7 @@
 
                     </div>
 
-                    <div class="sidebar_right">  
-                        <div class="column">
-                            <!-- Elastislide Carousel -->
-                            <ul id="carousel" class="elastislide-list">
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/4.jpg" alt="image04" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/5.jpg" alt="image05" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/6.jpg" alt="image06" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/7.jpg" alt="image07" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/11.jpg" alt="image11" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/12.jpg" alt="image12" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/13.jpg" alt="image13" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/14.jpg" alt="image14" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/15.jpg" alt="image15" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/16.jpg" alt="image16" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/17.jpg" alt="image17" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/18.jpg" alt="image18" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/19.jpg" alt="image19" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/20.jpg" alt="image20" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/1.jpg" alt="image01" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/2.jpg" alt="image02" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/3.jpg" alt="image03" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/8.jpg" alt="image08" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/9.jpg" alt="image09" /></a></li>
-                                <li><a href="#"><img src="<?php echo BASE_URL ?>img/small/10.jpg" alt="image10" /></a></li>
-                            </ul>
-                            <!-- End Elastislide Carousel -->
-                        </div>
-
-
-
-                    </div>
+                    
 
 
 

@@ -97,14 +97,9 @@ function getrequesturi() {
     }
 }
 
-function getThumbnail($path, $h, $w) {
-    
-   
-      $_GET['src'] = MEDIA_PATH . $path;
-
-    $_GET['w'] = $h;
-    $_GET['h'] = $w;
-    include 'component/timthumb.php';
+function clean($string) {
+   $string = str_replace('', '-', $string); // Replaces all spaces with hyphens.
+   return preg_replace('/[^A-Za-z0-9\-\.]/', '', $string); // Removes special chars.
    
 }
 

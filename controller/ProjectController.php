@@ -13,7 +13,7 @@ class ProjectController {
     function actionAdd() {
 
         if (!empty($_POST)) {
-            $filename = mt_rand() . '__' . $_FILES['projectimage']['name'];
+            $filename = mt_rand() . '__' . clean($_FILES['projectimage']['name']);
             $data = array(
                 'name' => $_POST['projecttitle'],
                 'type' => $_POST['projecttype'],
@@ -83,7 +83,7 @@ class ProjectController {
             );
 
             if (!empty($_FILES['projectimage']['tmp_name'])) {
-                $filename = mt_rand() . '__' . $_FILES['projectimage']['name'];
+                $filename = mt_rand() . '__' . clean($_FILES['projectimage']['name']);
                 move_uploaded_file($_FILES['projectimage']['tmp_name'], 'media/project/' . $filename);
                 $data['mediapath'] = $filename;
             }

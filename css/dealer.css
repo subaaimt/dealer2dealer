@@ -23,15 +23,18 @@ background-color: #F3F3F3;
 }
 .headermenu{
 font: bold 12px Verdana;
-height:30px;
-width:960px;
-margin:0 auto;
+height:36px;
+
+
 
 }
 .headermenu ul{
-margin: 0px;
+
 padding: 4px;
 list-style-type: none;
+clear : both;
+margin: 0 auto;
+width: 990px;
 }
 .headermenu ul li{
 padding:0px;
@@ -40,7 +43,7 @@ display: inline;
 
 }
 .headermenu ul li a{
-width:103px;
+width:120px;
 height:25px;
 background-color:#E4E4E4;
 float:left;

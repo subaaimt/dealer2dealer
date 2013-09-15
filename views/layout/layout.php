@@ -2,8 +2,8 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo SITE_NAME . ' - ' . $title; ?></title>
-         <link href="<?php echo BASE_URL ?>css/bootstrap_custom.css" rel="stylesheet" type="text/css" />
- <link href="<?php echo BASE_URL ?>css/main.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo BASE_URL ?>css/bootstrap_custom.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo BASE_URL ?>css/main.css" rel="stylesheet" type="text/css" /> 
         <link href="<?php echo BASE_URL ?>css/bar/bar.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo BASE_URL ?>css/dark/dark.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo BASE_URL ?>css/default/default.css" rel="stylesheet" type="text/css" />
@@ -12,18 +12,20 @@
         <link href="<?php echo BASE_URL ?>css/style.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" media="screen, print, handheld" type="text/css" href="<?php echo BASE_URL ?>/css/calendar.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL ?>css/jqueryslidemenu.css" />
-         <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL ?>asset/ajaxloader/ajaxloader.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL ?>asset/ajaxloader/ajaxloader.css" />
 
         <?php getCss(); ?>
 
-        
+
         <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.js"></script>
         <script type="text/javascript" src="<?php echo BASE_URL ?>js/jqueryslidemenu.js"></script>
-       
+
         <script src="<?php echo BASE_URL ?>js/bootstrap.min.js"></script>
-       <script src="<?php echo BASE_URL ?>asset/ajaxloader/jquery.ajaxloader.1.5.1.js"></script>
+        <script src="<?php echo BASE_URL ?>js/jcarousellite_1.0.1.js"></script>
+
+        <script src="<?php echo BASE_URL ?>asset/ajaxloader/jquery.ajaxloader.1.5.1.js"></script>
         <script src="<?php echo BASE_URL ?>js/site.js"></script>
-        
+
         <?php getJs(); ?>
         <script type="text/javascript">
             var baseurl = '<?php echo BASE_URL; ?>';
@@ -71,7 +73,7 @@
 
                         <?php echo $viewcontent; ?>
 
-                     
+
 
                     </div>
 
@@ -102,8 +104,21 @@
     <script type="text/javascript">
         $(window).load(function() {
             $('#slider').nivoSlider();
+            
+            
         });
-         
+        $(function() {
+            $(".right_image").jCarouselLite({
+                vertical: true,
+               auto:2000
+            
+            });
+             $(".leftslider").jCarouselLite({
+                vertical: true,
+               auto:2000
+            
+            });
+        });
     </script>
 
 </body>

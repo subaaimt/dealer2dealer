@@ -1,5 +1,20 @@
-
-<div class="alert alert-success"><?php echo getmessage(); ?></div>
+<script>
+    function getLocalityforRegister(this_){
+    $(this_).attr('disabled', true);
+    $.ajax({
+        url: baseurl+"city",
+        type: 'POST',
+        data: {
+            'cityid':$(this_).val()
+        },
+      
+        success: function(response){
+            $(this_).attr('disabled', false);
+            $('#updatearea').html(response);
+        }
+    });
+}
+    </script>
 <form class="form-horizontal" method="get" id="updateformregister" action="<?php echo BASE_URL?>property/searchresult" >
     <div class="control-group">
         <label class="control-label" for="firstname">KeyWord</label>
@@ -26,9 +41,7 @@
             <select id="updatearea" name="area">
                 <option value="">--Select--</option>
 
-                <?php foreach ($areas as $ar) { ?>
-                    <option  value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
-                <?php } ?>
+                
             </select>
 
         </div>

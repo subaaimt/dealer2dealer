@@ -29,8 +29,8 @@ class User {
     }
 
     function getUserProfile($id) {
-        
-        echo ('SELECT currentPackId,memberExpiryDate,remainingCredits,imagepath,name,mobileNo,phoneNo,address,city,area,email,companyName,lastLogin,localityName, city_name FROM `users` JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
+
+        return $this->db->query_first('SELECT optionalmobileNo,currentPackId,memberExpiryDate,remainingCredits,imagepath,name,mobileNo,phoneNo,address,city,area,email,companyName,lastLogin,localityName, city_name FROM `users` JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
 `users`.city=`cities`.id WHERE `users`.id=' . $id);
     }
 

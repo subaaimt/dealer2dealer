@@ -23,6 +23,9 @@
     <dt>Mobile No.:</dt>
     <dd><?php echo $userresult['mobileNo'] ?></dd>
     <dt>
+      <dt>Optional Mobile No.:</dt>
+    <dd><?php echo $userresult['optionalmobileNo'] ?></dd>
+    <dt>
     <dt>
     <dt>Address:</dt>
     <dd><?php echo $userresult['address'] ?></dd>

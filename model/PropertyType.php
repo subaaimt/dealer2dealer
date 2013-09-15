@@ -18,4 +18,12 @@ class PropertyType {
         return $proptytype;
     }
 
+    function getProperty() {
+        $proptytype = array();
+        foreach ($this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . '') as $data) {
+            $proptytype[$data['id']]=$data['type'];
+        }
+        return $proptytype;
+    }
+
 }

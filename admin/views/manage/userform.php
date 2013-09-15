@@ -115,7 +115,7 @@
     </form>
 </fieldset>
 <fieldset style=" margin-left: 12px; float:left;">
-    <legend>Package:</legend>
+    <legend>Package: <div style=" font-size: 14px; float: right;"><a href="<?php echo BASE_URL?>manage/user/page/<?php echo $page;?>">Back</a></div></legend>
 
     <?php if ($status == 1) {
         ?>

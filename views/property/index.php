@@ -8,7 +8,7 @@
             <select name="propertyfor" id="propertyfor">
                 <option value="">Select</option>
 
-                <option value="sell">Sell</option>
+                <option value="sale">Sale</option>
                 <option value="rent">Rent</option>
             </select>
         </div>
@@ -16,8 +16,8 @@
     <div class="control-group " >
         <label class="control-label"  for="propertytype">Property Type</label>
         <div class="controls ">
-            <select name="propertytype" id="propertytype">
-                <option>--Select--</option>
+            <select name="propertytype" id="propertytype" onchange="propertyType(this)">
+                <option value="">--Select--</option>
                 <?php
                 foreach ($categories as $cat) {
                     ?> <optgroup label="<?php echo $cat['category'] ?>"></optgroup>
@@ -44,11 +44,11 @@
             </label>
         </div>
     </div>
-    <div class="control-group " >
+    <div class="control-group resi" >
         <label class="control-label"  for="bedrooms">Bedrooms</label>
         <div class="controls ">
             <select name="bedrooms" id="bedrooms">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <?php
                 foreach ($rooms as $room) {
                     ?> 
@@ -60,11 +60,11 @@
             </select>
         </div>
     </div>
-    <div class="control-group " >
+    <div class="control-group resi" >
         <label class="control-label"  for="bathrooms">Bathrooms</label>
         <div class="controls ">
             <select name="bathrooms" id="bathrooms">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <?php
                 foreach ($rooms as $room) {
                     ?> 
@@ -76,18 +76,18 @@
             </select>
         </div>
     </div>
-    <div class="control-group " >
+    <div class="control-group resi" >
         <label class="control-label"  for="furnished">Furnished</label>
         <div class="controls ">
             <select name="furnished" id="furnished">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <option value="furnished">Furnished</option>
                 <option value="unfurnished">Unfurnished</option>
                 <option value="semi-furnished">Semi-Furnished</option>
             </select>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group resi">
         <label class="control-label" for="coveredarea">Covered Area</label>
         <div class="controls">
             <input  type="text"  id="coveredarea" name="coveredarea" placeholder="Covered Area" autocomplete="off">
@@ -114,7 +114,7 @@
     <div class="control-group">
         <label class="control-label" for="propertyprice">Total Price</label>
         <div class="controls">
-            <input type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">&nbsp;Rs.
+            <input type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off">
         </div>
     </div>
     <div class="control-group">
@@ -128,11 +128,11 @@
             </label>
         </div>
     </div>
-    <div class="control-group " >
-        <label class="control-label"  for="floors">Floor No</label>
+    <div class="control-group resi" >
+        <label class="control-label "  for="floors">Floor No</label>
         <div class="controls ">
             <select name="floors" id="floors">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <?php
                 foreach ($floors as $floor) {
                     ?> 
@@ -145,7 +145,7 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="totalfloors">Total floors</label>
+        <label class="control-label resi" for="totalfloors">Total floors</label>
         <div class="controls">
             <input type="text" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off">
         </div>

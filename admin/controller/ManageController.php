@@ -11,7 +11,6 @@ class ManageController {
 //Manage User
     function actionUser($arg) {
         $user = new User;
-
         if (isset($arg['id'])) {
             $useresults = $user->getuserById($arg['id']);
             if (!empty($_POST)) {
@@ -20,7 +19,6 @@ class ManageController {
                     $area = new Area();
                     if (isset($_POST['othaid'])) {
                         if ($useresults['city'] == $_POST['city']) {
-
                             $areaid = $useresults['area'];
                             $area->updatearea($useresults['area'], $_POST['otherAreaRegis']);
                         }
@@ -65,16 +63,17 @@ class ManageController {
                 'view' => 'userform',
                 'packages' => $package->fetchPackage(),
                 'otherareaname' => $otherareaname,
-                'status' => $status);
+                'status' => $status,
+                'page'=>$arg['page']);
         } elseif (isset($arg['delete'])) {
             $user->deleteUser($arg['delete']);
             setmessage('User has been successfully deleted.');
-            redirect('manage/user');
+            redirect('manage/user/page/'.$arg['page']);
         } else {
 
             include 'component/Pagination.php';
             $page = isset($arg['page']) ? $arg['page'] : 1;
-            $limit = 10;
+            $limit = 2;
             $pagination = pagination(BASE_URL . 'manage/user', $page, $user->UserCount(), $limit);
             return array('pagination' => $pagination, 'title' => 'Users', 'users' => $user->fetchUsers($pagination['start'], $limit));
         }
@@ -139,7 +138,7 @@ class ManageController {
 
     function actionAddBanner() {
         if (!empty($_POST)) {
-            $filename = mt_rand() . '__' . $_FILES['banner_path']['name'];
+            $filename = mt_rand() . '__' . str_replace(" ", "_", clean($_FILES['banner_path']['name']));
             $banner = new Banner();
             $postdata = array('title' => $_POST['title'], 'banner_path' => $filename, 'position' => $_POST['position'], 'created' => time());
             $banner->addBanner($postdata);
@@ -173,7 +172,7 @@ class ManageController {
 
             $bd = $banner->fetchBannerdata($arg['id']);
             if (!empty($_POST)) {
-                $filename = mt_rand() . '__' . $_FILES['banner_path']['name'];
+                $filename = mt_rand() . '__' . str_replace(" ", "_", $_FILES['banner_path']['name']);
                 $banner = new Banner();
                 $postdata = array('title' => $_POST['title'], 'position' => $_POST['position']);
                 if (!empty($_FILES['banner_path']['tmp_name'])) {
@@ -192,14 +191,14 @@ class ManageController {
         $user = new User;
         $user->updateUser(array('status' => 1), 'id=' . $arg['id']);
         setmessage('User has been successfully activated');
-        redirect('manage/user');
+        redirect('manage/user/page/'.$arg['page']);
     }
 
     function actionDeActivate($arg) {
         $user = new User;
         $user->updateUser(array('status' => 0), 'id=' . $arg['id']);
         setmessage('User has been successfully deactivated');
-        redirect('manage/user');
+        redirect('manage/user/page/'.$arg['page']);
     }
 
     function actionPackage($arg) {

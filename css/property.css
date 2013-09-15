@@ -1,0 +1,192 @@
+@charset "utf-8";
+/* CSS Document */
+/* Edit profile */
+
+
+
+#contain
+{
+	float:left;
+	
+	
+	 background-color:#FFF;
+	 width:555px;
+	
+       
+	 background-attachment:fixed;
+}
+		
+#container
+{
+    background-image: url(../img/banner3.png);
+   float: left;
+    height: 29px;
+    margin-left: 0;
+    padding-left: 18px;
+    padding-top: 9px;
+    width: 528px;
+	color:#fff;
+        font-size: 22px;
+}
+	
+	
+#content
+{
+	float:left;
+	margin-left:100px;
+	margin-top:40px;
+}
+
+input
+{
+	float:right;
+	margin-left:100px;
+}
+
+
+#cont
+{
+		float:left;
+		
+}
+/*readmore*/
+
+   #leftbar
+{
+	float:left;
+	margin-top:10px;
+	margin-left:19px;
+	margin-bottom:10px;
+}
+
+   #right_bar
+{
+	float:right;
+	margin-left:20px;
+	margin-top:10px;
+}
+   #rightbar
+{
+    background-image: url(../img/image1.PNG);
+
+	  color: #FFFFFF;
+    float: right;
+    height: 22px;
+    margin-right: 10px;
+    padding-left: 16px;
+    padding-top: 5px;
+    width: 200px;
+	}
+	
+	#rightbar1
+{
+	margin-left:20px;
+	margin-top:33px;
+}
+   #rightbar2
+{
+	float:right;
+	margin-right:20px;
+	margin-top:-140px;
+        text-transform: capitalize;
+}
+    .leftbar1
+{
+	float:left;
+	margin-left:25px;
+	margin-top:10px;
+        width: 106px;
+        font-weight: bold;
+}
+
+    .leftbar2
+{
+	float:left;
+	margin-left:31px;
+	margin-top:8px;
+        font-weight: bold;
+}
+    .leftbar2txt
+{
+	float:left;
+	margin-left:31px;
+	margin-top:8px;
+       width: 104px;
+}
+
+     .right_bar1
+{
+	float:right;
+	margin-right:20px;
+	margin-top:8px;
+        
+        
+}
+
+   #txt1
+{
+	float:left;
+	margin-left:30px;
+	margin-right:16px;
+}
+   
+/*packages*/
+ 
+  #txt
+{
+	float:left;
+	margin-top:10px;
+	margin-left:100px;
+}
+	 
+	 
+	 #logo
+{
+	float:left;
+	margin-top:30px;
+	margin-left:170px;
+	padding:20px 10px 10px 20px;
+}
+
+   .banner
+{
+	   background-image: url(../img/banner3.png);
+   float: left;
+    height: 29px;
+    margin-left: 0;
+    padding-left: 18px;
+    padding-top: 9px;
+    width: 528px;
+	color:#fff;
+        font-size: 22px;
+}
+	  
+ .side_left
+{
+	float:left;
+	margin-left:40px;
+	font-family:Verdana, Geneva, sans-serif;
+    margin-top:20px;
+}
+
+  .side_right
+{
+	float:right;
+	margin-right:40px;
+	font-family:Verdana, Geneva, sans-serif;
+	margin-top:20px;
+}
+   
+   .side2
+ {
+	 float:right;
+	 margin-top:50px;
+	 margin-right:30px;
+ }
+    
+	.side3
+{
+	float:left;
+	margin-left:100px;
+	margin-top:20px;
+}

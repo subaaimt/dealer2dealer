@@ -4,63 +4,95 @@
  */
 
 
-function getLocality(this_){
+function getLocality(this_) {
     $.ajax({
-        url: baseurl+"city",
+        url: baseurl + "city",
         type: 'POST',
         data: {
-            'cityid':$(this_).val()
+            'cityid': $(this_).val()
         },
-      
-        success: function(response){
+        success: function(response) {
             $('#propertyarea').html(response);
         }
     });
 }
 
 
-function validatepopertyform(){
+function validatepopertyform() {
+    var resi = $.inArray($('#propertytype').val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+    
     var propertyfor = $.trim($('#propertyfor').val());
     var propertytype = $.trim($('#propertytype').val());
     var propertyprice = $.trim($('#propertyprice').val());
     var propertydescription = $.trim($('#propertydescription').val());
-    var propertytitle = $.trim($('#propertytitle').val()); 
+    var propertytitle = $.trim($('#propertytitle').val());
     var propertycity = $.trim($('#propertycity').val());
     var propertyarea = $.trim($('#propertyarea').val());
-    //var propertyimage = $.trim($('#propertyimage').val());
-    
+    var transactiontype = $.trim($('input[name="transactiontype"]:checked').val());
+    var bedrooms = $.trim($('#bedrooms').val());
+    var bathrooms = $.trim($('#bathrooms').val());
+    var furnished = $.trim($('#furnished').val());
+    var displayPriceUsers = $.trim($('input[name="displayPriceUsers"]:checked').val());
+    var floors = $.trim($('#floors').val());
+    var totalfloors = $.trim($('#totalfloors').val());
+
     var strmsg = '';
-    
-    if(propertyfor==''){
-        strmsg = strmsg + 'Please select the propety.'+"\n";
-        
+
+    if (propertyfor == '') {
+        strmsg = strmsg + 'Please select the propety.' + "\n";
+
     }
-    if(propertytype==''){
-        strmsg = strmsg + 'Please enter propety type.'+"\n";
+    if (propertytype == '') {
+        strmsg = strmsg + 'Please enter propety type.' + "\n";
     }
-    if(propertyprice==''){
-        strmsg = strmsg + 'Please enter the property price.'+"\n";
+    if (transactiontype == '') {
+        strmsg = strmsg + 'Please select the transaction type.' + "\n";
     }
-    if(propertyprice!='' && isNaN(propertyprice)){
-        strmsg = strmsg + 'Please enter a vaild price.'+"\n";
+    if (propertyprice == '') {
+        strmsg = strmsg + 'Please enter the property price.' + "\n";
     }
-    if(propertydescription==''){
-        strmsg = strmsg + 'Please enter the description.'+"\n";
+    if (resi > 0) {
+        if (propertydescription == '') {
+            strmsg = strmsg + 'Please enter the description.' + "\n";
+        }
+
+        if (bedrooms == '') {
+            strmsg = strmsg + 'Please enter the number of bedrooms.' + "\n";
+        }
+        if (bathrooms == '') {
+            strmsg = strmsg + 'Please enter the number of bathrooms.' + "\n";
+        }
+        if (furnished == '') {
+            strmsg = strmsg + 'Please select option for furnished.' + "\n";
+        }
+        if (floors == '') {
+            strmsg = strmsg + 'Please select the number of floors.' + "\n";
+        }
+        if (totalfloors == '') {
+            strmsg = strmsg + 'Please select the number of total floors.' + "\n";
+        }
     }
- 
-    if(propertytitle==''){
-        strmsg = strmsg + 'Please Enter the property title.'+"\n";
+    if (displayPriceUsers == '') {
+        strmsg = strmsg + 'Please select the display user option.' + "\n";
     }
-    if(propertycity==''){
-        strmsg = strmsg + 'Please select your property city.'+"\n";
+
+    if (propertydescription == '') {
+        strmsg = strmsg + 'Please enter the description.' + "\n";
     }
-    if(propertyarea==''){
-        strmsg = strmsg + 'Please select property area.'+"\n";
+
+    if (propertytitle == '') {
+        strmsg = strmsg + 'Please Enter the property title.' + "\n";
+    }
+    if (propertycity == '') {
+        strmsg = strmsg + 'Please select your property city.' + "\n";
+    }
+    if (propertyarea == '') {
+        strmsg = strmsg + 'Please select property area.' + "\n";
     }
 //    if(propertyimage==''){
 //        strmsg = strmsg + 'Please select a propety image.'+"\n";
 //    }
-    if($.trim(strmsg)!=''){
+    if ($.trim(strmsg) != '') {
         alert(strmsg);
         return false;
     }
@@ -68,46 +100,84 @@ function validatepopertyform(){
         return true;
 }
 
-function validatepopertyupdateform(){
+function validatepopertyupdateform() {
+    var resi = $.inArray($('#propertytype').val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+
     var propertyfor = $.trim($('#propertyfor').val());
     var propertytype = $.trim($('#propertytype').val());
+    var transactiontype = $.trim($('input[name="transactiontype"]:checked').val());
+    var bedrooms = $.trim($('#bedrooms').val());
+    var bathrooms = $.trim($('#bathrooms').val());
+    var furnished = $.trim($('#furnished').val());
     var propertyprice = $.trim($('#propertyprice').val());
+    var displayPriceUsers = $.trim($('input[name="displayPriceUsers"]:checked').val());
+    var floors = $.trim($('#floors').val());
+    var totalfloors = $.trim($('#totalfloors').val());
+
     var propertydescription = $.trim($('#propertydescription').val());
-    var propertytitle = $.trim($('#propertytitle').val()); 
+    var propertytitle = $.trim($('#propertytitle').val());
     var propertycity = $.trim($('#propertycity').val());
     var propertyarea = $.trim($('#propertyarea').val());
- 
-    
+
+
     var strmsg = '';
-    
-    if(propertyfor==''){
-        strmsg = strmsg + 'Please select the propety.'+"\n";
-        
+
+    if (propertyfor == '') {
+        strmsg = strmsg + 'Please select the propety.' + "\n";
+
     }
-    if(propertytype==''){
-        strmsg = strmsg + 'Please enter propety type.'+"\n";
+    if (propertytype == '') {
+        strmsg = strmsg + 'Please enter propety type.' + "\n";
     }
-    if(propertyprice==''){
-        strmsg = strmsg + 'Please enter the property price.'+"\n";
+
+    if (transactiontype == '') {
+        strmsg = strmsg + 'Please select the transaction type.' + "\n";
     }
-    if(propertyprice!='' && isNaN(propertyprice)){
-        strmsg = strmsg + 'Please enter a vaild price.'+"\n";
+
+    if (displayPriceUsers == '') {
+        strmsg = strmsg + 'Please select the display user option.' + "\n";
     }
-    if(propertydescription==''){
-        strmsg = strmsg + 'Please enter the description.'+"\n";
+    if (propertyprice == '') {
+        strmsg = strmsg + 'Please enter the property price.' + "\n";
     }
- 
-    if(propertytitle==''){
-        strmsg = strmsg + 'Please Enter the property title.'+"\n";
+
+    if (resi > 0) {
+        if (propertydescription == '') {
+            strmsg = strmsg + 'Please enter the description.' + "\n";
+        }
+
+        if (bedrooms == '') {
+            strmsg = strmsg + 'Please enter the number of bedrooms.' + "\n";
+        }
+        if (bathrooms == '') {
+            strmsg = strmsg + 'Please enter the number of bathrooms.' + "\n";
+        }
+        if (furnished == '') {
+            strmsg = strmsg + 'Please select option for furnished.' + "\n";
+        }
+        if (floors == '') {
+            strmsg = strmsg + 'Please select the number of floors.' + "\n";
+        }
+        if (totalfloors == '') {
+            strmsg = strmsg + 'Please select the number of total floors.' + "\n";
+        }
     }
-    if(propertycity==''){
-        strmsg = strmsg + 'Please select your property city.'+"\n";
+
+    if (propertydescription == '') {
+        strmsg = strmsg + 'Please enter the description.' + "\n";
     }
-    if(propertyarea==''){
-        strmsg = strmsg + 'Please select property area.'+"\n";
+
+    if (propertytitle == '') {
+        strmsg = strmsg + 'Please Enter the property title.' + "\n";
     }
-   
-    if($.trim(strmsg)!=''){
+    if (propertycity == '') {
+        strmsg = strmsg + 'Please select your property city.' + "\n";
+    }
+    if (propertyarea == '') {
+        strmsg = strmsg + 'Please select property area.' + "\n";
+    }
+
+    if ($.trim(strmsg) != '') {
         alert(strmsg);
         return false;
     }
@@ -115,26 +185,34 @@ function validatepopertyupdateform(){
         return true;
 }
 
-function changeArea(this_){    
-   if($(this_).val()==='otherarea'){       
-       $('#otherArea').show();
-   }else{
-       $('#otherArea').hide();
-   }
+function changeArea(this_) {
+    if ($(this_).val() === 'otherarea') {
+        $('#otherArea').show();
+    } else {
+        $('#otherArea').hide();
+    }
 }
 
-function changeAreUpdate(this_,cid){   
-    if($(this_).val()==='otherarea'){
-        if($('#updatecity').val()==cid && $('#otherAreaRegis').length){
+function changeAreUpdate(this_, cid) {
+    if ($(this_).val() === 'otherarea') {
+        if ($('#updatecity').val() == cid && $('#otherAreaRegis').length) {
             $('#otherAreaRegis').show();
             $('#otherArea').hide();
-        }else{
+        } else {
             $('#otherAreaRegis').hide();
             $('#otherArea').show();
             $('#otherAreain').val('');
         }
-    }else{
+    } else {
         $('#otherArea').hide();
-         $('#otherAreaRegis').hide();
+        $('#otherAreaRegis').hide();
+    }
+}
+
+function propertyType(this_) {
+    if ($.inArray($(this_).val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']) > -1) {
+        $('.resi').show();
+    } else {
+        $('.resi').hide();
     }
 }

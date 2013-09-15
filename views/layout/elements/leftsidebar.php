@@ -1,33 +1,15 @@
+<h2> Feature Builders </h2> <br/>
 
-                        
+<div class="left_image leftslider">
+    <ul>
+        <?php foreach ($_SESSION['banners'] as $center) {
+            if ($center['position'] == 'left') { ?>
+                <li>    <img  src="<?php echo BASE_URL . 'media/banner/' . $center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />                                    
 
-                        
+                    <p> <?php echo $center['title'] ?>
+                    </p> <br/></li>
+    <?php }
+} ?>
 
-                        <h2> Feature Builders </h2> <br/>
-
-                        <div class="left_image">
-
-                            <img src="<?php echo BASE_URL;?>img/leftimg/left1.gif"/>
-                            <p> Rajiv Swagruha <br/>
-                                Hyderabad </p> <br/>
-
-
-                            <img src="<?php echo BASE_URL;?>img/leftimg/left5.gif"/>
-                            <p> Rajiv Swagruha <br/>
-                                Hyderabad </p> <br/>
-                            <img src="<?php echo BASE_URL;?>img/leftimg/left8.jpg"/>
-                            <p> Rajiv Swagruha <br/>
-                                Hyderabad </p> <br/>
-                            <img src="<?php echo BASE_URL;?>img/leftimg/left10.gif"/>
-                            <p> Rajiv Swagruha <br/>
-                                Hyderabad </p> <br/>
-                            <img src="<?php echo BASE_URL;?>img/leftimg/left5.gif"/>
-                            <p> Rajiv Swagruha <br/>
-                                Hyderabad </p> <br/>
-                            <img src="<?php echo BASE_URL;?>img/leftimg/left1.gif"/>
-                            <p> Rajiv Swagruha <br/>
-                                Hyderabad </p> <br/>
-
-
-
-                        </div> 
+    </ul>
+</div> 

@@ -18,7 +18,7 @@ class PropertyController {
                 $area = new Area();
                 $areaid = $area->addarea($_POST['propertycity'], $_POST['otherArea']);
             }
-            $filename = mt_rand() . '__' . $_FILES['propertyimage']['name'];
+            $filename = mt_rand() . '__' . clean($_FILES['propertyimage']['name']);
             $data = array(
                 'for' => $_POST['propertyfor'],
                 'type' => $_POST['propertytype'],
@@ -52,7 +52,7 @@ class PropertyController {
             $propertyobj->addProperty($data);
             $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
 
-            redirect('property');
+            redirect('property/myproperty');
         }
         $cityobj = new City;
         $cities = $cityobj->getCities();
@@ -72,7 +72,7 @@ class PropertyController {
             'status' => $status);
     }
 
-    function actionMyProperty() {
+    function actionMyProperty($arg) {
 
         $user = new User;
         $useresults = $user->getuserById($_SESSION['userdata']['id']);
@@ -82,10 +82,15 @@ class PropertyController {
         if (!$status) {
             $property->expireProperty($useresults['id']);
         }
+        $cond = 'AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "published"';
 
-        $result = $property->fetchProperties('AND user_id = ' . $_SESSION['userdata']['id'] . ' AND status = "published"');
-
-        return(array('layout' => 'dealerlayout', 'properties' => $result));
+        $propertyType = new PropertyType;
+        include 'component/Pagination.php';
+        $page = isset($arg['page']) ? $arg['page'] : 1;
+        $limit = 10;
+        $pagination = pagination(BASE_URL . 'property/myproperty', $page, $property->fetchPropertiesCount($cond), $limit);
+        $result = $property->fetchProperties($cond);
+        return(array('layout' => 'dealerlayout', 'propertyType' => $propertyType->getProperty(), 'properties' => $result));
     }
 
     function actionExpiredProperty($arg) {
@@ -98,8 +103,7 @@ class PropertyController {
             $property->expireProperty($useresults['id']);
         }
 
-        $result = $property->fetchProperties('AND user_id = ' . $_SESSION['userdata']['id'] . ' AND status = "expired"');
-
+        $result = $property->fetchProperties('AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "expired"');
         return(array('layout' => 'dealerlayout', 'properties' => $result, 'status' => $status));
     }
 
@@ -128,7 +132,7 @@ class PropertyController {
             $useresults = $user->getuserById($_SESSION['userdata']['id']);
             $userpackage = new UserPackage;
             $status = $userpackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
-            if ($status){
+            if ($status) {
                 $property->updateProperty(array('status' => 'published'), 'id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
                 $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
             }
@@ -139,9 +143,11 @@ class PropertyController {
     }
 
     function actionEdit($args) {
-        $property = new Property;
-        $result = $property->fetchProperty('user_id = ' . $_SESSION['userdata']['id'] . ' AND id = ' . $args['id']);
 
+        $property = new Property;
+        $result = $property->fetchProperty('user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.id = ' . $args['id']);
+//        var_dump($result);
+//die;
         if (!empty($_POST)) {
             if ($_POST['propertyarea'] == 'otherarea') {
                 $area = new Area();
@@ -152,7 +158,7 @@ class PropertyController {
                         $area->updatearea($result['area'], $_POST['otherAreaRegis']);
                     }
                 } else {
-                    echo"poatsed";
+
                     $areaid = $area->addarea($_POST['propertycity'], $_POST['otherArea']);
                 }
             }
@@ -182,7 +188,7 @@ class PropertyController {
             );
 
             if (!empty($_FILES['propertyimage']['tmp_name'])) {
-                $filename = mt_rand() . '__' . $_FILES['propertyimage']['name'];
+                $filename = mt_rand() . '__' . clean($_FILES['propertyimage']['name']);
                 move_uploaded_file($_FILES['propertyimage']['tmp_name'], 'media/property/' . $filename);
                 $data['mediapath'] = $filename;
             }
@@ -208,7 +214,7 @@ class PropertyController {
         $categories = $categoryobj->getCategories();
         $propertytypeyobj = new PropertyType;
         $propertytypes = $propertytypeyobj->getPropertyTypes();
-        print_r($otherareaname);
+        // print_r($otherareaname);
 
         return array('layout' => 'dealerlayout',
             'properties' => $result,
@@ -239,14 +245,19 @@ class PropertyController {
             $query .= ' AND title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%"';
         }
         if (isset($rq['city']) && !empty($rq['city'])) {
-            $query .= ' AND city =' . $rq['city'];
+            $query .= ' AND properties.city =' . $rq['city'];
         }
         if (isset($rq['area']) && !empty($rq['area'])) {
-            $query .= ' AND area =' . $rq['area'];
+            $query .= ' AND properties.area =' . $rq['area'];
         }
 
-        $result = $property->fetchProperties($query . ' AND  status = "published"');
+        $result = $property->fetchProperties($query . ' AND  properties.status = "published"');
         return(array('layout' => 'dealerlayout', 'properties' => $result));
+    }
+
+    function actionView($arg) {
+        $property = new Property();
+        return array('layout' => 'dealerlayout', 'property' => $property->fetchProperty('properties.id=' . $arg['id']));
     }
 
 }

@@ -21,12 +21,12 @@ foreach ($users as $user){
         </td>
     <td>
         <?php if($user['status']==1){?>
-        <a href="<?php echo BASE_URL?>manage/deactivate/id/<?php echo $user['id']?>">De-activate</a>
+        <a href="<?php echo BASE_URL?>manage/deactivate/id/<?php echo $user['id']?>/page/<?php echo $pagination['start']?>">De-activate</a>
         <?php }else{?>
-        <a href="<?php echo BASE_URL?>manage/activate/id/<?php echo $user['id']?>">Activate</a>
+        <a href="<?php echo BASE_URL?>manage/activate/id/<?php echo $user['id']?>/page/<?php echo $pagination['start']?>">Activate</a>
         <?php }?>
-        | <a href="<?php echo BASE_URL?>manage/user/id/<?php echo $user['id']?>">Edit</a>
-        | <a onclick="return confirmation()" href="<?php echo BASE_URL?>manage/user/delete/<?php echo $user['id']?>">Delete</a>
+        | <a href="<?php echo BASE_URL?>manage/user/id/<?php echo $user['id']?>/page/<?php echo $pagination['start']?>">Edit</a>
+        | <a onclick="return confirmation()" href="<?php echo BASE_URL?>manage/user/delete/<?php echo $user['id']?>/page/<?php echo $pagination['start']?>">Delete</a>
         </td>
     </tr>
 

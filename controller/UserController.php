@@ -13,11 +13,11 @@ class UserController {
 
         $userobj = new User;
         $useresults = $userobj->getUserProfile($_SESSION['userdata']['id']);
-        var_dump($useresults);
-        die;
+      
         $package = new Package;
         $userPackage = new UserPackage;
         $status = $userPackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
+      
         return array('title' => 'My Account',
             'userresult' => $useresults, 
             'layout' => 'dealerlayout',

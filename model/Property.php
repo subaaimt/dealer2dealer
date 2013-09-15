@@ -11,13 +11,24 @@ class Property {
         $this->db->query_insert($this->tbl, $data);
     }
 
-    function fetchProperties($cond = 1) {
+    function fetchProperties($cond = '', $offset=0, $limit=10) {
+        return $this->db->fetch_all_array('SELECT *,' . $this->tbl . '.id as pid FROM ' . $this->tbl . ' 
+            JOIN users ON users.id='.$this->tbl.'.user_id
+             WHERE 1 ' . $cond. ' LIMIT '.$offset.','.$limit);
+    }
 
-        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE 1 ' . $cond);
+    function fetchPropertiesCount($cond = '') {
+        $count = $this->db->query_first('SELECT count(*) as count FROM ' . $this->tbl . ' WHERE 1 ' . $cond);
+      
+        return $count['count'];
     }
 
     function fetchProperty($cond) {
-        return $this->db->query_first('SELECT * FROM ' . $this->tbl . ' WHERE ' . $cond);
+        return $this->db->query_first('SELECT *,'.$this->tbl.'.id as pid, '.$this->tbl.'.type as ptype FROM ' . $this->tbl .  ' 
+            JOIN users ON users.id='.$this->tbl.'.user_id JOIN cities on cities.id=users.city 
+                JOIN areas ON areas.id=users.area  JOIN propertytypes on propertytypes.id=properties.type WHERE ' . $cond);
+        
+        
     }
 
     function deleteProperty($cond) {
@@ -42,8 +53,7 @@ class Property {
     }
 
     function expireProperty($uid) {
-        $this->updateProperty(array('status'=>'expired'), 'user_id='.$uid);
-     
+        $this->updateProperty(array('status' => 'expired'), 'user_id=' . $uid);
     }
 
 }

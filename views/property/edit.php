@@ -7,7 +7,7 @@
             <select name="propertyfor" id="propertyfor">
                 <option value="">Select</option>
 
-                <option  <?php echo ('sell' == $properties['for']) ? 'selected' : '' ?> value="sell">Sell</option>
+                <option  <?php echo ('sale' == $properties['for']) ? 'selected' : '' ?> value="sale">Sale</option>
                 <option <?php echo ('rent' == $properties['for']) ? 'selected' : '' ?> value="rent">Rent</option>
             </select>
         </div>
@@ -16,8 +16,8 @@
     <div class="control-group " >
         <label class="control-label"  for="propertytype">Property Type</label>
         <div class="controls ">
-            <select name="propertytype" id="propertytype">
-                <option>--Select--</option>
+            <select name="propertytype" id="propertytype" onchange="propertyType(this)">
+                <option value="">--Select--</option>
                 <?php
                 foreach ($categories as $cat) {
                     ?> <optgroup label="<?php echo $cat['category'] ?>"></optgroup>
@@ -25,7 +25,7 @@
                     <?php
                     foreach ($propertytypes[$cat['id']] as $key => $value) {
                         ?>
-                        <option <?php echo ($properties['type'] == $value['id']) ? 'selected' : '' ?> value="<?php echo $value['id'] ?>"><?php echo $value['type'] ?></option>
+                        <option <?php echo ($properties['ptype'] == $value['id']) ? 'selected' : '' ?> value="<?php echo $value['id'] ?>"><?php echo $value['type'] ?></option>
                         <?php
                     }
                 }
@@ -44,11 +44,11 @@
             </label>
         </div>
     </div>
-    <div class="control-group " >
+    <div class="control-group resi" >
         <label class="control-label"  for="bedrooms">Bedrooms</label>
         <div class="controls ">
             <select name="bedrooms" id="bedrooms">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <?php
                 foreach ($rooms as $room) {
                     ?> 
@@ -60,11 +60,11 @@
             </select>
         </div>
     </div>
-    <div class="control-group " >
+    <div class="control-group resi" >
         <label class="control-label"  for="bathrooms">Bathrooms</label>
         <div class="controls ">
             <select name="bathrooms" id="bathrooms">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <?php
                 foreach ($rooms as $room) {
                     ?> 
@@ -76,18 +76,18 @@
             </select>
         </div>
     </div>
-    <div class="control-group " >
+    <div class="control-group resi" >
         <label class="control-label"  for="furnished">Furnished</label>
         <div class="controls ">
             <select name="furnished" id="furnished">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <option <?php echo ('furnished' == $properties['furnished']) ? 'selected' : '' ?> value="furnished">Furnished</option>
                 <option <?php echo ('unfurnished' == $properties['furnished']) ? 'selected' : '' ?> value="unfurnished">Unfurnished</option>
                 <option <?php echo ('semi-furnished' == $properties['furnished']) ? 'selected' : '' ?> value="semi-furnished">Semi-Furnished</option>
             </select>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group resi">
         <label class="control-label" for="coveredarea">Covered Area</label>
         <div class="controls">
             <input value="<?php echo $properties['coveredArea'] ?>"  type="text"  id="coveredarea" name="coveredarea" placeholder="Covered Area" autocomplete="off">
@@ -129,10 +129,10 @@
         </div>
     </div>
     <div class="control-group " >
-        <label class="control-label"  for="floors">Floor No</label>
+        <label class="control-label resi"  for="floors">Floor No</label>
         <div class="controls ">
             <select name="floors" id="floors">
-                <option>--Select--</option>
+                <option value="">--Select--</option>
                 <?php
                 foreach ($floors as $floor) {
                     ?> 
@@ -144,7 +144,7 @@
             </select>
         </div>
     </div>
-    <div class="control-group">
+    <div class="control-group resi">
         <label class="control-label" for="totalfloors">Total floors</label>
         <div class="controls">
             <input type="text" value="<?php echo $properties['totalFloor'] ?>" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off">
@@ -225,7 +225,7 @@
             <input type="file" id="propertyimage" name="propertyimage" placeholder="Property Image" autocomplete="off">
         </div>
     </div>
-    <input type="hidden" id="pid" name="pid" value="<?php echo $properties['id'] ?>" />
+    <input type="hidden" id="pid" name="pid" value="<?php echo $properties['pid'] ?>" />
     <div class="control-group">
 
         <div class="controls">
