@@ -5,7 +5,7 @@
         $area = new Area;
        
         
-            ?> <hr/></h3>
+            ?> </h3>
 <ul>
 <?php foreach ($area->getAreasByCity($rq['city']) as $value) {?>       
 

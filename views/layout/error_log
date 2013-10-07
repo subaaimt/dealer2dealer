@@ -1,0 +1,1 @@
+[04-Oct-2013 07:26:23] PHP Fatal error:  Call to undefined function  getcss() in /home5/softechs/public_html/deals2dealers/views/layout/reg.php on line 16

@@ -1,5 +1,26 @@
-<?php addJs(array('js/property.js')); ?>
+
 <div class=""><?php echo getmessage(); ?></div>
+<script type="text/javascript">
+        var propertyFieldRelation = <?php echo $propertyFieldRelation ?>;
+        var propertyVariableFields = <?php echo $propertyVariableFields ?>;
+
+        function propertyType(this_) {
+            $.each(propertyVariableFields, function(key, val) {
+                $('#' + val).parents('.control-group').show();
+
+            });
+            if (propertyFieldRelation[$(this_).val()] !== undefined) {
+                $.each(propertyFieldRelation[$(this_).val()], function(key, val) {
+                    $('#' + val).parents('.control-group').hide();
+
+                });
+            }
+        }
+        $(function(){
+        propertyType(($('#propertytype')));
+        });
+    </script>
+     <script src="<?php echo BASE_URL?>js/property.js"></script>
 <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyupdateform();">
     <div class="control-group">
         <label class="control-label" for="propertyfor">Property For</label>
@@ -7,7 +28,7 @@
             <select name="propertyfor" id="propertyfor">
                 <option value="">Select</option>
 
-                <option  <?php echo ('sale' == $properties['for']) ? 'selected' : '' ?> value="sale">Sale</option>
+                <option  <?php echo ('sell' == $properties['for']) ? 'selected' : '' ?> value="sell">Sell</option>
                 <option <?php echo ('rent' == $properties['for']) ? 'selected' : '' ?> value="rent">Rent</option>
             </select>
         </div>
@@ -153,7 +174,7 @@
     <div class="control-group">
         <label class="control-label" for="propertydescription">Description</label>
         <div class="controls">
-            <textarea   id="propertydescription" name="propertydescription" rows="5" cols="20"> <?php echo $properties['description'] ?></textarea>
+            <textarea   id="propertydescription" name="propertydescription" rows="5" cols="20"><?php echo $properties['description'] ?></textarea>
         </div>
     </div>
     <div class="control-group">

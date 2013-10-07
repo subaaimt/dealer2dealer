@@ -26,7 +26,7 @@ function validatemyaccount(){
     
     var mobileNo = $.trim($('#updatemobileNo').val());
     var phoneNo = $.trim($('#updatephoneNo').val());
-    
+    var dob = $('#dd').val()+'-'+$('#mm').val()+'-'+$('#yy').val();
     var address = $.trim($('#updateaddress').val());
     var city = $.trim($('#updatecity').val());
     var area = $.trim($('#updatearea').val()); 
@@ -35,8 +35,8 @@ function validatemyaccount(){
     
     var strmsg = '';
    
-    if(mobileNo=='' && phoneNo==''){
-        strmsg = strmsg + 'Please enter atleast one contact number.'+"\n";
+    if(mobileNo==''){
+        strmsg = strmsg + 'Please enter mobile number.'+"\n";
     }
     if(mobileNo!='' && isNaN(mobileNo)){
         strmsg = strmsg + 'Please enter a numeric mobile number.'+"\n";
@@ -44,7 +44,10 @@ function validatemyaccount(){
     if(phoneNo!='' && isNaN(phoneNo)){
         strmsg = strmsg + 'Please enter a numeric phone number.'+"\n";
     }
-   
+   if (!isValidDate(dob)) {
+       // alert(dob);
+        strmsg = strmsg + 'Please enter a valid date of birth.' + "\n";
+    }
     if(address==''){
         strmsg = strmsg + 'Please enter your address.'+"\n";
     }
@@ -105,4 +108,17 @@ function changeArea(this_,cid){
         $('#otherArea').hide();
          $('#otherAreaRegis').hide();
     }
+}
+
+function isValidDate(date)
+{
+    var matches = /^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})$/.exec(date);
+    if (matches == null) return false;
+    var d = matches[1];
+    var m = matches[2]-1;
+    var y = matches[3];
+    var composedDate = new Date(y, m, d);
+    return composedDate.getDate() == d &&
+            composedDate.getMonth() == m &&
+            composedDate.getFullYear() == y;
 }

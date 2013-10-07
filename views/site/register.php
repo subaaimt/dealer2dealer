@@ -1,8 +1,4 @@
-<?php 
-addCss(array( 'asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'));
-addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'));
-?>
-<div ><?php echo getmessage();?></div>
+
 <form class="form-horizontal" method="post" id="formregister" enctype="multipart/form-data">
     <div class="control-group">
         <label class="control-label" for="name">Name</label>
@@ -10,7 +6,7 @@ addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'
             <input type="text" id="name" name="name" placeholder="Name">
         </div>
     </div>
-    
+
     <div class="control-group">
         <label class="control-label" for="email">Email Id</label>
         <div class="controls">
@@ -20,10 +16,32 @@ addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'
     <div class="control-group">
         <label class="control-label" for="email">Date of Birth</label>
         <div class="controls" id="datetimepicker1">
-            <input readonly type="text" id="dob" name="dob" data-format="yyyy-MM-dd"  autocomplete="off" class="input-append date"><span class="add-on">
-      <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="icon-calendar">
-      </i>
-    </span>
+            <select id="dd" name="dd" style="width:64px;">
+                <option>DD</option>
+                <?php for ($d = 1; $d <= 31; $d++) { ?>
+                    
+                    <option value="<?php echo $d ?>"><?php echo $d; ?></option>
+                <?php } ?>
+            </select>
+
+            <select id="mm" name="mm" style="width:64px;">
+                 <option>MM</option>
+                <?php for ($m = 1; $m <= 12; $m++) { ?>
+                   
+                    <option value="<?php echo $m ?>"><?php echo $m; ?></option>
+                <?php } ?>
+            </select>
+
+            <select id="yy" name="yy" style="width:70px;">
+                <option>YYYY</option>
+                <?php
+                $year = date('Y');
+                for ($y = $year-10; $y >= $year-60; $y--) {
+                    ?>
+                    
+                    <option value="<?php echo $y ?>"><?php echo $y; ?></option>
+<?php } ?>
+            </select>
         </div>
     </div>
     <div class="control-group ">
@@ -38,7 +56,7 @@ addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'
             <input type="text" id="phoneNo" name="phoneNo" placeholder="" maxlength="12">
         </div>
     </div>
-    
+
     <div class="control-group">
         <label class="control-label" for="password">Password</label>
         <div class="controls">
@@ -74,26 +92,26 @@ addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'
             <textarea type="text" id="address" name="address" placeholder="Address"></textarea>
         </div>
     </div>
-    
+
     <div class="control-group">
         <label class="control-label" for="city">City</label>
         <div class="controls">
             <select id="city" name="city" onchange="getLocalityforRegister(this)">
                 <option value="">--Select--</option>
-                <?php foreach($cities as $ct){?>
-                <option value="<?php echo $ct['id']?>"><?php echo $ct['city_name']?></option>
-                <?php }?>
+                <?php foreach ($cities as $ct) { ?>
+                    <option value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
+<?php } ?>
             </select>
         </div>
     </div>
-     <div class="control-group">
+    <div class="control-group">
         <label class="control-label" for="area">Area</label>
         <div class="controls">
-             <select id="area" name="area" onchange="changeArea(this)">
+            <select id="area" name="area" onchange="changeArea(this)">
                 <option value="">--Select--</option>
-                 
-             </select>
-            
+
+            </select>
+
         </div>
     </div>
     <div class="control-group" id="otherArea" style="display:none;">
@@ -108,17 +126,17 @@ addJs(array( 'asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js'
             <input type="file" id="pic" name="pic" >
         </div>
     </div>
-     <div class="control-group">
-        
+    <div class="control-group">
+
         <div class="controls">
-           <button type="button" class="btn btn-primary" id="registerbtn" onclick="validatesignup();">Submit</button>
+            <button type="button" class="btn btn-primary" id="registerbtn" onclick="validatesignup();">Submit</button>
         </div>
     </div>
 </form>
 <script type="text/javascript">
-  $(function() {
-    $('#datetimepicker1').datetimepicker({
-     pickTime: false
-    });
-  });
+                $(function() {
+                    $('#datetimepicker1').datetimepicker({
+                        pickTime: false
+                    });
+                });
 </script>

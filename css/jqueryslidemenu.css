@@ -1,109 +1,233 @@
-.jqueryslidemenu{
-font: bold 12px Verdana;
-background: #E4E4E4;
-width: 100%;
-height: 35px;
+#mbmcpebul_table {
+  margin: 0px;
+  padding: 0px;
+  line-height: 0px;
+  font-size: 0px;
+  display: inline-block;
 }
 
-.jqueryslidemenu ul{
-margin: 0px;
-padding: 0px;
-list-style-type: none;
-z-index:9999;
-
+#mbmcpebul_table li a {
+  line-height: 19px;
+  font-size: 16px;
+  font-family: "Times New Roman",sans-serif;
+  text-decoration: none;
+  color: #FFFFFF;
+  font-style: normal;
+  font-weight: bold;
+  padding: 12px;
+  display: block;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-/*Top level list items*/
-.jqueryslidemenu ul li{
-position: relative;
-display: inline;
-float: left;
-padding-right: 11px;
-margin-left: 18px;
-
+#mbmcpebul_table li div.buttonbg {
+  height: 43px;
+  width: 118px;
+  line-height: 0;
+  background-color: transparent;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  text-align: center;
 }
 
-/*Top level menu link items style*/
-.jqueryslidemenu ul li a{
-display: block;
- /*background of tabs (default state)*/
-
-padding: 10px 5px;
-border-right: 0px solid #778;
-color: #2d2b2b;
-text-decoration: none;
-
+#mbmcpebul_table li:hover div.buttonbg a, #mbmcpebul_table li.expanded a.topitem, #mbmcpebul_table li.active a.topitem,
+#mbmcpebul_table li.itemhot a.topitem, #mbmcpebul_table li a:hover {
+  color: #FFFFFF;
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
 }
 
-* html .jqueryslidemenu ul li a{ /*IE6 hack to get sub menu links to behave correctly*/
-display: inline-block;
 
+#mbmcpebul_table li.expanded div.buttonbg, #mbmcpebul_table li.active div.buttonbg, #mbmcpebul_table li.itemhot div.buttonbg, #mbmcpebul_table li:hover div.buttonbg {
+  background-color: #082D5E;
+  box-shadow: none;
+  border-color: #800421;
 }
 
-.jqueryslidemenu ul li a:link, .jqueryslidemenu ul li a:visited{
-color: #089EDC;
-
+#mbmcpebul_table {
+  padding: 0;
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0;
+  border-radius: 0;
+  background-color: #1C558A;
+  box-shadow: none;
 }
 
-.jqueryslidemenu ul li a:hover{
- /*tab link background during hover state*/
-background-color: 004D71;
-padding: 15px 3px;
-border-radius: 5px 5px 10px 10px;
-}
-	
-/*1st sub level menu*/
-.jqueryslidemenu ul li ul{
-position: absolute;
-left: 0;
-display: block;
-visibility: hidden;
+#mbmcpebul_table ul li a {
+  color: #1D568A;
+  font-family: "Times New Roman",sans-serif;
+  font-size: 13px;
+  line-height: 15px;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  display: block;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
-/*Sub level menu list items (undo style from Top level List Items)*/
-.jqueryslidemenu ul li ul li{
-display: list-item;
-float: none;
-
+#mbmcpebul_table ul li:hover > a {
+  color: #092E5F;
+  font-family: "Times New Roman",sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
 }
 
-/*All subsequent sub menu levels vertical offset after 1st level sub menu */
-.jqueryslidemenu ul li ul li ul{
-top: 0;
-
+#mbmcpebul_table ul li.subexpanded a.subexpanded, #mbmcpebul_table ul li.subitemhot a.subitemhot, #mbmcpebul_table ul li a:hover {
+  color: #092E5F;
+  font-family: "Times New Roman",sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
 }
 
-/* Sub level menu links style */
-.jqueryslidemenu ul li ul li a{
-font: normal 13px Verdana;
-width: 160px; /*width of sub menus*/
-padding: 5px;
-margin: 0;
-border-top-width: 0;
-border-bottom: 1px solid gray;
-font-weight: lighter;
-font-size: 16px;
-
+#mbmcpebul_table ul li:hover, #mbmcpebul_table ul li.subexpanded, #mbmcpebul_table ul li.subitemhot {
+  border-color: transparent;
+  background-color: #F0F0F0;
+  box-shadow: none;
 }
 
-.jqueryslidemenuz ul li ul li a:hover{ /*sub menus hover style*/
-background: #eff9ff;
-color: black;
-
+#mbmcpebul_table ul {
+  margin: 0;
+  border-style: solid;
+  border-color: #950101;
+  border-width: 3px;
+  padding: 2px;
+  background: #FFFFFF;
+  font-size: 0;
+  border-radius: 0;
 }
 
-/* ######### CSS classes applied to down and right arrow images  ######### */
-
-.downarrowclass{
-position: absolute;
-top: 19px;
-right: 7px;
-
+#mbmcpebul_table ul li a {
+  padding: 7px 15px 7px 13px;
+  text-align: left;
 }
 
-.rightarrowclass{
-position: absolute;
-top: 6px;
-right: 5px;
-
+#mbmcpebul_table ul li.separator {
+  padding: 7px;
+  cursor: default;
+  background: none;
+  box-shadow: none;
+  border-width: 0;
 }
+
+#mbmcpebul_table ul li.separator div {
+  border-top: 1px solid #666666;
+  font-size: 0px;
+}
+
+#mbmcpebul_table ul li {
+  border-style: solid;
+  border-color: #000000;
+  border-width: 0;
+  height: auto;
+  width: auto;
+  text-align: left;
+  line-height: 0;
+  font-size: 0;
+  cursor: pointer;
+  float: none;
+  margin: 0 0 0px 0;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  background-color: #FFFFFF;
+}
+
+
+#mbmcpebul_table ul {
+  box-shadow: 0 0 5px -1px #333333;
+}
+
+#mbmcpebul_table .spaced_li {
+  margin: 0px 1px 0px 0px;
+}
+
+#mbmcpebul_table a img {
+  border: none;
+}
+
+#mbmcpebul_table li {
+  list-style: none;
+  float: left;
+}
+
+#mbmcpebul_table.css_menu li {
+  position: relative;
+}
+
+#mbmcpebul_table.css_menu ul li:hover > ul {
+  opacity: 1;
+}
+
+#mbmcpebul_table.css_menu li:hover > ul {
+  top: 100%;
+  left: 0;
+  right: auto;
+  opacity: 1;
+}
+
+#mbmcpebul_table.css_menu ul li:hover > ul {
+  top: -3px;
+  left: 100%;
+  right: auto;
+}
+
+#mbmcpebul_table.css_menu ul {
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  transition-property:opacity;
+  -webkit-transition-property:opacity;
+  -moz-transition-property:opacity;
+  -ms-transition-property:opacity;
+  opacity: 0;
+}
+
+#mbmcpebul_table ul {
+  position: absolute;
+  top:-99999px;
+  z-index: 4000;
+}
+
+#mbmcpebul_table ul ul {
+  position: absolute;
+  z-index: 5000;
+}
+
+#mbmcpebul_table .submenu_arrow {
+  margin-left: 8px;
+}
+
+#mbmcpebul_table a.with_img_4 span.img_4x5, .mbmcpebul_menulist span.img_4x5 { 
+  width: 4px; 
+  height: 5px; 
+  display: inline-block; 
+  vertical-align: middle; 
+}
+
+#mbmcpebul_table li:hover > a span.img_4x5, #mbmcpebul_table li.subexpanded > a span.img_4x5 { 
+  background-position: 0 -5px; 
+} 
+
+#mbmcpebul_table ul li a.with_arrow { 
+  background-image: url(ebab_mbmcp_c.png); 
+  background-repeat: no-repeat; 
+  background-position: right center; 
+  padding-right: 19px; 
+} 
+
+#mbmcpebul_table ul li a.with_arrow:hover, #mbmcpebul_table ul li:hover > a.with_arrow, #mbmcpebul_table ul li.subexpanded > a.with_arrow { 
+  background-image: url(ebab_mbmcp_c2.png); 
+} 
+

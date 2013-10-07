@@ -117,7 +117,7 @@
 <fieldset style=" margin-left: 12px; float:left;">
     <legend>Package: <div style=" font-size: 14px; float: right;"><a href="<?php echo BASE_URL?>manage/user/page/<?php echo $page;?>">Back</a></div></legend>
 
-    <?php if ($status == 1) {
+    <?php if ($status == 1 || $status==2) {
         ?>
         <form class="form-horizontal" method="post" id="addpackage" action="<?php echo BASE_URL ?>manage/userpackage" >
             <div class="control-group"  >
@@ -135,6 +135,11 @@
                 <label class="control-label" for="avtar">Remaining Credits:</label>
                 <div class="controls"  style="margin-top:5px;color:red; ">                                  
                     <?php echo $userresults['remainingCredits']; ?>     </div>
+            </div>
+            <div class="control-group"  >
+                <label class="control-label" for="avtar">Activation Date:</label>
+                <div class="controls"  style="margin-top:5px;color:red; ">                                  
+                    <?php echo date('d-F-Y', $userresults['activationDate']); ?>     </div>
             </div>
             <div class="control-group"  >
                 <label class="control-label" for="avtar">Days of Expiry:</label>

@@ -58,7 +58,6 @@ if (isset($view))
 else
     $contentfile = 'views/' . strtolower($queryparam[0]) . '/' . $viewfile . '.php';
 
-
 if (file_exists($contentfile)) {
 
     ob_start();

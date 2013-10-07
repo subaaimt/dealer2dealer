@@ -4,8 +4,8 @@ class UserController {
 
     public function __construct($args) {
         new ACL($args, array(
-                    'regis' => array('index', 'myaccount'),
-                        )
+            'regis' => array('index', 'myaccount'),
+                )
         );
     }
 
@@ -13,16 +13,16 @@ class UserController {
 
         $userobj = new User;
         $useresults = $userobj->getUserProfile($_SESSION['userdata']['id']);
-      
+
         $package = new Package;
         $userPackage = new UserPackage;
         $status = $userPackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
-      
+
         return array('title' => 'My Account',
-            'userresult' => $useresults, 
+            'userresult' => $useresults,
             'layout' => 'dealerlayout',
-            'pkdata'=>$package->fetchPackagedata($useresults['currentPackId']),
-              'status'=> $status );
+            'pkdata' => $package->fetchPackagedata($useresults['currentPackId']),
+            'status' => $status);
     }
 
     function actionChangePassword() {
@@ -55,25 +55,32 @@ class UserController {
                 $area = new Area();
                 if (isset($_POST['othaid'])) {
                     if ($useresults['city'] == $_POST['city']) {
-                       
+
                         $areaid = $useresults['area'];
                         $area->updatearea($useresults['area'], $_POST['otherAreaRegis']);
                     }
-                } else {                    
+                } else {
                     $areaid = $area->addarea($_POST['city'], $_POST['otherArea']);
                 }
             }
 
             $data = array(
-                'optionalmobileNo'=> $_POST['optionalmobileNo'],
+                'optionalmobileNo' => $_POST['optionalmobileNo'],
                 'mobileNo' => $_POST['mobileNo'],
                 'phoneNo' => $_POST['phoneNo'],
                 'address' => $_POST['address'],
+                'dob' => $_POST['yy'] . '-' . $_POST['mm'] . '-' . $_POST['dd'],
                 'city' => $_POST['city'],
                 'area' => isset($areaid) ? $areaid : $_POST['area'],
                 'modified' => time(),
             );
-
+            $filename = mt_rand() . '__' . clean($_FILES['pic']['name']);
+            if (!empty($_FILES['pic']['name'])) {
+                move_uploaded_file($_FILES['pic']['tmp_name'], 'media/user/' . $filename);
+                $img = new Imageresize;
+                $img->resize('user', $filename, 150, 150);
+                $data['imagepath'] = $filename;
+            }
             $userobj = new User();
             $userobj->updateUser($data, $_SESSION['userdata']['id']);
 
@@ -92,7 +99,7 @@ class UserController {
         $areas = $areaobj->getAreas();
         $otherareaname = $areaobj->getAreasNameBy($useresults['area'], 0);
 
-       
+
         return array('title' => 'My Account', 'layout' => 'dealerlayout',
             'userresults' => $useresults,
             'state' => $state,

@@ -1,9 +1,5 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-
+var property = {};
 function getLocality(this_) {
     $.ajax({
         url: baseurl + "city",
@@ -35,6 +31,16 @@ function validatepopertyform() {
     var displayPriceUsers = $.trim($('input[name="displayPriceUsers"]:checked').val());
     var floors = $.trim($('#floors').val());
     var totalfloors = $.trim($('#totalfloors').val());
+    var plotLandArea = $.trim($('#plotLandArea').val());
+    
+    
+if (propertyFieldRelation[propertytype]===undefined) {
+    
+ hidefields = new Array();
+} else {
+   
+    hidefields = array_flip(propertyFieldRelation[propertytype]);
+}
 
     var strmsg = '';
 
@@ -48,30 +54,33 @@ function validatepopertyform() {
     if (transactiontype == '') {
         strmsg = strmsg + 'Please select the transaction type.' + "\n";
     }
+    if(plotLandArea==''){
+        strmsg = strmsg + 'Please enter the area for Plot land area.' + "\n";
+    }
     if (propertyprice == '') {
         strmsg = strmsg + 'Please enter the property price.' + "\n";
     }
-    if (resi > 0) {
+    
         if (propertydescription == '') {
             strmsg = strmsg + 'Please enter the description.' + "\n";
         }
 
-        if (bedrooms == '') {
+        if (bedrooms == '' && hidefields['bedrooms']==undefined) {
             strmsg = strmsg + 'Please enter the number of bedrooms.' + "\n";
         }
-        if (bathrooms == '') {
+        if (bathrooms == '' && hidefields['bathrooms']==undefined) {
             strmsg = strmsg + 'Please enter the number of bathrooms.' + "\n";
         }
-        if (furnished == '') {
+        if (furnished == ''  && hidefields['furnished']==undefined) {
             strmsg = strmsg + 'Please select option for furnished.' + "\n";
         }
-        if (floors == '') {
+        if (floors == ''  && hidefields['floors']==undefined) {
             strmsg = strmsg + 'Please select the number of floors.' + "\n";
         }
-        if (totalfloors == '') {
+        if (totalfloors == ''  && hidefields['totalfloors']==undefined) {
             strmsg = strmsg + 'Please select the number of total floors.' + "\n";
         }
-    }
+    
     if (displayPriceUsers == '') {
         strmsg = strmsg + 'Please select the display user option.' + "\n";
     }
@@ -101,14 +110,13 @@ function validatepopertyform() {
 }
 
 function validatepopertyupdateform() {
-    var resi = $.inArray($('#propertytype').val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
-
-    var propertyfor = $.trim($('#propertyfor').val());
+      var propertyfor = $.trim($('#propertyfor').val());
     var propertytype = $.trim($('#propertytype').val());
     var transactiontype = $.trim($('input[name="transactiontype"]:checked').val());
     var bedrooms = $.trim($('#bedrooms').val());
     var bathrooms = $.trim($('#bathrooms').val());
     var furnished = $.trim($('#furnished').val());
+    var plotLandArea = $.trim($('#plotLandArea').val());
     var propertyprice = $.trim($('#propertyprice').val());
     var displayPriceUsers = $.trim($('input[name="displayPriceUsers"]:checked').val());
     var floors = $.trim($('#floors').val());
@@ -119,6 +127,13 @@ function validatepopertyupdateform() {
     var propertycity = $.trim($('#propertycity').val());
     var propertyarea = $.trim($('#propertyarea').val());
 
+if (propertyFieldRelation[propertytype]===undefined) {
+    
+ hidefields = new Array();
+} else {
+   
+    hidefields = array_flip(propertyFieldRelation[propertytype]);
+}
 
     var strmsg = '';
 
@@ -137,31 +152,34 @@ function validatepopertyupdateform() {
     if (displayPriceUsers == '') {
         strmsg = strmsg + 'Please select the display user option.' + "\n";
     }
+    //alert(plotLandArea);
+    if(plotLandArea==''){
+        strmsg = strmsg + 'Please enter the area for Plot land area.' + "\n";
+    }
     if (propertyprice == '') {
         strmsg = strmsg + 'Please enter the property price.' + "\n";
     }
 
-    if (resi > 0) {
+ 
         if (propertydescription == '') {
             strmsg = strmsg + 'Please enter the description.' + "\n";
         }
 
-        if (bedrooms == '') {
+        if (bedrooms == '' && hidefields['bedrooms']==undefined) {
             strmsg = strmsg + 'Please enter the number of bedrooms.' + "\n";
         }
-        if (bathrooms == '') {
+        if (bathrooms == '' && hidefields['bathrooms']==undefined) {
             strmsg = strmsg + 'Please enter the number of bathrooms.' + "\n";
         }
-        if (furnished == '') {
+        if (furnished == ''  && hidefields['furnished']==undefined) {
             strmsg = strmsg + 'Please select option for furnished.' + "\n";
         }
-        if (floors == '') {
+        if (floors == ''  && hidefields['floors']==undefined) {
             strmsg = strmsg + 'Please select the number of floors.' + "\n";
         }
-        if (totalfloors == '') {
+        if (totalfloors == ''  && hidefields['totalfloors']==undefined) {
             strmsg = strmsg + 'Please select the number of total floors.' + "\n";
         }
-    }
 
     if (propertydescription == '') {
         strmsg = strmsg + 'Please enter the description.' + "\n";
@@ -209,10 +227,12 @@ function changeAreUpdate(this_, cid) {
     }
 }
 
-function propertyType(this_) {
-    if ($.inArray($(this_).val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']) > -1) {
-        $('.resi').show();
-    } else {
-        $('.resi').hide();
+function array_flip(trans){
+    var key, tmp_ar = {};
+    for(key in trans){
+     if(trans.hasOwnProperty(key))  {
+         tmp_ar[trans[key]]=key;
+     } 
     }
+    return tmp_ar;
 }

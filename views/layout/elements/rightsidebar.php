@@ -1,18 +1,11 @@
- 			
-
-
-
-<h2 style=""> Feature Projects </h2> 
-
 <div class="right_image">
-
     <ul>
         <?php foreach ($_SESSION['banners'] as $center) {
             if ($center['position'] == 'right') { ?>
-                <li>     <img  src="<?php echo BASE_URL . 'media/banner/' . $center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />                                    
-
-                    <p> <?php echo $center['title'] ?>
-                    </p> <br/></li>
+                <li style="height: 160px; background-color:#FFFFFF;">     
+<img src="<?php echo BASE_URL . 'media/banner/' . $center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" style="margin-top:10px; padding:0px; background-color:#FFFFFF;"/>                                    
+<h3 style="background-color:#FFFFFF; color:#999999; margin:0px; padding:0px;"> <?php echo $center['title'] ?>
+                    </h3></li>
     <?php }
 } ?></ul>
 </div>

@@ -1,37 +1,40 @@
- <div class="header">
-                <div class="hed">
+ <div class="header" style="height:110px; background-color:#FFFFFF; ">
+                <div class="hed" style="height:110px; background-color:#FFFFFF;">
 
-                    <div header_logo>
-                        <div class="header_logo">
-                            <img src="<?php echo BASE_URL;?>img/logo1.png" />
-                        </div>
-
-                        <div id="box">
-                            <div class="social_button">
-                                <a href=""> <img src="<?php echo BASE_URL;?>img/social_icon/twitter.png"/> </a>
-                                <a href=""> <img src="<?php echo BASE_URL;?>img/social_icon/fb.png"/> </a>
-                                <a href=""> <img src="<?php echo BASE_URL;?>img/social_icon/rss.png"/> </a>
-                                <a href=""> <img src="<?php echo BASE_URL;?>img/social_icon/linkedin.png"/> </a>
-
-                            </div>
-                            <div class="elements">
+                    <div style="float:left;">
+                        
+                            <img src="<?php echo BASE_URL;?>img/logo2.png" />
+                    </div>                     
+                            <!--<div class="social_button">
+                                <a href=""> <img src="img/social_icon/twitter.png"/> </a>
+                                <a href=""> <img src="img/social_icon/fb.png"/> </a>
+                                <a href=""> <img src="img/social_icon/rss.png"/> </a>
+                                <a href=""> <img src="img/social_icon/linkedin.png"/> </a>
+                            </div>-->
+                            <div style="float:right; width:380px;">
+                            
                                 
                                 <?php  if(isset($_SESSION['userdata'])){
 ?>
                                 <a href="<?php echo BASE_URL?>user">Logined as <?php echo $_SESSION['userdata']['name']?></a>
                                 <?php }else{?>
-                                <b color="blue"> DEALERS MEMBER LOGIN HERE </b>
+                                
                               <form id="signinform" method="post" action="<?php echo BASE_URL ?>site/login" onsubmit="return validatelogin();">
-                                    <input type="text" id="inputEmail" name="d2demail" class="username" placeholder="Username" />
-                                    <input type="password" id="inputPassword" type="password" name="d2dpassword" class="password" placeholder="Password" />
-                                    <div class="forget"><a href="#">Forgot your password?</a></div>
-                                    <input type="submit" name="submit" class="submit" value="Sign In" />
+                              <table style="float:right; margin-top:15px;">
+                              <tr>
+                              <td><input type="text" id="inputEmail" name="d2demail" placeholder="Username" style="height:25px; float:right; margin-right:5px;"/></td>
+                              <td><input type="password" id="inputPassword" type="password" name="d2dpassword" placeholder="Password"  style="height:25px;float:left; margin-right:5px;" /></td>
+                              <td><input type="submit" name="submit" value="Sign In" style="height:27px; width:60px; background-color:#008bcd; color:#FFFFFF; border:none;"/></td>
+                              </tr>
+                              <tr>
+                              <td>&nbsp;<input type="checkbox" name="keep" value="login" style="border:1px solid red;"/>&nbsp; <a href="#" style="font-size:12px;">Keep me login</a></td>
+                              <td><a href="<?php echo BASE_URL?>site/forget" style="float:left; font-size:12px;">Forgot your password?</a></td>
+                              </tr>
+                              </table>                                    
                                 </form>
                                 <?php }?>
                             </div>
-                        </div>
-                        <?php  if(!isset($_SESSION['userdata'])){ ?>
-                        <div class="signup">Not a registered user yet?  <a href="#">Sign up now!</a></div><?php }?>
+                        </div>                       
                     </div>
 
                 </div>

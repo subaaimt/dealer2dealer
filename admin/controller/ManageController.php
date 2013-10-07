@@ -64,17 +64,20 @@ class ManageController {
                 'packages' => $package->fetchPackage(),
                 'otherareaname' => $otherareaname,
                 'status' => $status,
-                'page'=>$arg['page']);
+                'page'=>0);
         } elseif (isset($arg['delete'])) {
             $user->deleteUser($arg['delete']);
             setmessage('User has been successfully deleted.');
+           // $propert
             redirect('manage/user/page/'.$arg['page']);
         } else {
 
             include 'component/Pagination.php';
             $page = isset($arg['page']) ? $arg['page'] : 1;
-            $limit = 2;
+            $limit = 10;
             $pagination = pagination(BASE_URL . 'manage/user', $page, $user->UserCount(), $limit);
+            
+            
             return array('pagination' => $pagination, 'title' => 'Users', 'users' => $user->fetchUsers($pagination['start'], $limit));
         }
     }
@@ -88,6 +91,7 @@ class ManageController {
             $usresult = $user->getuserById($_POST['uid']);
             $user->updateUser(array(
                 'currentPackId' => $_POST['package'],
+                'activationDate'=> time(),
                 'remainingCredits' => ($usresult['remainingCredits'] + $result['credits']),
                 'memberExpiryDate' => ($usresult['memberExpiryDate'] == 0) ? (strtotime(date('Y-m-d')) + 86400 * $result['days']) : ($usresult['memberExpiryDate'] + 86400 * $result['days']),
                     ), 'id=' . $_POST['uid']);
@@ -190,6 +194,7 @@ class ManageController {
     function actionActivate($arg) {
         $user = new User;
         $user->updateUser(array('status' => 1), 'id=' . $arg['id']);
+        
         setmessage('User has been successfully activated');
         redirect('manage/user/page/'.$arg['page']);
     }
@@ -197,6 +202,8 @@ class ManageController {
     function actionDeActivate($arg) {
         $user = new User;
         $user->updateUser(array('status' => 0), 'id=' . $arg['id']);
+        $property = new Property;
+        $property->expireProperty($arg['id']);
         setmessage('User has been successfully deactivated');
         redirect('manage/user/page/'.$arg['page']);
     }

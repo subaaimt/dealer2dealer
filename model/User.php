@@ -7,12 +7,17 @@ class User {
         $this->tbl = 'users';
     }
 
-    function checkemailid($email) {
-        return $this->db->query_first('SELECT name,email,imagepath FROM ' . $this->tbl . ' WHERE email="' . $email . '"');
+    function checkemailid($email, $option = array()) {
+        if (isset($option['forget'])) {
+            $cond = ' AND status=1';
+        } else {
+            $cond = '';
+        }
+        return $this->db->query_first('SELECT name,email,imagepath FROM ' . $this->tbl . ' WHERE email="' . $email . '" ' . $cond);
     }
 
     function addUser($data) {
-        $this->db->query_insert($this->tbl, $data);
+        return $this->db->query_insert($this->tbl, $data);
     }
 
     function autheticate($postdata) {
@@ -30,7 +35,7 @@ class User {
 
     function getUserProfile($id) {
 
-        return $this->db->query_first('SELECT optionalmobileNo,currentPackId,memberExpiryDate,remainingCredits,imagepath,name,mobileNo,phoneNo,address,city,area,email,companyName,lastLogin,localityName, city_name FROM `users` JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
+        return $this->db->query_first('SELECT users.id as id,activationDate,created,optionalmobileNo,currentPackId,memberExpiryDate,remainingCredits,imagepath,name,mobileNo,phoneNo,address,city,area,email,companyName,lastLogin,localityName, city_name FROM `users` JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
 `users`.city=`cities`.id WHERE `users`.id=' . $id);
     }
 
@@ -38,13 +43,31 @@ class User {
         return $this->db->query_update($this->tbl, $data, 'id=' . $uid);
     }
 
+    function addTokenUser($data, $email) {
+        return $this->db->query_update($this->tbl, $data, 'email="' . $email.'"');
+    }
+    
+    function checkToken($token) {       
+        return $this->db->query_first('SELECT id FROM ' . $this->tbl . ' WHERE token="' . $token . '"');    
+    }
+    
+    function changePassword($data, $token) {
+        return $this->db->query_update($this->tbl, $data, 'token="' . $token.'"');
+    }
+    
     function updateLogin($uid) {
         return $this->db->query_update($this->tbl, array('lastLogin' => time()), 'id=' . $uid);
     }
 
-    function fetchUsers($cond = 1) {
+    function fetchUsers($cond = '',$offset=0, $limit=10) {
 
-        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE 1 ' . $cond);
+        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
+`users`.city=`cities`.id  WHERE 1 AND ' . $this->tbl . '.status=1' . $cond. ' LIMIT ' . $offset . ',' . $limit);
     }
+function UserCount($cond = '') {
 
+       $count = $this->db->query_first('SELECT count(*) as count FROM ' . $this->tbl . ' WHERE 1 AND status=1' . $cond);
+
+        return $count['count'];
+    }
 }

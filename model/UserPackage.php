@@ -28,15 +28,13 @@ class UserPackage {
     function checkMembershipStatus($uid, $credits, $activation) {
         $user = new User;
        
-        if ($activation <= time() && $activation != 0) {
-            $user->updateUser(array('currentPackId' => 0, 'remainingCredits' => 0, 'memberExpiryDate' => 0), $uid);
+        if ($activation == 0) {            
             return false;
-        } else if ($credits == 0 && $activation == 0) {
+        } else if ($activation <= time() && $activation != 0) {
+            $user->updateUser(array('remainingCredits'=>0, 'currentPackId' => 0,  'memberExpiryDate' => 0), $uid);
             return false;
-        } else if ($credits == 0) {
-            $user->updateUser(array('currentPackId' => 0, 'remainingCredits' => 0, 'memberExpiryDate' => 0), $uid);
-           
-            return false;
+        } else if ($credits == 0) {            
+            return 2;
         } else {
             return true;
         }

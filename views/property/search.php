@@ -15,15 +15,27 @@
     });
 }
     </script>
+<div><h2 style="color:#0088cc;">Search Property</h2><br /></div>
 <form class="form-horizontal" method="get" id="updateformregister" action="<?php echo BASE_URL?>property/searchresult" >
     <div class="control-group">
+        
         <label class="control-label" for="firstname">KeyWord</label>
         <div class="controls">
             <input type="text" id="updatefirstname" name="q" placeholder="Keywords" >
         </div>
     </div>
     
+<div class="control-group">
+        <label class="control-label" for="propertyfor">Property For</label>
+        <div class="controls">
+            <select name="propertyfor" id="propertyfor">
+                <option value="">Select</option>
 
+                <option value="sell">Sell</option>
+                <option value="rent">Rent</option>
+            </select>
+        </div>
+    </div>
     <div class="control-group">
         <label class="control-label" for="city">City</label>
         <div class="controls">

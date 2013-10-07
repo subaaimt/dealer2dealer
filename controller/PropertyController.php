@@ -11,6 +11,7 @@ class PropertyController {
 
     function actionIndex($args) {
         $propertyobj = new Property();
+      
         $user = new User;
         $useresults = $user->getuserById($_SESSION['userdata']['id']);
         if (!empty($_POST)) {
@@ -69,7 +70,10 @@ class PropertyController {
             'propertytypes' => $propertytypes,
             'floors' => $propertyobj->floors(),
             'rooms' => $propertyobj->rooms(),
-            'status' => $status);
+            'status' => $status,
+            'propertyFieldRelation'=>json_encode($propertyobj->propertyFieldRelation()),
+            'propertyVariableFields'=>json_encode($propertyobj->propertyVariableFields()),
+            );
     }
 
     function actionMyProperty($arg) {
@@ -82,15 +86,19 @@ class PropertyController {
         if (!$status) {
             $property->expireProperty($useresults['id']);
         }
-        $cond = 'AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "published"';
+        $cond = 'AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "published" ORDER BY properties.created DESC';
 
         $propertyType = new PropertyType;
         include 'component/Pagination.php';
         $page = isset($arg['page']) ? $arg['page'] : 1;
         $limit = 10;
         $pagination = pagination(BASE_URL . 'property/myproperty', $page, $property->fetchPropertiesCount($cond), $limit);
-        $result = $property->fetchProperties($cond);
-        return(array('layout' => 'dealerlayout', 'propertyType' => $propertyType->getProperty(), 'properties' => $result));
+       
+        $result = $property->fetchProperties($cond,$pagination['start']);
+        return(array('layout' => 'dealerlayout',
+            'propertyType' => $propertyType->getProperty(),
+            'properties' => $result,
+            'pagination'=>$pagination['pagination']));
     }
 
     function actionExpiredProperty($arg) {
@@ -98,23 +106,36 @@ class PropertyController {
         $useresults = $user->getuserById($_SESSION['userdata']['id']);
         $userpackage = new UserPackage;
         $status = $userpackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
+        
         $property = new Property;
         if (!$status) {
             $property->expireProperty($useresults['id']);
-        }
-
-        $result = $property->fetchProperties('AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "expired"');
-        return(array('layout' => 'dealerlayout', 'properties' => $result, 'status' => $status));
+        }    
+         $propertyType = new PropertyType;
+         
+         include 'component/Pagination.php';
+        $page = isset($arg['page']) ? $arg['page'] : 1;
+        $limit = 10;
+        $cond = 'AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "expired"  ORDER BY properties.created DESC';
+        $pagination = pagination(BASE_URL . 'property/expiredproperty', $page, $property->fetchPropertiesCount($cond), $limit);
+        
+        $result = $property->fetchProperties('AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "expired"', $pagination['start']);
+        return(array('layout' => 'dealerlayout',
+            'propertyType' => $propertyType->getProperty(),
+            'properties' => $result, 'status' => $status,
+            'pagination' => $pagination['pagination']
+            ));
     }
 
     function actionDelete($args) {
 
         $property = new Property;
-        $result = $property->fetchProperties('AND id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+        $result = $property->fetchProperties('AND properties.id = ' . $args['pid'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+       
         if (!$result) {
             redirect('site/notfound');
         } else {
-            $property->deleteProperty('id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+            $property->deleteProperty('properties.id = ' . $args['pid'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
             redirect('property/myproperty');
         }
 
@@ -124,7 +145,8 @@ class PropertyController {
     function actionPublish($args) {
 
         $property = new Property;
-        $result = $property->fetchProperties('AND id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+        $result = $property->fetchProperties('AND properties.id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+        
         if (!$result) {
             redirect('site/notfound');
         } else {
@@ -133,7 +155,7 @@ class PropertyController {
             $userpackage = new UserPackage;
             $status = $userpackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
             if ($status) {
-                $property->updateProperty(array('status' => 'published'), 'id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+                $property->updateProperty(array('created'=>time(), 'status' => 'published'), 'id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
                 $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
             }
             redirect('property/myproperty');
@@ -197,7 +219,7 @@ class PropertyController {
 
 
 
-            redirect('property/myproperty');
+            redirect('property/edit/id/'.$_POST['pid']);
         }
 
 
@@ -224,7 +246,10 @@ class PropertyController {
             'propertytypes' => $propertytypes,
             'floors' => $property->floors(),
             'rooms' => $property->rooms(),
-            'otherareaname' => $otherareaname);
+            'otherareaname' => $otherareaname,
+             'propertyFieldRelation'=>json_encode($property->propertyFieldRelation()),
+            'propertyVariableFields'=>json_encode($property->propertyVariableFields()),
+            );
     }
 
     function actionSearch($args) {
@@ -240,9 +265,13 @@ class PropertyController {
         $property = new Property;
 
         $rq = getrequesturi();
+        
         $query = '';
         if (isset($rq['q']) && !empty($rq['q'])) {
             $query .= ' AND title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%"';
+        }
+         if (isset($rq['propertyfor']) && !empty($rq['propertyfor'])) {
+            $query .= ' AND properties.for ="' . $rq['propertyfor'].'"';
         }
         if (isset($rq['city']) && !empty($rq['city'])) {
             $query .= ' AND properties.city =' . $rq['city'];
@@ -250,14 +279,29 @@ class PropertyController {
         if (isset($rq['area']) && !empty($rq['area'])) {
             $query .= ' AND properties.area =' . $rq['area'];
         }
-
-        $result = $property->fetchProperties($query . ' AND  properties.status = "published"');
-        return(array('layout' => 'dealerlayout', 'properties' => $result));
+//$query .= '  ORDER BY properties.created DESC';
+        include 'component/Pagination.php';
+         $page = isset($rq['page']) ? $rq['page'] : '/page/1';
+       $page = str_replace('/page/', '', $page);
+        $limit = 10;
+        $cond = 'AND properties.status = "published"  ORDER BY properties.created DESC';
+        
+        $requeturi = str_replace('&page=/page/'.$page, '', strstr($_SERVER['REQUEST_URI'], '?'));
+        $pagination = pagination(BASE_URL . 'property/searchresult'.$requeturi.'&page=', $page, $property->fetchPropertiesCount($cond), $limit);
+                
+        $result = $property->fetchProperties($query . ' AND  properties.status = "published"',$pagination['start'], $limit);
+        
+        return(array('layout' => 'dealerlayout', 'properties' => $result,'pagination'=>$pagination['pagination']));
     }
 
     function actionView($arg) {
         $property = new Property();
-        return array('layout' => 'dealerlayout', 'property' => $property->fetchProperty('properties.id=' . $arg['id']));
+        return array(
+            'layout' => 'dealerlayout', 
+            'propertyFieldRelation'=>($property->propertyFieldRelation()),
+           
+            'property' => 
+            $property->fetchProperty('properties.id=' . $arg['id']));
     }
 
 }

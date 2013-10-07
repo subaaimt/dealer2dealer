@@ -90,9 +90,15 @@
                                     <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>area/approve">Approve Area</a></li>
                                 </ul>
                             </li>
-                            <!--li ><a href="<?php echo BASE_URL ?>manage/package">Change Password</a>
+<!--                            <li ><a href="<?php echo BASE_URL ?>manage/package">Change Password</a>-->
                                
-                            </li-->
+                            </li>
+                            <li ><a href="<?php echo BASE_URL ?>project/manage">Manage Project</a>
+                               <ul class="nav nav-list">                           
+                                    <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>project/add">Add Project</a></li>
+<!--                                    <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>project/approve">Approve Area</a></li>-->
+                                </ul>
+                            </li>
 
 
                         </ul>
