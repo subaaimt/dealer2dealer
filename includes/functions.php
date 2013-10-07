@@ -103,3 +103,15 @@ function clean($string) {
    
 }
 
+function getActions($classname){
+    $class= get_class_methods(get_class($classname));
+    $action = array();
+    foreach($class as $value){
+        if($value == '__construct'){
+            continue;
+        }
+        $action[]  = strtolower(str_replace('action', '', $value));
+    }
+    return $action;
+}
+

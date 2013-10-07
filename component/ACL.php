@@ -14,7 +14,7 @@ Class ACL {
         if (isset($action_access['regis'])) {
             if (in_array($reqeuestedaction, $action_access['regis'])) {
                 if (!isset($_SESSION['userdata'])) {
-                    redirect('site/login');
+                    redirect('site');
                 }
             }
         }

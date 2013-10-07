@@ -3,7 +3,10 @@
 class AgentController {
 
     public function __construct($args) {
-        
+         new ACL($args, array(
+                    'regis' => getActions($this),
+                        )
+        );
     }
 
     function actionIndex() {

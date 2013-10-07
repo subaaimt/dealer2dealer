@@ -4,7 +4,7 @@ class UserController {
 
     public function __construct($args) {
         new ACL($args, array(
-            'regis' => array('index', 'myaccount'),
+            'regis' => array('index', 'myaccount','changepassword'),
                 )
         );
     }

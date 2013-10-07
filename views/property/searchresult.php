@@ -1,8 +1,9 @@
 
 <?php if(!empty($properties)){
     foreach($properties as $prop){?>
-<div style="height:auto; font-family:sans-serif; width:756px; border:1px solid #EFEFEF; border-radius:8px;" border="1px" class="pdiv1" <?php echo $prop['title']?> >
-    <p style="margin-bottom:-9px; color:#1c558a;"> <b><u><a href="<?php echo BASE_URL?>property/view/id/<?php echo $prop['pid'];  ?>" ">  <?php echo $prop['title']?></b></u> </a></p>
+<div style="height:auto; font-family:sans-serif; width:756px; border:1px solid #EFEFEF; border-radius:8px;" border="1px" class="pdiv1">
+<p style="margin-bottom:-9px; color:#1c558a;"> <b><u> <?php echo $prop['title']?>
+<a href="<?php echo BASE_URL?>property/view/id/<?php echo $prop['pid'];  ?>" " >  <?php echo $prop['title']?>></b></u> </a></p>
     <div class="pdiv1inner1">
     
         <?php if(empty($prop['mediapath'])){?>

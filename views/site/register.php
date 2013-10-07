@@ -1,22 +1,19 @@
+<h1 style="padding-top:4px; background-color:#1c558a; height:30px; color: white; padding-left: 17px;">Dealer Registration</h1>
 
+<table style="color:#1c558a; margin-top:30px; margin-left:60px; margin-bottom:40px;">
 <form class="form-horizontal" method="post" id="formregister" enctype="multipart/form-data">
-    <div class="control-group">
-        <label class="control-label" for="name">Name</label>
-        <div class="controls">
-            <input type="text" id="name" name="name" placeholder="Name">
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label" for="email">Email Id</label>
-        <div class="controls">
-            <input type="text" id="emailid" name="emailid" placeholder="Email address" autocomplete="off">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="email">Date of Birth</label>
-        <div class="controls" id="datetimepicker1">
-            <select id="dd" name="dd" style="width:64px;">
+<tr>
+<td style="width:200px; height:35px;">Name</td>
+<td style="width:300px;"><input type="text" id="name" name="name" placeholder="Name" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td style="height:35px;">Email Id</td>
+<td><input type="text" id="emailid" name="emailid" placeholder="Email address" autocomplete="off" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td style="height:35px;">Date of Birth</td>
+<td>
+<select id="dd" name="dd" style="width:64px; height:30px;">
                 <option>DD</option>
                 <?php for ($d = 1; $d <= 31; $d++) { ?>
                     
@@ -24,7 +21,7 @@
                 <?php } ?>
             </select>
 
-            <select id="mm" name="mm" style="width:64px;">
+            <select id="mm" name="mm" style="width:64px;  height:30px;">
                  <option>MM</option>
                 <?php for ($m = 1; $m <= 12; $m++) { ?>
                    
@@ -32,7 +29,7 @@
                 <?php } ?>
             </select>
 
-            <select id="yy" name="yy" style="width:70px;">
+            <select id="yy" name="yy" style="width:70px;  height:30px;">
                 <option>YYYY</option>
                 <?php
                 $year = date('Y');
@@ -42,97 +39,70 @@
                     <option value="<?php echo $y ?>"><?php echo $y; ?></option>
 <?php } ?>
             </select>
-        </div>
-    </div>
-    <div class="control-group ">
-        <label class="control-label" for="mobileNo">Mobile No.</label>
-        <div class="controls ">
-            <input type="text" id="mobileNo" name="mobileNo" placeholder=""  maxlength="10">
-        </div>
-    </div>
-    <div class="control-group ">
-        <label class="control-label" for="phoneNo">Phone No.</label>
-        <div class="controls ">
-            <input type="text" id="phoneNo" name="phoneNo" placeholder="" maxlength="12">
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label" for="password">Password</label>
-        <div class="controls">
-            <input type="password" id="password" name="passwd" placeholder="Password" autocomplete="off">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="confirmPassword">Confirm Password</label>
-        <div class="controls">
-            <input type="password" id="confirmPassword" name="confirmpwd" placeholder="Confirm Password" autocomplete="off">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="inputPassword">Account Type</label>
-        <div class="controls">
-            <label class="radio inline">
-                <input type="radio" name="accnttype" value="builder">Builder
-            </label>
-            <label class="radio inline">
-                <input type="radio" name="accnttype" value="agecon">Agent/Consultant
-            </label>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="companyname">Company Name</label>
-        <div class="controls">
-            <input type="text" id="companyname" name="companyname" placeholder="Company Name">
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="address">Address</label>
-        <div class="controls">
-            <textarea type="text" id="address" name="address" placeholder="Address"></textarea>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label" for="city">City</label>
-        <div class="controls">
-            <select id="city" name="city" onchange="getLocalityforRegister(this)">
+</td>
+</tr>
+<tr>
+<td style="height:35px;">Mobile No.</td>
+<td><input type="text" id="mobileNo" name="mobileNo" placeholder=""  maxlength="10" style="height:30px; width:200px; color:#000066;"></td>
+</tr>        
+<tr>
+<td style="height:35px;">Phone No.</td>
+<td><input type="text" id="phoneNo" name="phoneNo" placeholder="" maxlength="12" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td style="height:35px;">Password</td>
+<td><input type="password" id="password" name="passwd" placeholder="Password" autocomplete="off" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td style="height:35px;">Confirm Password</td>
+<td><input type="password" id="confirmPassword" name="confirmpwd" placeholder="Confirm Password" autocomplete="off" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td style="height:35px;">Account Type</td>
+<td><input type="radio" name="accnttype" value="builder">Builder
+<input type="radio" name="accnttype" value="agecon">Agent/Consultant
+</td>
+</tr>
+<tr>
+<td style="height:35px;">Company Name</td>
+<td><input type="text" id="companyname" name="companyname" placeholder="Company Name" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td style="height:35px;">Address</td>
+<td><textarea type="text" id="address" name="address" placeholder="Address" style="margin-left:-0px;  height:60px; width:200px; color:#000066;"></textarea></td>
+</tr>
+<tr>
+<td style="height:35px;">City</td>
+<td><select id="city" name="city" onchange="getLocalityforRegister(this)" style="height:30px; width:200px; color:#000066;">
                 <option value="">--Select--</option>
                 <?php foreach ($cities as $ct) { ?>
                     <option value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
 <?php } ?>
             </select>
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="area">Area</label>
-        <div class="controls">
-            <select id="area" name="area" onchange="changeArea(this)">
+</td>
+</tr>
+<tr>
+<td style="height:35px;">Area</td>
+<td><select id="area" name="area" onchange="changeArea(this)" style="height:30px; width:200px; color:#000066;">
                 <option value="">--Select--</option>
 
-            </select>
-
-        </div>
-    </div>
-    <div class="control-group" id="otherArea" style="display:none;">
-        <label class="control-label" for="avtar">&nbsp;</label>
-        <div class="controls">
-            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" >
-        </div>
-    </div>
-    <div class="control-group">
-        <label class="control-label" for="avtar">Profile Pic/ Logo</label>
-        <div class="controls">
-            <input type="file" id="pic" name="pic" >
-        </div>
-    </div>
-    <div class="control-group">
-
-        <div class="controls">
-            <button type="button" class="btn btn-primary" id="registerbtn" onclick="validatesignup();">Submit</button>
-        </div>
-    </div>
+            </select></td>
+</tr>
+<tr>
+<td style="height:35px;"><label class="control-label" for="avtar">&nbsp;</label></td>
+<td><input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" style="height:30px; width:200px; color:#000066;"/></td>
+</tr>
+<tr>
+<td style="height:35px;">Profile Pic/ Logo</td>
+<td><input type="file" id="pic" name="pic" style="height:30px; width:200px; color:#000066;"></td>
+</tr>
+<tr>
+<td><button type="button" onclick="validatesignup();" style="float:right; height:30px; width:100px; background-color:#1c558a; border:none; color:#FFFFFF; font-size:14px;">Submit</button></td>
+<td>&nbsp;&nbsp;&nbsp;
+<button type="reset" value="Reset" onclick="validatesignup();" style="height:30px; width:100px; background-color:#1c558a; border:none; color:#FFFFFF; font-size:14px;">Reset</button></td>
+</tr>
 </form>
+</table>
 <script type="text/javascript">
                 $(function() {
                     $('#datetimepicker1').datetimepicker({

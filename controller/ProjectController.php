@@ -3,7 +3,10 @@
 class ProjectController {
 
     public function __construct($args) {
-        
+        new ACL($args, array(
+                    'regis' => getActions($this),
+                        )
+        );
     }
 
     function actionView($args) {

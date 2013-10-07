@@ -1,3 +1,5 @@
+<h2 style="color:#1c558a;">Edit Profile</h2><br  />
+
 <?php
 addCss(array('asset/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css'));
 addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js', 'js/user.js'));
@@ -8,19 +10,19 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
     <div class="control-group ">
         <label class="control-label" for="mobileNo">Mobile No.</label>
         <div class="controls ">
-            <input type="text" id="updatemobileNo" name="mobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['mobileNo'] ?>">
+            <input type="text" id="updatemobileNo" name="mobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['mobileNo'] ?>" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
         </div>
     </div>
     <div class="control-group ">
         <label class="control-label" for="mobileNo">Optional Mobile No.</label>
         <div class="controls ">
-            <input type="text" id="optionalmobileNo" name="optionalmobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['optionalmobileNo'] ?>">
+            <input type="text" id="optionalmobileNo" name="optionalmobileNo" placeholder=""  maxlength="10" value="<?php echo $userresults['optionalmobileNo'] ?>" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
         </div>
     </div>
     <div class="control-group ">
         <label class="control-label" for="phoneNo">Phone No.</label>
         <div class="controls ">
-            <input type="text" id="updatephoneNo" name="phoneNo" placeholder="" maxlength="12" value="<?php echo $userresults['phoneNo'] ?>">
+            <input type="text" id="updatephoneNo" name="phoneNo" placeholder="" maxlength="12" value="<?php echo $userresults['phoneNo'] ?>" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
         </div>
     </div>
 
@@ -28,7 +30,7 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
     <div class="control-group">
         <label class="control-label" for="email">Date of Birth</label>
         <div class="controls" id="datetimepicker1">           
-            <select id="dd" name="dd" style="width:64px;">
+            <select id="dd" name="dd" style="width:64px; height:35px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;" >
                 <option>DD</option>
                 <?php 
                 $dob = explode('-', $userresults['dob']);
@@ -39,7 +41,7 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
                 <?php } ?>
             </select>
 
-            <select id="mm" name="mm" style="width:64px;">
+            <select id="mm" name="mm" style="width:64px; height:35px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option>MM</option>
                 <?php for ($m = 1; $m <= 12; $m++) { ?>
 
@@ -47,7 +49,7 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
                 <?php } ?>
             </select>
 
-            <select id="yy" name="yy" style="width:70px;">
+            <select id="yy" name="yy" style="width:70px; height:35px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option>YYYY</option>
                 <?php
                 $year = date('Y');
@@ -62,14 +64,14 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
     <div class="control-group">
         <label class="control-label" for="address">Address</label>
         <div class="controls">
-            <textarea  id="updateaddress" name="address" placeholder="Address" ><?php echo $userresults['address'] ?></textarea>
+            <textarea  id="updateaddress" name="address" placeholder="Address" style="height:100px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;"><?php echo $userresults['address'] ?></textarea>
         </div>
     </div>
 
     <div class="control-group">
         <label class="control-label" for="city">City</label>
         <div class="controls">
-            <select id="updatecity" name="city" onchange="getLocalityforRegister(this)">
+            <select id="updatecity" name="city" onchange="getLocalityforRegister(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
                 <?php foreach ($cities as $ct) { ?>
                     <option <?php echo ($ct['id'] == $userresults['city']) ? 'selected' : '' ?> value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
@@ -80,7 +82,7 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
     <div class="control-group">
         <label class="control-label" for="area">Area</label>
         <div class="controls">
-            <select id="updatearea" name="area" onchange="changeArea(this, <?php echo $userresults['city'] ?>)">
+            <select id="updatearea" name="area" onchange="changeArea(this, <?php echo $userresults['city'] ?>)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
 
                 <?php $otherflag = TRUE;
@@ -102,7 +104,7 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
     <div class="control-group" id="otherArea" style="display:none">
         <label class="control-label" for="avtar">&nbsp;</label>
         <div class="controls">
-            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName']) ? $otherareaname['localityName'] : '' ?>" >            
+            <input type="text" id="otherAreain" name="otherArea" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName']) ? $otherareaname['localityName'] : '' ?>" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">            
 
         </div>
     </div>
@@ -111,15 +113,15 @@ addJs(array('asset/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js',
         <div class="control-group" id="otherAreaRegis" style="display:<?php echo ($otherflag) ? '' : 'none' ?>;">
             <label class="control-label" for="avtar">&nbsp;</label>
             <div class="controls">
-                <input type="text" id="otherAreainRegis" name="otherAreaRegis" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName']) ? $otherareaname['localityName'] : '' ?>" >            
-                <input type="hidden" value="<?php echo $userresults['area'] ?>"  name="othaid" />
+                <input type="text" id="otherAreainRegis" name="otherAreaRegis" placeholder="Other Area" value="<?php echo isset($otherareaname['localityName']) ? $otherareaname['localityName'] : '' ?>" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">            
+                <input type="hidden" value="<?php echo $userresults['area'] ?>"  name="othaid" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;"/>
             </div>
         </div>
 <?php } ?>
        <div class="control-group">
         <label class="control-label" for="avtar">Profile Pic/ Logo</label>
         <div class="controls">
-            <input type="file" id="pic" name="pic" >
+            <input type="file" id="pic" name="pic"  style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
         </div>
     </div>
     <div class="control-group">

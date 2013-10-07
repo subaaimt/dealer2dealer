@@ -3,10 +3,12 @@
 class PropertyController {
 
     public function __construct($args) {
-//        new ACL($args, array(
-//                    'regis' => array('index'),
-//                        )
-//        );
+       
+        new ACL($args, array(
+                    'regis' => getActions($this),
+                        )
+        );
+        
     }
 
     function actionIndex($args) {

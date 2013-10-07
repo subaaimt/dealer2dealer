@@ -73,24 +73,30 @@
     <div style="width:960px; height:30px; margin:auto; color:#FFFFFF;">
     <table style="float:right; color:#FFFFFF;">
     <tr>
-    <td style="width:50px;"><a href="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2Fdeals2dealers&width=292&height=590&colorscheme=light&show_faces=true&header=true&stream=true&show_border=true&appId=566659933367940" onclick="centeredPopup(this.href,'myWindow','300','400','yes');return false" style="color:#FFFFFF; text-decoration:none;"><b>facebook</b></a></td>
-    <td style="width:100px;">
-    <a href="" style="font-size:12px; color:#FFFFFF; margin-top:-3px; float:right;">Register Now &nbsp;&nbsp;</a></td>
-    <td style="width:100px;">
+    <td style="width:50px;"></td>
+    <td style="width:auto; text-align:center;">
+    <a href="" style="width:150px; margin-top:px; font-size:14px; color:#FFFFFF; float:right;">Register Now</a> &nbsp;&nbsp;</td>
+    <td style="width:auto;">
     <table>
-    <form action="" method="">
+    <?php  if(isset($_SESSION['userdata'])){
+	?>
+    <a href="<?php echo BASE_URL?>user">Logined as <?php echo $_SESSION['userdata']['name']?></a>
+    <?php }else{?>
+    <form id="signinform" method="post" action="<?php echo BASE_URL ?>site/login" onSubmit="return validatelogin();">
     <tr>
     <td>
-    <input type="email" name="d2demail" placeholder="Username" style="height:22px; float:right; margin-right:5px; margin-top:2px;"/>
+    <input type="email" id="inputEmail"name="d2demail" placeholder="Username" style="height:22px; float:right; margin-right:5px; margin-top:2px;"/>
     </td>
     <td>
-    <input type="password" type="password" name="d2dpassword" placeholder="Password"  style="height:22px;float:left; margin-top:2px; margin-right:5px;" />
+    <input type="password" id="inputPassword" type="password" name="d2dpassword" placeholder="Password"  style="height:22px;float:left; margin-top:2px; margin-right:5px;" />    
     </td>
     <td>
     <input type="submit" name="submit" value="Sign In" style="height:25px; width:60px;  margin-top:2px; background-color:#008bcd; color:#FFFFFF; border:none;"/>
+    
     </td>
     </tr>
     </form>
+    <?php }?>
     </table>
     </td>
     </tr>
@@ -132,10 +138,12 @@
     </div>
   
     </div>
-    <div style="height:510px; width:630px; float:left; margin-left:12px; border:1px solid #1c558a;">
-    <p style="margin-bottom:10px; background-color:#1c558a; height:25px; color: white; padding-left: 17px;	margin-bottom: 15px;"> <b>Latest Property </b> </p>
+    <div style="height:auto; width:630px; float:left; margin-left:12px; border:1px solid #1c558a;">
+    
     		<?php echo $viewcontent; ?>
 <!-- contant Box ---------------------------------- ----------------- -->
+       
+
     </div>
     </div>
     </div>

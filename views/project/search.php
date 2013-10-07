@@ -4,7 +4,7 @@
     <div class="control-group">
         <label class="control-label" for="firstname">KeyWord</label>
         <div class="controls">
-            <input type="text" id="updatefirstname" name="q" placeholder="Keywords" >
+            <input type="text" id="updatefirstname" name="q" placeholder="Keywords" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;"/>
         </div>
     </div>
     
@@ -12,7 +12,7 @@
     <div class="control-group">
         <label class="control-label" for="city">City</label>
         <div class="controls">
-            <select id="updatecity" name="city" onchange="getLocalityforRegister(this)">
+            <select id="updatecity" name="city" onchange="getLocalityforRegister(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
                 <?php foreach ($cities as $ct) { ?>
                     <option  value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
@@ -23,7 +23,7 @@
     <div class="control-group">
         <label class="control-label" for="area">Area</label>
         <div class="controls">
-            <select id="updatearea" name="area">
+            <select id="updatearea" name="area" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
 
                 <?php foreach ($areas as $ar) { ?>
