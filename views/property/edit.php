@@ -22,7 +22,7 @@
     </script>
      <script src="<?php echo BASE_URL?>js/property.js"></script>
 <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyupdateform();">
-    <div class="control-group">
+<!--    <div class="control-group">
         <label class="control-label" for="propertyfor">Property For</label>
         <div class="controls">
             <select name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
@@ -131,7 +131,7 @@
                 <option <?php echo ('Sq-yrd' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
             </select>
         </div>
-    </div>
+    </div>-->
     <div class="control-group">
         <label class="control-label" for="propertyprice">Total Price</label>
         <div class="controls">
@@ -149,7 +149,7 @@
             </label>
         </div>
     </div>
-    <div class="control-group " >
+<!--    <div class="control-group " >
         <label class="control-label resi"  for="floors">Floor No</label>
         <div class="controls ">
             <select name="floors" id="floors" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
@@ -170,7 +170,7 @@
         <div class="controls">
             <input type="text" value="<?php echo $properties['totalFloor'] ?>" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
         </div>
-    </div>
+    </div>-->
     <div class="control-group">
         <label class="control-label" for="propertydescription">Description</label>
         <div class="controls">
@@ -198,7 +198,7 @@
             <select id="propertycity" name="propertycity" onchange="getLocality(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="" >--Select--</option>
                 <?php foreach ($cities as $ct) { ?>
-                    <option <?php echo ($ct['id'] == $properties['city']) ? 'selected' : '' ?> value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
+                    <option <?php echo ($ct['id'] == $properties['pcity']) ? 'selected' : '' ?> value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -211,7 +211,7 @@
 
                 <?php $otherflag = TRUE;
                 foreach ($areas as $ar) { ?>
-                    <option <?php if ($ar['id'] == $properties['area']) {
+                    <option <?php if ($ar['id'] == $properties['parea']) {
                         echo 'selected';
                         $otherflag = FALSE;
                     } else {
@@ -239,6 +239,7 @@
                 <input type="hidden" value="<?php echo $properties['area'] ?>"  name="othaid" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;"/ >
             </div>
         </div>
+
 <?php } ?>
     <div class="control-group">
         <label class="control-label" for="propertyimage">Property Image</label>

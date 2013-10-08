@@ -97,16 +97,20 @@
 <td><input type="file" id="pic" name="pic" style="height:30px; width:200px; color:#000066;"></td>
 </tr>
 <tr>
+<td style="height:35px;">Captha</td>
+<td>
+    
+    <img src="<?php echo BASE_URL;?>component/cool-php-captcha/captcha.php" id="captchaimg" /><br/>
+
+<a style="cursor: pointer;" onclick="refreshCaptcha()"
+    id="change-image">Not readable? Change text.</a><br/><br/>
+<input type="text" style="height:30px; width:200px; color:#000066;" name="captcha" value="<?php //echo $_SESSION['captcha']?>" id="captcha" autocomplete="off" /><br/>
+</tr>
+<tr>
 <td><button type="button" onclick="validatesignup();" style="float:right; height:30px; width:100px; background-color:#1c558a; border:none; color:#FFFFFF; font-size:14px;">Submit</button></td>
 <td>&nbsp;&nbsp;&nbsp;
 <button type="reset" value="Reset" onclick="validatesignup();" style="height:30px; width:100px; background-color:#1c558a; border:none; color:#FFFFFF; font-size:14px;">Reset</button></td>
 </tr>
 </form>
 </table>
-<script type="text/javascript">
-                $(function() {
-                    $('#datetimepicker1').datetimepicker({
-                        pickTime: false
-                    });
-                });
-</script>
+

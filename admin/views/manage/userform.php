@@ -149,7 +149,7 @@
         </form>
      <form  class="form-horizontal" method="post"  action="<?php echo BASE_URL ?>manage/adddayspackage" onsubmit="return validateadddays()">
         <div class="control-group">
-            <label class="control-label" for="city">Add Days</label>
+            <label class="control-label" for="city">Add Credits</label>
             <div class="controls">
                 <input style="width:30px;" type="text" value="" id="adddays" name="adddays" />
                 <input type="hidden" value="<?php echo $userresults['id'] ?>" name="uid" />

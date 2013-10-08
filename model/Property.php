@@ -24,7 +24,8 @@ class Property {
     }
 
     function fetchProperty($cond) {
-        return $this->db->query_first('SELECT *,' . $this->tbl . '.id as pid, ' . $this->tbl . '.type as ptype FROM ' . $this->tbl . ' 
+        return $this->db->query_first('SELECT *,' . $this->tbl . '.id as pid, ' . $this->tbl . '.type as ptype, 
+            ' . $this->tbl . '.city as pcity, ' . $this->tbl . '.area as parea FROM ' . $this->tbl . ' 
             JOIN users ON users.id=' . $this->tbl . '.user_id JOIN cities on cities.id=users.city 
                 JOIN areas ON areas.id=users.area  JOIN propertytypes on propertytypes.id=properties.type WHERE ' . $cond);
     }

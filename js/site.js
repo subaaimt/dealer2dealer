@@ -12,6 +12,7 @@ function validatesignup() {
     var city = $.trim($('#city').val());
     var area = $.trim($('#area').val());
     var otherAreain = $.trim($('#otherAreain').val());
+    var captcha = $.trim($('#captcha').val());
     //alert(accounttype);
     var reg = /^([a-zA-Z0-9]+[a-zA-Z0-9._%-]*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,4})$/;
 
@@ -66,6 +67,10 @@ function validatesignup() {
     if (area == 'otherarea' && otherAreain == '') {
         strmsg = strmsg + 'Please enter the other area.' + "\n";
     }
+     if (captcha == '') {
+        strmsg = strmsg + 'Please enter the captcha.' + "\n";
+    }
+    
 
     if ($.trim(strmsg) == '') {
         $('#registerbtn').attr('disabled', true).html('Processing..');
@@ -81,16 +86,38 @@ function validatesignup() {
                     $('#registerbtn').attr('disabled', false).html('Submit');
                     alert('The email used already registered');
                 } else {
-                    $('#formregister').submit();
+                    $.ajax({
+                        url: baseurl + "site/checkcaptcha",
+                        type: 'POST',
+                        data: {
+                            'captcha': captcha
+                        },
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status == 0) {
+                                
+                                alert('Captcha did not match');
+                                refreshCaptcha();
+                                // false;
+                            } else {
+                      $('#formregister').submit();          
+
+                               
+                            }
+                        }
+                    });
+                    //$('#formregister').submit();
                 }
             }
         });
         return false;
     }
     else {
+        refreshCaptcha();
         alert(strmsg);
         return false;
     }
+
 }
 
 function addError(object) {
@@ -238,4 +265,10 @@ function validatechangepwd() {
         alert(strmsg);
         return false;
     }
+}
+
+function refreshCaptcha() {
+
+    document.getElementById('captchaimg').src = baseurl + 'component/cool-php-captcha/captcha.php?' + Math.random();
+    document.getElementById('captcha').focus();
 }

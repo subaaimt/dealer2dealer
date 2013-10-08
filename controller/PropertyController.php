@@ -188,28 +188,29 @@ class PropertyController {
             }
 
             $data = array(
-                'for' => $_POST['propertyfor'],
-                'type' => $_POST['propertytype'],
-                'transType' => $_POST['transactiontype'],
-                'bedroom' => $_POST['bedrooms'],
-                'bathroom' => $_POST['bathrooms'],
-                'furnished' => $_POST['furnished'],
-                'coveredArea' => $_POST['coveredarea'],
-                'plotLandArea' => $_POST['plotLandArea'],
-                'coveredAreaUnit' => $_POST['coveredAreaUnit'],
-                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
+//                'for' => $_POST['propertyfor'],
+//                'type' => $_POST['propertytype'],
+//                'transType' => $_POST['transactiontype'],
+//                'bedroom' => $_POST['bedrooms'],
+//                'bathroom' => $_POST['bathrooms'],
+//                'furnished' => $_POST['furnished'],
+//                'coveredArea' => $_POST['coveredarea'],
+//                'plotLandArea' => $_POST['plotLandArea'],
+//                'coveredAreaUnit' => $_POST['coveredAreaUnit'],
+//                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
                 'price' => ($_POST['propertyprice']),
-                'floorNo' => ($_POST['floors']),
-                'totalFloor' => ($_POST['totalfloors']),
+//                'floorNo' => ($_POST['floors']),
+//                'totalFloor' => ($_POST['totalfloors']),
                 'displayProperty' => ($_POST['displayPriceUsers']),
                 'description' => $_POST['propertydescription'],
                 'title' => $_POST['propertytitle'],
                 'location' => $_POST['propertylocation'],
                 'city' => $_POST['propertycity'],
                 'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
-                'user_id' => $_SESSION['userdata']['id'],
+               
                 'modified' => time()
             );
+          
 
             if (!empty($_FILES['propertyimage']['tmp_name'])) {
                 $filename = mt_rand() . '__' . clean($_FILES['propertyimage']['name']);
@@ -220,7 +221,7 @@ class PropertyController {
             $propertyobj->updateProperty($data, 'id = ' . $_POST['pid'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
 
 
-
+            //print_r($data);
             redirect('property/edit/id/'.$_POST['pid']);
         }
 

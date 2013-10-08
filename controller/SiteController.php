@@ -56,6 +56,8 @@ class SiteController {
     function actionRegister() {
 
         if (!empty($_POST)) {
+//            print ($_SESSION['captcha']);
+//            die;
             if ($_POST['area'] == 'otherarea') {
                 $area = new Area();
                 $areaid = $area->addarea($_POST['city'], $_POST['otherArea']);
@@ -165,6 +167,15 @@ class SiteController {
             redirect('site/changepassword/msg/changed');
         }
         return array('title' => 'Change Password', 'result' =>$result);
+    }
+    
+    function actionCheckCaptcha(){
+        if($_POST['captcha']==$_SESSION['captcha']){
+            echo json_encode(array('status'=>1));
+        }else{
+            echo json_encode(array('status'=>0));
+        }
+        die;
     }
 
 }
