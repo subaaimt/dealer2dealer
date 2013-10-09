@@ -14,7 +14,9 @@ class SiteController {
     }
 
     function actionIndex() {
-        return array('title' => 'Home');
+         $property = new Property;
+        $result = $property->fetchDashBoardProperties(' AND  properties.status = "published"');        
+        return(array('title'=>'Home', 'layout' => 'layout', 'properties' => $result));
     }
 
     function actionPackages() {

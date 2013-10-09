@@ -10,10 +10,10 @@
         <?php getCss(); ?>
 
         <link rel="stylesheet" type="text/css" href="css/elastislide.css" />
-        
+
         <script type="text/javascript" src="<?php echo BASE_URL ?>js/jquery.js"></script>
- <script src="<?php echo BASE_URL ?>js/bootstrap.js"></script>
-       
+        <script src="<?php echo BASE_URL ?>js/bootstrap.js"></script>
+        <script src="<?php echo BASE_URL ?>js/jcarousellite_1.0.1.js"></script>
         <?php getJs(); ?>
         <script type="text/javascript">
             var baseurl = '<?php echo BASE_URL; ?>';
@@ -52,7 +52,7 @@
 
                     </div>
 
-                    
+
 
 
 
@@ -66,9 +66,20 @@
 
             <div class="copyright">Copyright &copy; 2013 <a href=""> Deals 2 Dealers </a> - All Rights Reserved. </div>
         </div>
+        <script>
+            $(function() {
+                $(".right_image").jCarouselLite({
+                    vertical: true,
+                    auto: 2000
 
+                });
+                $(".leftslider").jCarouselLite({
+                    vertical: true,
+                    auto: 2000
 
-       
+                });
+            });
+        </script>
 
     </body>
 </html>

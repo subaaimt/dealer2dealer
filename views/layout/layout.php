@@ -24,7 +24,7 @@
         <script type="text/javascript">
             var baseurl = '<?php echo BASE_URL; ?>';
         </script>
-        <script language=JavaScript>                
+<!--        <script language=JavaScript>                
                 var message="Right Click Function Disabled!";
                 
                 function clickIE4(){
@@ -50,7 +50,7 @@
                 document.onmousedown=clickIE4;
                 }
                 document.oncontextmenu=new Function("alert(message);return false")
-        </script>   
+        </script>   -->
         <script language="javascript">
             var popupWindow = null;
             function centeredPopup(url,winName,w,h,scroll){

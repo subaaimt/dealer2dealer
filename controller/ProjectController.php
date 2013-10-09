@@ -49,7 +49,7 @@ class ProjectController {
         $cond = 'AND projects.status = "published"  ORDER BY projects.created DESC';
 
         $requeturi = str_replace('&page=/page/' . $page, '', strstr($_SERVER['REQUEST_URI'], '?'));
-        $pagination = pagination(BASE_URL . 'project/searchresult' . $requeturi . '&page=', $page, $property->fetchProjectsCount($cond), $limit);
+        $pagination = pagination(BASE_URL . 'project/searchresult' . $requeturi . '&page=', $page, $property->fetchProjectsCount($query), $limit);
 
         $result = $property->fetchProjects($query . ' AND  status = "published"',$pagination['start'], $limit);
         return(array('layout' => 'dealerlayout', 'projects' => $result,'pagination'=>$pagination['pagination']));

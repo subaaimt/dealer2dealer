@@ -4,7 +4,7 @@ class UserController {
 
     public function __construct($args) {
         new ACL($args, array(
-            'regis' => array('index', 'myaccount','changepassword'),
+            'regis' => array('index', 'myaccount', 'changepassword'),
                 )
         );
     }
@@ -113,4 +113,9 @@ class UserController {
         redirect('site');
     }
 
+    function actionDashBoard() {
+        $property = new Property;
+        $result = $property->fetchDashBoardProperties(' AND  properties.status = "published"');        
+        return(array('layout' => 'dealerlayout', 'properties' => $result));
+    }
 }

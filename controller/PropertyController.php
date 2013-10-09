@@ -205,8 +205,8 @@ class PropertyController {
                 'description' => $_POST['propertydescription'],
                 'title' => $_POST['propertytitle'],
                 'location' => $_POST['propertylocation'],
-                'city' => $_POST['propertycity'],
-                'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
+                //'city' => $_POST['propertycity'],
+                //'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
                
                 'modified' => time()
             );
@@ -290,7 +290,7 @@ class PropertyController {
         $cond = 'AND properties.status = "published"  ORDER BY properties.created DESC';
         
         $requeturi = str_replace('&page=/page/'.$page, '', strstr($_SERVER['REQUEST_URI'], '?'));
-        $pagination = pagination(BASE_URL . 'property/searchresult'.$requeturi.'&page=', $page, $property->fetchPropertiesCount($cond), $limit);
+        $pagination = pagination(BASE_URL . 'property/searchresult'.$requeturi.'&page=', $page, $property->fetchPropertiesCount($query), $limit);
                 
         $result = $property->fetchProperties($query . ' AND  properties.status = "published"',$pagination['start'], $limit);
         

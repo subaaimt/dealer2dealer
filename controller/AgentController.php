@@ -43,7 +43,7 @@ class AgentController {
         $cond = 'AND properties.status = "published"  ORDER BY properties.created DESC';
         
         $requeturi = str_replace('&page=/page/'.$page, '', strstr($_SERVER['REQUEST_URI'], '?'));
-        $pagination = pagination(BASE_URL . 'agent/searchresult'.$requeturi.'&page=', $page, $users->UserCount(), $limit);
+        $pagination = pagination(BASE_URL . 'agent/searchresult'.$requeturi.'&page=', $page, $users->UserCount($query), $limit);
         
 
         $result = $users->fetchUsers($query . ' AND  users.status = 1',$pagination['start'], $limit);

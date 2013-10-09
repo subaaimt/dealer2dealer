@@ -17,6 +17,15 @@ class Property {
              WHERE 1 ' . $cond . ' LIMIT ' . $offset . ',' . $limit);
     }
 
+    function fetchDashBoardProperties($cond = '', $offset = 0, $limit = 10) {
+        return $this->db->fetch_all_array('SELECT *,' . $this->tbl . '.id as pid,' . $this->tbl . '.created as postedon 
+            ,' . $this->tbl . '.type as ptype FROM ' . $this->tbl . ' 
+            JOIN cities as c on c.id=' . $this->tbl . '.city 
+            JOIN areas as a ON a.id=' . $this->tbl . '.area 
+            JOIN propertytypes on propertytypes.id=properties.type 
+            WHERE 1 ' . $cond . ' ORDER BY ' . $this->tbl . '.created DESC LIMIT ' . $offset . ',' . $limit);
+    }
+
     function fetchPropertiesCount($cond = '') {
         $count = $this->db->query_first('SELECT count(*) as count FROM ' . $this->tbl . ' WHERE 1 ' . $cond);
 
@@ -25,9 +34,18 @@ class Property {
 
     function fetchProperty($cond) {
         return $this->db->query_first('SELECT *,' . $this->tbl . '.id as pid, ' . $this->tbl . '.type as ptype, 
-            ' . $this->tbl . '.city as pcity, ' . $this->tbl . '.area as parea FROM ' . $this->tbl . ' 
-            JOIN users ON users.id=' . $this->tbl . '.user_id JOIN cities on cities.id=users.city 
-                JOIN areas ON areas.id=users.area  JOIN propertytypes on propertytypes.id=properties.type WHERE ' . $cond);
+            ' . $this->tbl . '.city as pcity, ' . $this->tbl . '.area as parea, c.city_name as p_city_name,
+                a.localityName as p_localityName FROM ' . $this->tbl . '                     
+            
+                JOIN cities as c on c.id=' . $this->tbl . '.city 
+                JOIN areas as a ON a.id=' . $this->tbl . '.area 
+                    JOIN users ON users.id=' . $this->tbl . '.user_id 
+                JOIN cities on cities.id=users.city 
+                JOIN areas ON areas.id=users.area 
+                JOIN propertytypes on propertytypes.id=properties.type 
+                
+                
+WHERE ' . $cond);
     }
 
     function deleteProperty($cond) {
@@ -57,25 +75,23 @@ class Property {
 
     function propertyFieldRelation() {
         return array(
-            5=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
-            10=>array('bedrooms'),
-            11=>array('bedrooms'),
-            12=>array('bedrooms','bathrooms'),
-            14=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
-            15=>array('bedrooms'),
-            18=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
-            19=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
-            20=>array('bedrooms'),
-            21=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
-            22=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
-            23=>array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            5 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            10 => array('bedrooms'),
+            11 => array('bedrooms'),
+            12 => array('bedrooms', 'bathrooms'),
+            14 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            15 => array('bedrooms'),
+            18 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            19 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            20 => array('bedrooms'),
+            21 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            22 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
+            23 => array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea'),
         );
-        
     }
-    
-     function propertyVariableFields() {
+
+    function propertyVariableFields() {
         return array('bedrooms', 'bathrooms', 'furnished', 'floors', 'totalfloors', 'coveredarea');
-    
     }
 
 }

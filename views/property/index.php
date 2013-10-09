@@ -21,13 +21,20 @@
                 });
             }
         }
+        function changeLabel(this_){
+        if($(this_).val()==='rent'){
+            $('#propertypricelabel').html('Total Rent');
+        }else{
+            $('#propertypricelabel').html('Total Price');
+        }
+        }
     </script>
     <script src="<?php echo BASE_URL?>js/property.js"></script>
     <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyform();">
         <div class="control-group">
             <label class="control-label" for="propertyfor">Property For</label>
             <div class="controls">
-                <select name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+                <select onchange="changeLabel(this)" name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                     <option value="">Select</option>
 
                     <option value="sell">Sell</option>
@@ -134,7 +141,7 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="propertyprice">Total Price</label>
+            <label class="control-label" id="propertypricelabel" for="propertyprice">Total Price</label>
             <div class="controls">
                 <input type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
             </div>

@@ -150,7 +150,7 @@ function validatelogin() {
                 if (response.status == '0') {
                     alert('Username and Password did not match');
                 } else if (response.status == '1')
-                    location.href = baseurl + 'user';
+                    location.href = baseurl + 'user/dashboard';
 
                 $('#area').html(response);
             }
