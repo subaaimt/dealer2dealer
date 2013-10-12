@@ -17,7 +17,7 @@
 <div class="header">
     <div class="hed">
         <div class="header_logo">
-            <img src="<?php echo BASE_URL ?>img/logo2.png"/>							
+            <img src="<?php echo BASE_URL ?>img/abc.jpg" style="margin-top:20px; height:75px;"/>							
         </div>						
         <div class="box">
             <!--<div class= " qsearch">

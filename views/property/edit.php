@@ -22,14 +22,15 @@
         
     </script>
      <script src="<?php echo BASE_URL?>js/property.js"></script>
+     <script src="<?php echo BASE_URL?>js/autoNumeric.js"></script>
 <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyupdateform();">
     <div class="control-group">
         <label class="control-label" for="propertyfor">Property For</label>
         <div class="controls">
-            <select disabled="disabled" name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">Select</option>
 
-                <option  <?php echo ('sell' == $properties['for']) ? 'selected' : '' ?> value="sell">Sell</option>
+                <option  <?php echo ('sale' == $properties['for']) ? 'selected' : '' ?> value="sale">Sale</option>
                 <option <?php echo ('rent' == $properties['for']) ? 'selected' : '' ?> value="rent">Rent</option>
             </select>
         </div>
@@ -38,7 +39,7 @@
     <div class="control-group " >
         <label class="control-label"  for="propertytype">Property Type</label>
         <div class="controls ">
-            <select disabled="disabled" name="propertytype" id="propertytype" onchange="propertyType(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> name="propertytype" id="propertytype" onchange="propertyType(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
                 <?php
                 foreach ($categories as $cat) {
@@ -59,17 +60,17 @@
         <label class="control-label" for="transactiontype">Transaction Type</label>
         <div class="controls">
             <label class="radio-inline">
-                <input disabled="disabled" <?php echo ('new' == $properties['transType']) ? 'checked' : '' ?> type="radio" id="newproperty" name="transactiontype" value="new"> New Property
+                <input <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> <?php echo ('new' == $properties['transType']) ? 'checked' : '' ?> type="radio" id="newproperty" name="transactiontype" value="new"> New Property
             </label>
             <label class="radio-inline">
-                <input disabled="disabled"  <?php echo ('resale' == $properties['transType']) ? 'checked' : '' ?> type="radio" id="relsale" name="transactiontype" value="resale" > Resale
+                <input <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?>  <?php echo ('resale' == $properties['transType']) ? 'checked' : '' ?> type="radio" id="relsale" name="transactiontype" value="resale" > Resale
             </label>
         </div>
     </div>
     <div class="control-group resi" >
         <label class="control-label"  for="bedrooms">Bedrooms</label>
         <div class="controls ">
-            <select disabled="disabled" name="bedrooms" id="bedrooms" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> name="bedrooms" id="bedrooms" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
                 <?php
                 foreach ($rooms as $room) {
@@ -85,7 +86,7 @@
     <div class="control-group resi" >
         <label class="control-label"  for="bathrooms">Bathrooms</label>
         <div class="controls ">
-            <select disabled="disabled" name="bathrooms" id="bathrooms" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> name="bathrooms" id="bathrooms" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
                 <?php
                 foreach ($rooms as $room) {
@@ -101,7 +102,7 @@
     <div class="control-group resi" >
         <label class="control-label"  for="furnished">Furnished</label>
         <div class="controls ">
-            <select disabled="disabled" name="furnished" id="furnished" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> name="furnished" id="furnished" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
                 <option <?php echo ('furnished' == $properties['furnished']) ? 'selected' : '' ?> value="furnished">Furnished</option>
                 <option <?php echo ('unfurnished' == $properties['furnished']) ? 'selected' : '' ?> value="unfurnished">Unfurnished</option>
@@ -112,8 +113,8 @@
     <div class="control-group resi">
         <label class="control-label" for="coveredarea">Covered Area</label>
         <div class="controls">
-            <input disabled="disabled" value="<?php echo $properties['coveredArea'] ?>"  type="text"  id="coveredarea" name="coveredarea" placeholder="Covered Area" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
-            <select disabled="disabled"  name="coveredAreaUnit" id="coveredAreaUnit" style="height:35px; width:100px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <input <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> value="<?php echo $properties['coveredArea'] ?>"  type="text"  id="coveredarea" name="coveredarea" placeholder="Covered Area" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?>  name="coveredAreaUnit" id="coveredAreaUnit" style="height:35px; width:100px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
 
                 <option selected="selected" value="Sq-ft">Sq-ft</option>
                 <option  <?php echo ('Sq-m' == $properties['coveredAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
@@ -124,8 +125,8 @@
     <div class="control-group">
         <label class="control-label" for="plotLandArea">Plot/Land Area</label>
         <div class="controls">
-            <input disabled="disabled"  value="<?php echo $properties['plotLandArea'] ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
-            <select disabled="disabled" name="plotLandAreaUnit" id="plotLandAreaUnit" style="height:35px; width:100px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <input <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?>  value="<?php echo $properties['plotLandArea'] ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> name="plotLandAreaUnit" id="plotLandAreaUnit" style="height:35px; width:100px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
 
                 <option <?php echo ('Sq-ft' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?>  value="Sq-ft">Sq-ft</option>
                 <option <?php echo ('Sq-m' == $properties['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
@@ -134,9 +135,9 @@
         </div>
     </div>
     <div class="control-group">
-        <label class="control-label" for="propertyprice">Total <?php echo ($properties['for']=='sell')?'Price':'Rent';?></label>
+        <label class="control-label" for="propertyprice">Total <?php echo ($properties['for']=='sale')?'Price':'Rent';?></label>
         <div class="controls">
-            <input value="<?php echo $properties['price'] ?>" type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">&nbsp;Rs.
+            <input data-d-group="2" value="<?php echo $properties['price'] ?>" type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">&nbsp;Rs.
         </div>
     </div>
     <div class="control-group">
@@ -196,7 +197,7 @@
     <div class="control-group">
         <label class="control-label" for="propertycity">City</label>
         <div class="controls">
-            <select disabled="disabled" id="propertycity" name="propertycity" onchange="getLocality(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> id="propertycity" name="propertycity" onchange="getLocality(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="" >--Select--</option>
                 <?php foreach ($cities as $ct) { ?>
                     <option <?php echo ($ct['id'] == $properties['pcity']) ? 'selected' : '' ?> value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
@@ -207,7 +208,7 @@
     <div class="control-group">
         <label class="control-label" for="propertyarea">Area</label>
         <div class="controls">
-            <select disabled="disabled" id="propertyarea" name="propertyarea" onchange="changeAreUpdate(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+            <select <?php echo ($properties['pstatus']=='expired')?'':'disabled="disabled"' ?> id="propertyarea" name="propertyarea" onchange="changeAreUpdate(this)" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">--Select--</option>
 
                 <?php $otherflag = TRUE;
@@ -256,3 +257,9 @@
         </div>
     </div>
 </form>
+     <script>
+        $(function(){
+            
+            $('#propertyprice').autoNumeric('init', {vMax: '9999999999999.99'});
+        });
+        </script>

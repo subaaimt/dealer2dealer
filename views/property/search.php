@@ -31,7 +31,7 @@
             <select name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                 <option value="">Select</option>
 
-                <option value="sell">Sell</option>
+                <option value="sale">Sale</option>
                 <option value="rent">Rent</option>
             </select>
         </div>

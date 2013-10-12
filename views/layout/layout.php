@@ -53,13 +53,13 @@
         </script>   -->
         <script language="javascript">
             var popupWindow = null;
-            function centeredPopup(url,winName,w,h,scroll){
-            LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
-            TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
-            settings =
-            'height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable'
-            popupWindow = window.open(url,winName,settings)
-        }
+            function centeredPopup(url, winName, w, h, scroll) {
+                LeftPosition = (screen.width) ? (screen.width - w) / 2 : 0;
+                TopPosition = (screen.height) ? (screen.height - h) / 2 : 0;
+                settings =
+                        'height=' + h + ',width=' + w + ',top=' + TopPosition + ',left=' + LeftPosition + ',scrollbars=' + scroll + ',resizable'
+                popupWindow = window.open(url, winName, settings)
+            }
         </script> 
     </head>
     <!--[if lte IE 7]>
@@ -68,127 +68,129 @@
     </style>
     <![endif]-->
     <body>
-<!-- top head-->
-    <div style="width:100%; height:30px; background-color:#1c558a;">
-    <div style="width:960px; height:30px; margin:auto; color:#FFFFFF;">
-    <table style="float:right; color:#FFFFFF;">
-    <tr>
-    <td style="width:50px;"></td>
-    <td style="width:auto; text-align:center;">
-    <a href="" style="width:150px; margin-top:px; font-size:14px; color:#FFFFFF; float:right;">Register Now</a> &nbsp;&nbsp;</td>
-    <td style="width:auto;">
-    <table>
-    <?php  if(isset($_SESSION['userdata'])){
-	?>
-    <a href="<?php echo BASE_URL?>user">Logined as <?php echo $_SESSION['userdata']['name']?></a>
-    <?php }else{?>
-    <form id="signinform" method="post" action="<?php echo BASE_URL ?>site/login" onSubmit="return validatelogin();">
-    <tr>
-    <td>
-    <input type="email" id="inputEmail"name="d2demail" placeholder="Username" style="height:22px; float:right; margin-right:5px; margin-top:2px;"/>
-    </td>
-    <td>
-    <input type="password" id="inputPassword" type="password" name="d2dpassword" placeholder="Password"  style="height:22px;float:left; margin-top:2px; margin-right:5px;" />    
-    </td>
-    <td>
-    <input type="submit" name="submit" value="Sign In" style="height:25px; width:60px;  margin-top:2px; background-color:#008bcd; color:#FFFFFF; border:none;"/>
-    
-    </td>
-    </tr>
-    </form>
-    <?php }?>
-    </table>
-    </td>
-    </tr>
-    </table>
-    </div>
-    </div>
-<!-- logo-->
-    <div style="height:auto; width:960px; margin:auto;">
-    <div style="height:auto; width:auto;">
-                <?php include_once('views/layout/elements/header.php'); ?>
-    </div>
-<!-- main-->
-<div style="height:auto; width:960px; margin:auto; background-color:#1c558a;"><?php include_once('views/layout/elements/menu.php'); ?></div>
-    <div style="margin:auto; width:960px; margin-top:10px;">
-    <div style="height:auto; width:795px; float:left; margin-bottom:10px;">
-<!-- gallery-->
-    <div style="height:300px; width:795px;">
-<div class="slider">
-<div class="slider-wrapper theme-default">
-<div class="nivoSlider" id="slider">
-<?php foreach ($_SESSION['banners'] as $center){if($center['position']=='center'){?>
-<img width="470" height="250" src="<?php echo BASE_URL.'media/banner/'.$center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />  <?php }}?>
-</div>
-</div>
-</div>
+        <!-- top head-->
+        <div style="width:100%; height:30px; background-color:#1c558a;">
+            <div style="width:960px; height:30px; margin:auto; color:#FFFFFF;">
+                <table style="float:right; color:#FFFFFF;">
+                    <tr>
+                        <td style="width:50px;"></td>
+                        <td style="width:auto; text-align:center;">
+                            <a href="" style="width:150px; margin-top:px; font-size:14px; color:#FFFFFF; float:right;">Register Now</a> &nbsp;&nbsp;</td>
+                        <td style="width:auto;">
+                            <table>
+                                <?php if (isset($_SESSION['userdata'])) {
+                                    ?>
+                                    <a href="<?php echo BASE_URL ?>user">Logined as <?php echo $_SESSION['userdata']['name'] ?></a>
+                                <?php } else { ?>
+                                    <form id="signinform" method="post" action="<?php echo BASE_URL ?>site/login" onSubmit="return validatelogin();">
+                                        <tr>
+                                            <td>
+                                                <input type="email" id="inputEmail"name="d2demail" placeholder="Username" style="height:22px; float:right; margin-right:5px; margin-top:2px;"/>
+                                            </td>
+                                            <td>
+                                                <input type="password" id="inputPassword" type="password" name="d2dpassword" placeholder="Password"  style="height:22px;float:left; margin-top:2px; margin-right:5px;" />    
+                                            </td>
+                                            <td>
+                                                <input type="submit" name="submit" value="Sign In" style="height:25px; width:60px;  margin-top:2px; background-color:#008bcd; color:#FFFFFF; border:none;"/>
 
-
-    </div>
-    <div style="height:400px; width:795px; margin-top:10px;">
-    <div style="height:auto; width:150px; float:left;">
-    
-    <div style="height:300px; width:150px; border:1px solid #1c558a;">
-    <p style="margin-bottom:10px; background-color:#1c558a; height:25px; color: white; padding-left: 17px;	margin-bottom: 15px;"> <b>Featured Builders</b> </p>
-    <?php include_once('views/layout/elements/leftsidebar.php'); ?>
-    </div>
-
-    <div style="height:200px; width:150px; border:1px solid #1c558a; margin-top:10px;">
-    <img src="img/contactus.png" />
-    </div>
-  
-    </div>
-    <div style="height:auto; width:630px; float:left; margin-left:12px; border:1px solid #1c558a;">
-    
-    		<?php echo $viewcontent; ?>
-<!-- contant Box ---------------------------------- ----------------- -->
-       
-
-    </div>
-    </div>
-    </div>
-    <div style="height:800px; width:150px; float:right;">
-    
-    <div style="height:auto; width:150px; border:1px solid #1c558a;">
-    <p style="margin-bottom:10px; background-color:#1c558a;height: 25px; color: white;padding-left: 17px;	margin-bottom: 15px;"><b> Featured Projects </b></p> 
-        <?php include_once('views/layout/elements/rightsidebar.php'); ?>
-    </div>
-    
-    <div style="height:290px; width:150px; border:1px solid #1c558a; margin-top:10px;">
-    <p style="margin-bottom:10px; background-color:#1c558a; height:25px; color: white; padding-left: 17px;	margin-bottom: 15px;"> <b>
-    Property News</b> </p>
-    
-    </div>
-    
-    </div>
-    </div>
-    
-    </div>
-            <?php include_once('views/layout/elements/footer.php'); ?>
-            <div class="clear"></div>
-            <div class="clear"></div>
-            <div style="width:100%; background-color:#1c558a; color:#CCCCCC; height:40px; text-align:center; border-top:1px solid #FFFFFF;">
-            <br />Copyright &copy; 2013 <a href="" style="color:#FFFFFF;"> Deals 2 Dealers </a> - All Rights Reserved. </div>
+                                            </td>
+                                        </tr>
+                                    </form>
+                                <?php } ?>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-        <!--  Google Analitics -->
-        <!--  Google Analitics -->        </div>
-    <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.nivo.slider.pack.js"> </script>
-    <script type="text/javascript">
-        $(window).load(function() {
-            $('#slider').nivoSlider();
+        <!-- logo-->
+        <div style="height:auto; width:960px; margin:auto;">
+            <div style="height:auto; width:auto;">
+                <?php include_once('views/layout/elements/header.php'); ?>
+            </div>
+            <!-- main-->
+            <div style="height:auto; width:960px; margin:auto; background-color:#1c558a;"><?php include_once('views/layout/elements/menu.php'); ?></div>
+            <div style="margin:auto; width:960px; margin-top:10px;">
+                <div style="height:auto; width:795px; float:left; margin-bottom:10px;">
+                    <!-- gallery-->
+                    <div style="height:300px; width:795px;">
+                        <div class="slider">
+                            <div class="slider-wrapper theme-default">
+                                <div class="nivoSlider" id="slider">
+                                    <?php foreach ($_SESSION['banners'] as $center) {
+                                        if ($center['position'] == 'center') { ?>
+                                            <img width="470" height="250" src="<?php echo BASE_URL . 'media/banner/' . $center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />  <?php }
+                                    } ?>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div style="height:400px; width:795px; margin-top:10px;">
+                        <div style="height:auto; width:150px; float:left;">
+
+                            <div style="height:300px; width:150px; border:1px solid #1c558a;">
+                                <p style="margin-bottom:10px; background-color:#1c558a; height:25px; color: white; padding-left: 17px;	margin-bottom: 15px;"> <b>Featured Builders</b> </p>
+<?php include_once('views/layout/elements/leftsidebar.php'); ?>
+                            </div>
+
+                            <div style="height:200px; width:150px; border:1px solid #1c558a; margin-top:10px;">
+                                <img src="<?php echo BASE_URL ?>img/contactus.png" />
+                            </div>
+
+                        </div>
+                        <div style="height:auto; width:630px; float:left; margin-left:12px; border:1px solid #1c558a;">
+
+<?php echo $viewcontent; ?>
+                            <!-- contant Box ---------------------------------- ----------------- -->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div style="height:800px; width:150px; float:right;">
+
+                    <div style="height:auto; width:150px; border:1px solid #1c558a;">
+                        <p style="margin-bottom:10px; background-color:#1c558a;height: 25px; color: white;padding-left: 17px;	margin-bottom: 15px;"><b> Featured Projects </b></p> 
+<?php include_once('views/layout/elements/rightsidebar.php'); ?>
+                    </div>
+
+                    <div style="height:290px; width:150px; border:1px solid #1c558a; margin-top:10px;">
+                        <p style="margin-bottom:10px; background-color:#1c558a; height:25px; color: white; padding-left: 17px;	margin-bottom: 15px;"> <b>
+                                Property News</b> </p>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+<?php include_once('views/layout/elements/footer.php'); ?>
+        <div class="clear"></div>
+        <div class="clear"></div>
+        <div style="width:100%; background-color:#1c558a; color:#CCCCCC; height:40px; text-align:center; border-top:1px solid #FFFFFF;">
+            <br />Copyright &copy; 2013 <a href="" style="color:#FFFFFF;"> Deals 2 Dealers </a> - All Rights Reserved. </div>
+    </div>
+    <!--  Google Analitics -->
+    <!--  Google Analitics -->        </div>
+<script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.nivo.slider.pack.js"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+        $('#slider').nivoSlider();
+    });
+    $(function() {
+        $(".right_image").jCarouselLite({
+            vertical: true,
+            auto: 2000
+
         });
-        $(function() {
-            $(".right_image").jCarouselLite({
-                vertical: true,
-               auto:2000
-            
-            });
-             $(".leftslider").jCarouselLite({
-                vertical: true,
-               auto:2000
-            
-            });
+        $(".leftslider").jCarouselLite({
+            vertical: true,
+            auto: 2000
+
         });
-    </script>
+    });
+</script>
 </body>
 </html>

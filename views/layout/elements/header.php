@@ -3,7 +3,7 @@
 
                     <div style="float:left;">
                         
-                            <img src="<?php echo BASE_URL;?>img/dd.jpg" style="margin-top:27px;"/>
+                            <img src="<?php echo BASE_URL;?>img/abc.jpg" style="margin-top:20px; height:75px;"/>
                     </div>                     
                             <!--<div class="social_button">
                                 <a href=""> <img src="img/social_icon/twitter.png"/> </a>

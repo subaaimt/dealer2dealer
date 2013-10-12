@@ -26,7 +26,7 @@ foreach ($properties as $property){
             <?php echo $property['for']?>
         </td>
         <td>
-            <?php echo $property['type']?>
+            <?php echo $propertyType[$property['type']]?>
         </td>
         <td>
             <?php echo $property['title']?>

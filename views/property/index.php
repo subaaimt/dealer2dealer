@@ -30,6 +30,7 @@
         }
     </script>
     <script src="<?php echo BASE_URL?>js/property.js"></script>
+    <script src="<?php echo BASE_URL?>js/autoNumeric.js"></script>
     <form class="form-horizontal" method="post" id="addproperty" enctype="multipart/form-data" onsubmit="return validatepopertyform();">
         <div class="control-group">
             <label class="control-label" for="propertyfor">Property For</label>
@@ -37,7 +38,7 @@
                 <select onchange="changeLabel(this)" name="propertyfor" id="propertyfor" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
                     <option value="">Select</option>
 
-                    <option value="sell">Sell</option>
+                    <option value="sale">Sale</option>
                     <option value="rent">Rent</option>
                 </select>
             </div>
@@ -143,7 +144,7 @@
         <div class="control-group">
             <label class="control-label" id="propertypricelabel" for="propertyprice">Total Price</label>
             <div class="controls">
-                <input type="text" id="propertyprice" name="propertyprice" placeholder="Price" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
+                <input type="text" id="propertyprice" data-d-group="2" name="propertyprice" placeholder="Price" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
             </div>
         </div>
         <div class="control-group">
@@ -250,3 +251,9 @@
 
     <div style="text-align:center; color:red;">Membership Expired or not taken</div>
 <?php } ?>
+    <script>
+        $(function(){
+            
+            $('#propertyprice').autoNumeric('init',{vMax: '9999999999999.99'});
+        });
+        </script>

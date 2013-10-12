@@ -55,7 +55,7 @@
 </tr>
 </table>
 <tr style="margin-top:20px;">
-<td style="color:#FFFFFF; padding-top:20px;">Designed by <a href="http://www.old.osr-technology.com" target="_blank" title="OSR-technology Technology is a software and web development company and a representative for almost a years we have been providing world class IT outsourcing services for reasonable price. Our mission is to provide the best possible work at the best possible time."><img src="/img/osrlogo.png" style="height:30px; width:200px;"/></a></td>
+<td style="color:#FFFFFF; padding-top:20px;"></td>
 </tr>
 </td>
 </tr>

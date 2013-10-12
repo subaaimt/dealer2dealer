@@ -32,6 +32,10 @@ class SiteController {
 
         return array('title' => 'Contact us');
     }
+     function actionAboutUs() {
+
+        return array('title' => 'About us');
+    }
 
     function actionServices() {
         return array('title' => 'Services');

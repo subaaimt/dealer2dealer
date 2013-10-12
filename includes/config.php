@@ -1,4 +1,5 @@
 <?php
+setlocale(LC_MONETARY, 'en_IN');
 date_default_timezone_set('Asia/Calcutta');
 define('DB_SERVER', "localhost");
 define('DB_USER', "root");

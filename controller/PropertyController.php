@@ -33,7 +33,7 @@ class PropertyController {
                 'plotLandArea' => $_POST['plotLandArea'],
                 'coveredAreaUnit' => $_POST['coveredAreaUnit'],
                 'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
-                'price' => ($_POST['propertyprice']),
+                'price' => str_replace(',', '', $_POST['propertyprice']),
                 'floorNo' => ($_POST['floors']),
                 'totalFloor' => ($_POST['totalfloors']),
                 'displayProperty' => ($_POST['displayPriceUsers']),
@@ -54,7 +54,7 @@ class PropertyController {
 
             $propertyobj->addProperty($data);
             $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
-
+            setmessage('Property has been successfully added');
             redirect('property/myproperty');
         }
         $cityobj = new City;
@@ -170,8 +170,7 @@ class PropertyController {
 
         $property = new Property;
         $result = $property->fetchProperty('user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.id = ' . $args['id']);
-//        var_dump($result);
-//die;
+       
         if (!empty($_POST)) {
             if ($_POST['propertyarea'] == 'otherarea') {
                 $area = new Area();
@@ -188,30 +187,35 @@ class PropertyController {
             }
 
             $data = array(
-//                'for' => $_POST['propertyfor'],
-//                'type' => $_POST['propertytype'],
-//                'transType' => $_POST['transactiontype'],
-//                'bedroom' => $_POST['bedrooms'],
-//                'bathroom' => $_POST['bathrooms'],
-//                'furnished' => $_POST['furnished'],
-//                'coveredArea' => $_POST['coveredarea'],
-//                'plotLandArea' => $_POST['plotLandArea'],
-//                'coveredAreaUnit' => $_POST['coveredAreaUnit'],
-//                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
-                'price' => ($_POST['propertyprice']),
-//                'floorNo' => ($_POST['floors']),
-//                'totalFloor' => ($_POST['totalfloors']),
+                'price' => str_replace(',', '', $_POST['propertyprice']),
                 'displayProperty' => ($_POST['displayPriceUsers']),
                 'description' => $_POST['propertydescription'],
                 'title' => $_POST['propertytitle'],
-                'location' => $_POST['propertylocation'],
-                //'city' => $_POST['propertycity'],
-                //'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
-               
+                'location' => $_POST['propertylocation'],             
                 'modified' => time()
             );
+            
+            if($result['pstatus']=='expired'){
+                $expireddata = array(
+               'for' => $_POST['propertyfor'],
+                'type' => $_POST['propertytype'],
+                'transType' => $_POST['transactiontype'],
+                'bedroom' => $_POST['bedrooms'],
+                'bathroom' => $_POST['bathrooms'],
+               'furnished' => $_POST['furnished'],
+              'coveredArea' => $_POST['coveredarea'],
+                'plotLandArea' => $_POST['plotLandArea'],
+                'coveredAreaUnit' => $_POST['coveredAreaUnit'],
+                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],                
+                'floorNo' => ($_POST['floors']),
+                'totalFloor' => ($_POST['totalfloors']),               
+                'city' => $_POST['propertycity'],
+                'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
+               
+            );
+                $data  = array_merge($data, $expireddata);
           
-
+            }
             if (!empty($_FILES['propertyimage']['tmp_name'])) {
                 $filename = mt_rand() . '__' . clean($_FILES['propertyimage']['name']);
                 move_uploaded_file($_FILES['propertyimage']['tmp_name'], 'media/property/' . $filename);
@@ -219,7 +223,7 @@ class PropertyController {
             }
             $propertyobj = new Property();
             $propertyobj->updateProperty($data, 'id = ' . $_POST['pid'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
-
+            setmessage("Property successfully updated");
 
             //print_r($data);
             redirect('property/edit/id/'.$_POST['pid']);

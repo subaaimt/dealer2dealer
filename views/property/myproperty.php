@@ -21,6 +21,7 @@ font-weight:normal;
         return false;
 }
     </script>
+    <div><?php echo getmessage(); ?></div>
 <table style="font-family:sans-serif; width:756px; border:1px solid #EFEFEF; border-radius:8px;" border="1px">
 <tr style="height:26px; font-size:14px; background-color:#1c558a; color:white; text-shadow:1px 2px 1px #082b4c; border:1px solid #EFEFEF;">
 	<td style="width:75px; width:70px;">Post On</td>

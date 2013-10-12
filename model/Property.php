@@ -35,7 +35,7 @@ class Property {
     function fetchProperty($cond) {
         return $this->db->query_first('SELECT *,' . $this->tbl . '.id as pid, ' . $this->tbl . '.type as ptype, 
             ' . $this->tbl . '.city as pcity, ' . $this->tbl . '.area as parea, c.city_name as p_city_name,
-                a.localityName as p_localityName FROM ' . $this->tbl . '                     
+                a.localityName as p_localityName,' . $this->tbl . '.status as pstatus  FROM ' . $this->tbl . '                     
             
                 JOIN cities as c on c.id=' . $this->tbl . '.city 
                 JOIN areas as a ON a.id=' . $this->tbl . '.area 

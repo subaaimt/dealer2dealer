@@ -1,5 +1,5 @@
 <h1 style="padding-top:4px; background-color:#1c558a; height:30px; color: white; padding-left: 17px;">Dealer Registration</h1>
-
+<div><?php echo getmessage(); ?></div>
 <table style="color:#1c558a; margin-top:30px; margin-left:60px; margin-bottom:40px;">
 <form class="form-horizontal" method="post" id="formregister" enctype="multipart/form-data">
 <tr>

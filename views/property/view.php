@@ -68,36 +68,41 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
         
         <tr>
             
-            <td>Total <?php echo ($property['for']=='sell')?'Price':'Rent';?></td>
+            <td>Total <?php echo ($property['for']=='sale')?'Price':'Rent';?></td>
             <td>
                 <?php if($property['displayProperty']=='yes'){?>
-                <p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['price'] ?></p>
+                <p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo moneyFormatIndia($property['price']); ?></p>
              <?php }else{?>
                 <p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;">Hidden</p>
              <?php } ?>
             </td>
+           <td>Location</td>
+            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['location'] ?></p></td>
            
-           <td>Plot/Land Area</td>
-            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['plotLandArea'] ?>  <?php echo $property['plotLandAreaUnit'] ?></p></td>
         </tr>
         
         <tr>
             <td>Property For</td>
             <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold; text-transform:capitalize;"><?php echo $property['for'] ?></p></td>
-            <td>Location</td>
-            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['location'] ?></p></td>
+            <td>Area</td>
+            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['p_localityName'] ?></p></td>
+            
         </tr>
         <tr>
             <td>Property Type</td>
             <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['type'] ?></p></td>
-            <td>Area</td>
-            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['p_localityName'] ?></p></td>
+            <td>City</td>
+            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['p_city_name'] ?></p></td>
         </tr>
         <tr>
             <td>Transaction Type</td>
             <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['transType'] ?></p></td>
-            <td>City</td>
-            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['p_city_name'] ?></p></td>
+            <?php
+             if (!isset($hidefields['coveredarea'])) {
+                ?>
+                <td>Covered Area</td>
+                <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['coveredArea'] ?> <?php echo $property['coveredAreaUnit'] ?></p></td>
+<?php } ?>
         </tr>
         <tr>
             <?php if (!isset($hidefields['bedrooms'])) { ?>
@@ -105,11 +110,9 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
                 <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['bedroom'] ?></p></td>
             <?php
             }
-            if (!isset($hidefields['coveredarea'])) {
-                ?>
-                <td>Covered Area</td>
-                <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['coveredArea'] ?> <?php echo $property['coveredAreaUnit'] ?></p></td>
-<?php } ?>
+           ?>
+                <td>Plot/Land Area</td>
+            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['plotLandArea'] ?>  <?php echo $property['plotLandAreaUnit'] ?></p></td>
         </tr>
         <tr>
             <?php if (!isset($hidefields['bathrooms'])) { ?>
@@ -124,7 +127,7 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
         <?php } ?>
         </tr>
         <tr>
-             <?php if (!isset($hidefields['bathrooms'])) { ?>
+             <?php if (!isset($hidefields['furnished'])) { ?>
             <td>Furnished</td>
             <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['furnished'] ?></p></td>
              <?php

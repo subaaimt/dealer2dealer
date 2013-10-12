@@ -8,31 +8,31 @@
 <td style="width:60; border:1px dotted #CCCCCC;text-align:center; background-color:#1c558a; color:#FFFFFF;"><strong>Platinum</strong></td>
 </tr>
 <tr style="height:40px;">
-<td style="width:100;border:1px dotted #CCCCCC; color:#000099;"><b>Listing</b></td>
-<td style="width:100; border:1px dotted #CCCCCC;text-align:center;">15</td>
-<td style="width:130; border:1px dotted #CCCCCC;text-align:center;">25</td>
+<td style="width:100;border:1px dotted #CCCCCC; color:#000099;"><b>Total Property Listing</b></td>
+<td style="width:100; border:1px dotted #CCCCCC;text-align:center;">20</td>
+<td style="width:130; border:1px dotted #CCCCCC;text-align:center;">30</td>
 <td style="width:100;border:1px dotted #CCCCCC; text-align:center;">50</td>
 </tr>
 <tr style="height:40px;">
-<td style="width:150;  color:#000099; border:1px dotted #CCCCCC;"><b>Validity</b></td>
-<td style="width:100; text-align:center; border:1px dotted #CCCCCC;">60 Days</td>
-<td style="width:130; text-align:center; border:1px dotted #CCCCCC;">90 Days</td>
-<td style="width:100; text-align:center; border:1px dotted #CCCCCC;">120 Days</td>
+<td style="width:150;  color:#000099; border:1px dotted #CCCCCC;"><b>Package Validity</b></td>
+<td style="width:100; text-align:center; border:1px dotted #CCCCCC;">2 Month</td>
+<td style="width:130; text-align:center; border:1px dotted #CCCCCC;">3 Month</td>
+<td style="width:100; text-align:center; border:1px dotted #CCCCCC;">5 Month</td>
 </tr>
 <tr style="height:40px;">
-<td style="width:100; border:1px dotted #CCCCCC;color:#000099;"><b>Price</b></td>
-<td style="width:100; border:1px dotted #CCCCCC;text-align:center;">2,500/rs</td>
-<td style="width:130; text-align:center; border:1px dotted #CCCCCC;">3,500/rs</td>
-<td style="width:100; text-align:center; border:1px dotted #CCCCCC;">5000/rs</td>
+<td style="width:100; border:1px dotted #CCCCCC;color:#000099;"><b>Package Price</b></td>
+<td style="width:100; border:1px dotted #CCCCCC;text-align:center;">2,000/rs</td>
+<td style="width:130; text-align:center; border:1px dotted #CCCCCC;">3,000/rs</td>
+<td style="width:100; text-align:center; border:1px dotted #CCCCCC;">5,000/rs</td>
 </tr>
 <tr style="height:40px;">
-<td style="width:100; border:1px dotted #CCCCCC;color:#000099;"><b>Display In Featurav Agent</b></td>
+<td style="width:100; border:1px dotted #CCCCCC;color:#000099;"><b>Display Add in Esteemed Agent</b></td>
 <td style="width:100;border:1px dotted #CCCCCC; text-align:center;"><img src="/img/del.png" /></td>
 <td style="width:130; border:1px dotted #CCCCCC;text-align:center;"><img src="/img/del.png" /></td>
 <td style="width:100; border:1px dotted #CCCCCC;text-align:center;"><img src="/img/ook.png" /></td>
 </tr>
 <tr style="height:40px;">
-<td style="width:100; border:1px dotted #CCCCCC;color:#000099;"><b>Display Property Front Page</b></td>
+<td style="width:100; border:1px dotted #CCCCCC;color:#000099;"><b>Display Property on Front Page</b></td>
 <td style="width:100;border:1px dotted #CCCCCC; text-align:center;"><img src="/img/ook.png" /></td>
 <td style="width:130; border:1px dotted #CCCCCC;text-align:center;"><img src="/img/ook.png" /></td>
 <td style="width:100; text-align:center; border:1px dotted #CCCCCC;"><img src="/img/ook.png" /></td>
