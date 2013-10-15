@@ -3,10 +3,11 @@
 class ProjectController {
 
     public function __construct($args) {
-        new ACL($args, array(
+       $acl = new ACL($args, array(
                     'regis' => getActions($this),
                         )
         );
+        $acl->expirestatus();
     }
 
     function actionView($args) {
@@ -42,16 +43,18 @@ class ProjectController {
         if (isset($rq['area']) && !empty($rq['area'])) {
             $query .= ' AND area =' . $rq['area'];
         }
+        
+       $query .= ' AND  status = "published"';
         include 'component/Pagination.php';
         $page = isset($rq['page']) ? $rq['page'] : '/page/1';
         $page = str_replace('/page/', '', $page);
         $limit = 10;
-        $cond = 'AND projects.status = "published"  ORDER BY projects.created DESC';
+       
 
         $requeturi = str_replace('&page=/page/' . $page, '', strstr($_SERVER['REQUEST_URI'], '?'));
         $pagination = pagination(BASE_URL . 'project/searchresult' . $requeturi . '&page=', $page, $property->fetchProjectsCount($query), $limit);
 
-        $result = $property->fetchProjects($query . ' AND  status = "published"',$pagination['start'], $limit);
+        $result = $property->fetchProjects($query ,$pagination['start'], $limit);
         return(array('layout' => 'dealerlayout', 'projects' => $result,'pagination'=>$pagination['pagination']));
     }
 

@@ -3,7 +3,7 @@
 class UserController {
 
     public function __construct($args) {
-        new ACL($args, array(
+        $this->acl = new ACL($args, array(
             'regis' => array('index', 'myaccount', 'changepassword'),
                 )
         );
@@ -114,8 +114,13 @@ class UserController {
     }
 
     function actionDashBoard() {
+        $this->acl->expirestatus();
         $property = new Property;
         $result = $property->fetchDashBoardProperties(' AND  properties.status = "published"');        
         return(array('layout' => 'dealerlayout', 'properties' => $result));
+    }
+    function actionExpired() {
+       
+        return(array('layout' => 'dealerlayout'));
     }
 }

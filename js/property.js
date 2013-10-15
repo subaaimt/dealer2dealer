@@ -14,6 +14,7 @@ function getLocality(this_) {
 }
 
 
+
 function validatepopertyform() {
     var resi = $.inArray($('#propertytype').val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
 

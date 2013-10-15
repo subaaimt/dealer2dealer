@@ -117,10 +117,23 @@
                         <div class="slider">
                             <div class="slider-wrapper theme-default">
                                 <div class="nivoSlider" id="slider">
-                                    <?php foreach ($_SESSION['banners'] as $center) {
-                                        if ($center['position'] == 'center') { ?>
-                                            <img width="470" height="250" src="<?php echo BASE_URL . 'media/banner/' . $center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />  <?php }
-                                    } ?>
+                                    <?php
+                                    foreach ($_SESSION['banners'] as $center) {
+                                        if ($center['position'] == 'center') {
+                                            if (!empty($center['url'])) {
+                                                ?>
+
+                                                <a target='_blank' href='<?php echo $center['url'] ?>'>
+                                                <?php } ?>
+                                                <img  width="470" height="250" src="<?php echo BASE_URL . 'media/banner/' . $center['banner_path']; ?>" alt="<?php echo $center['title'] ?>" />
+                                                <?php
+                                                if (!empty($center['url'])) {
+                                                    ?>
+                                                </a> 
+                                            <?php } ?> 
+                                        <?php }
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -176,21 +189,21 @@
     <!--  Google Analitics -->        </div>
 <script type="text/javascript" src="<?php echo BASE_URL; ?>js/jquery.nivo.slider.pack.js"></script>
 <script type="text/javascript">
-    $(window).load(function() {
-        $('#slider').nivoSlider();
-    });
-    $(function() {
-        $(".right_image").jCarouselLite({
-            vertical: true,
-            auto: 2000
+            $(window).load(function() {
+                $('#slider').nivoSlider();
+            });
+            $(function() {
+                $(".right_image").jCarouselLite({
+                    vertical: true,
+                    auto: 2000
 
-        });
-        $(".leftslider").jCarouselLite({
-            vertical: true,
-            auto: 2000
+                });
+                $(".leftslider").jCarouselLite({
+                    vertical: true,
+                    auto: 2000
 
-        });
-    });
+                });
+            });
 </script>
 </body>
 </html>

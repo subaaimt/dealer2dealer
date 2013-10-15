@@ -19,6 +19,15 @@ Class ACL {
             }
         }
     }
+    
+    
+    function expirestatus(){
+        $user = new User;
+        $userresult = $user->getUserProfile($_SESSION['userdata']['id']);
+        if($userresult['memberExpiryDate'] <= time()){
+        redirect('user/expired');
+    }
+    }
 
  
 

@@ -44,30 +44,32 @@ class User {
     }
 
     function addTokenUser($data, $email) {
-        return $this->db->query_update($this->tbl, $data, 'email="' . $email.'"');
+        return $this->db->query_update($this->tbl, $data, 'email="' . $email . '"');
     }
-    
-    function checkToken($token) {       
-        return $this->db->query_first('SELECT id FROM ' . $this->tbl . ' WHERE token="' . $token . '"');    
+
+    function checkToken($token) {
+        return $this->db->query_first('SELECT id FROM ' . $this->tbl . ' WHERE token="' . $token . '"');
     }
-    
+
     function changePassword($data, $token) {
-        return $this->db->query_update($this->tbl, $data, 'token="' . $token.'"');
+        return $this->db->query_update($this->tbl, $data, 'token="' . $token . '"');
     }
-    
+
     function updateLogin($uid) {
         return $this->db->query_update($this->tbl, array('lastLogin' => time()), 'id=' . $uid);
     }
 
-    function fetchUsers($cond = '',$offset=0, $limit=10) {
+    function fetchUsers($cond = '', $offset = 0, $limit = 10) {
 
         return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' JOIN `areas` ON `users`.area=`areas`.id JOIN cities ON 
-`users`.city=`cities`.id  WHERE 1 AND ' . $this->tbl . '.status=1' . $cond. ' LIMIT ' . $offset . ',' . $limit);
+`users`.city=`cities`.id  WHERE 1 AND ' . $this->tbl . '.status=1' . $cond . ' LIMIT ' . $offset . ',' . $limit);
     }
-function UserCount($cond = '') {
 
-       $count = $this->db->query_first('SELECT count(*) as count FROM ' . $this->tbl . ' WHERE 1 AND status=1' . $cond);
-
+    function UserCount($cond = '') {
+        $count = $this->db->query_first('SELECT count(*) as count FROM ' . $this->tbl . ' WHERE 1 AND status=1' . $cond);
         return $count['count'];
     }
+    
+    
+
 }

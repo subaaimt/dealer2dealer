@@ -1,0 +1,1 @@
+Membership expired or membership not taken
