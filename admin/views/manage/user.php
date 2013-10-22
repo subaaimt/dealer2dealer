@@ -2,7 +2,7 @@
 <h2>Manage Users</h2>
 <?php addJs(array('js/admin.js')); ?>
 <table  class="table table-bordered">
-    <thead><th>Dealer ID</th><th>Name</th><th>Email</th><th>Mobile No</th><th>Remaining Days</th><th>&nbsp;</th></thead>   
+    <thead><th>Dealer ID</th><th>Name</th><th>Email</th><th>Mobile No</th><th>Remaining Time</th><th>&nbsp;</th></thead>   
 <?php
 foreach ($users as $user) {
     ?>
@@ -19,12 +19,17 @@ foreach ($users as $user) {
         <td>
             <?php
             if ($user['memberExpiryDate'] - time() > 0) {
+                
                 $remaining = intval(($user['memberExpiryDate'] - time()) / 86400);
-
+               
+                 $remaininghour = intval((($user['memberExpiryDate'] - time()) % 86400)/3600);
+                 
+                 $remainingmin = intval((((($user['memberExpiryDate'] - time()) % 86400))%3600)/60);
+                 
                 if ($remaining <= 7) {
-                    echo '<span style="color:red; font-weight:bold;">'.$remaining.'</span>';
+                    echo '<span style="color:red; font-weight:bold;">'.$remaining.' days '.$remaininghour.' hours '.$remainingmin.' mins</span>';
                 } else {
-                    echo '<span style="color:green; font-weight:bold;">'.$remaining.'</span>';
+                    echo '<span style="color:green; font-weight:bold;">'.$remaining.' days '.$remaininghour.' hours '.$remainingmin.' mins</span>';
                 }
             }
             else

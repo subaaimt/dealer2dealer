@@ -18,6 +18,13 @@ class ProjectController {
                 'name' => $_POST['projecttitle'],
                 'type' => $_POST['projecttype'],
                 'projectName' => $_POST['projectcomptitle'],
+                 'emailid' => $_POST['companyemailid'],
+                'phoneNumber' => $_POST['copmanyphoneNo'],
+                'address' => $_POST['companyaddress'],
+                'projectArea' => $_POST['companyarea'],
+                'projectCity' => $_POST['companycity'],
+                'plotLandArea' => $_POST['plotLandArea'],
+                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
                 'bedroom' => $_POST['bedrooms'],
                 'bathroom' => $_POST['bathrooms'],
                 'coveredArea' => $_POST['coveredarea'],
@@ -63,10 +70,18 @@ class ProjectController {
     function actionEdit($args) {
         if (!empty($_POST)) {
 
+
             $data = array(
                 'name' => $_POST['projecttitle'],
                 'type' => $_POST['projecttype'],
                 'projectName' => $_POST['projectcomptitle'],
+                'emailid' => $_POST['companyemailid'],
+                'phoneNumber' => $_POST['copmanyphoneNo'],
+                'address' => $_POST['companyaddress'],
+                'projectArea' => $_POST['companyarea'],
+                'projectCity' => $_POST['companycity'],
+                'plotLandArea' => $_POST['plotLandArea'],
+                'plotLandAreaUnit' => $_POST['plotLandAreaUnit'],
                 'bedroom' => $_POST['bedrooms'],
                 'bathroom' => $_POST['bathrooms'],
                 'coveredArea' => $_POST['coveredarea'],
@@ -116,6 +131,8 @@ class ProjectController {
             'view' => 'form',
             'rooms' => $projectobj->rooms(),
             'project' => $result,
+            'projectFieldRelation' => json_encode($property->projectFieldRelation()),
+            'projectVariableFields' => json_encode($property->projectVariableFields()),
             'areas' => $areas);
     }
 
@@ -129,8 +146,8 @@ class ProjectController {
         $pagination = pagination(BASE_URL . 'project/manage', $page, $property->fetchProjectsCount(), $limit);
         return(array(
             'layout' => 'layout',
-            'projects' => $property->fetchProjects('', $pagination['start'],$limit),
-            'pagination'=>$pagination['pagination']
+            'projects' => $property->fetchProjects('', $pagination['start'], $limit),
+            'pagination' => $pagination['pagination']
         ));
     }
 
@@ -142,6 +159,7 @@ class ProjectController {
 
         $property = new Project;
         $property->updateProject(array('status' => $status), 'id = ' . $arg['id']);
+       
         redirect('project/manage');
     }
 

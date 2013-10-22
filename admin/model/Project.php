@@ -13,7 +13,7 @@ class Project {
 
     function fetchProjects($cond = '', $offset=0, $limit=10) {
 
-        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE 1 ' . $cond.' LIMIT ' . $offset . ',' . $limit);
+        return $this->db->fetch_all_array('SELECT *,' . $this->tbl . '.id as prjid FROM ' . $this->tbl . ' JOIN propertytypes ON propertytypes.id=' . $this->tbl . '.type WHERE 1 ' . $cond.' LIMIT ' . $offset . ',' . $limit);
     }
      function fetchProjectsCount($cond = '') {
         $count = $this->db->query_first('SELECT count(*) as count FROM ' . $this->tbl . ' WHERE 1 ' . $cond);
@@ -30,6 +30,7 @@ class Project {
     }
 
     function updateProject($data, $cond) {
+       
         return $this->db->query_update($this->tbl, $data, $cond);
     }
 

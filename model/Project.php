@@ -7,13 +7,19 @@ class Project {
         $this->tbl = 'projects';
     }
 
-    function fetchProjects($cond = '', $offset=0, $limit=10) {
+    function fetchProjects($cond = '', $offset = 0, $limit = 10) {
 
-        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE 1 '  . $cond.' LIMIT ' . $offset . ',' . $limit);
+        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE 1 ' . $cond . ' LIMIT ' . $offset . ',' . $limit);
     }
 
     function fetchProject($cond) {
-        return $this->db->query_first('SELECT *,projects.type as ptype FROM ' . $this->tbl . ' JOIN areas ON areas.id=projects.area  JOIN propertytypes on propertytypes.id=projects.type WHERE ' . $cond);
+        return $this->db->query_first('SELECT *,projects.type as ptype,cA.localityName as calocalityName,
+            cC.city_name as cacity_name   FROM ' . $this->tbl . '
+             JOIN areas as cA ON cA.id=projects.projectArea 
+             JOIN cities as cC ON cC.id=projects.projectCity
+            JOIN areas ON areas.id=projects.projectArea 
+             JOIN cities ON cities.id=projects.projectCity
+            JOIN propertytypes on propertytypes.id=projects.type WHERE ' . $cond);
     }
 
     function fetchProjectsCount($cond = '') {

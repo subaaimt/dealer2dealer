@@ -18,12 +18,12 @@ foreach ($projects as $project) {
         </td>
         <td>
             <?php if($project['status']=='published'){ ?>      
-            <a href="<?php echo BASE_URL ?>project/status/id/<?php echo $project['id'] ?>/status/0">Un-Publish</a>
+            <a href="<?php echo BASE_URL ?>project/status/id/<?php echo $project['prjid'] ?>/status/0">Un-Publish</a>
 <?php }else{ ?> 
-            <a href="<?php echo BASE_URL ?>project/status/id/<?php echo $project['id'] ?>/status/1">Publish</a>
+            <a href="<?php echo BASE_URL ?>project/status/id/<?php echo $project['prjid'] ?>/status/1">Publish</a>
 <?php }?> 
-            | <a href="<?php echo BASE_URL ?>project/edit/id/<?php echo $project['id'] ?>">Edit</a> |
-            <a onclick="return confirmation()" href="<?php echo BASE_URL ?>project/delete/id/<?php echo $project['id'] ?>">Delete</a>
+            | <a href="<?php echo BASE_URL ?>project/edit/id/<?php echo $project['prjid'] ?>">Edit</a> |
+            <a onclick="return confirmation()" href="<?php echo BASE_URL ?>project/delete/id/<?php echo $project['prjid'] ?>">Delete</a>
         </td>
     </tr>
 

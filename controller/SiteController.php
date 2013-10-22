@@ -32,9 +32,9 @@ class SiteController {
 
         return array('title' => 'Contact us');
     }
-     function actionAboutUs() {
+     function actionAbout() {
 
-        return array('title' => 'About us');
+        return array('view'=>'aboutus', 'title' => 'About us');
     }
 
     function actionServices() {

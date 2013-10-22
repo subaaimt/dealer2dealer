@@ -139,12 +139,12 @@
             <div class="control-group"  >
                 <label class="control-label" for="avtar">Activation Date:</label>
                 <div class="controls"  style="margin-top:5px;color:red; ">                                  
-                    <?php echo date('d-F-Y', $userresults['activationDate']); ?>     </div>
+                    <?php echo date('d-F-Y h:i a', $userresults['activationDate']); ?>     </div>
             </div>
             <div class="control-group"  >
                 <label class="control-label" for="avtar">Days of Expiry:</label>
                 <div class="controls"  style="margin-top:5px;color:red; ">                                  
-                    <?php echo date('d-F-Y', $userresults['memberExpiryDate']); ?>     </div>
+                    <?php echo date('d-F-Y h:i a', $userresults['memberExpiryDate']); ?>     </div>
             </div>
         </form>
      <form  class="form-horizontal" method="post"  action="<?php echo BASE_URL ?>manage/adddayspackage" onsubmit="return validateadddays()">

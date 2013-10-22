@@ -8,16 +8,14 @@ class PropertyController {
             'regis' => getActions($this),
                 )
         );
-        
+
         $acl->expirestatus();
-        
     }
 
     function actionIndex($args) {
         $propertyobj = new Property();
 
-        $user = new User;
-        $useresults = $user->getuserById($_SESSION['userdata']['id']);
+
         if (!empty($_POST)) {
             if ($_POST['propertyarea'] == 'otherarea') {
                 $area = new Area();
@@ -45,6 +43,7 @@ class PropertyController {
                 'city' => $_POST['propertycity'],
                 'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
                 'user_id' => $_SESSION['userdata']['id'],
+                'status'=>'moderator',
                 'created' => time(),
                 'modified' => time()
             );
@@ -55,7 +54,7 @@ class PropertyController {
             }
 
             $propertyobj->addProperty($data);
-            $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
+
             setmessage('Property has been successfully added');
             redirect('property/myproperty');
         }
@@ -66,15 +65,13 @@ class PropertyController {
         $categories = $categoryobj->getCategories();
         $propertytypeyobj = new PropertyType;
         $propertytypes = $propertytypeyobj->getPropertyTypes();
-        $userpackage = new UserPackage;
-        $status = $userpackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
+
 
         return array('title' => 'Dashboard', 'cities' => $cities,
             'layout' => 'dealerlayout', 'categories' => $categories,
             'propertytypes' => $propertytypes,
             'floors' => $propertyobj->floors(),
             'rooms' => $propertyobj->rooms(),
-            'status' => $status,
             'propertyFieldRelation' => json_encode($propertyobj->propertyFieldRelation()),
             'propertyVariableFields' => json_encode($propertyobj->propertyVariableFields()),
         );
@@ -90,6 +87,30 @@ class PropertyController {
         if (!$status) {
             $property->expireProperty($useresults['id']);
         }
+        $cond = 'AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "moderator" ORDER BY properties.created DESC';
+
+        $propertyType = new PropertyType;
+        include 'component/Pagination.php';
+        $page = isset($arg['page']) ? $arg['page'] : 1;
+        $limit = 10;
+        $pagination = pagination(BASE_URL . 'property/myproperty', $page, $property->fetchPropertiesCount($cond), $limit);
+
+        $result = $property->fetchProperties($cond, $pagination['start']);
+        return(array('layout' => 'dealerlayout',
+            'propertyType' => $propertyType->getProperty(),
+            'properties' => $result,
+            'status'=>$status,
+            'pagination' => $pagination['pagination']));
+    }
+
+    function actionActiveProperty($arg) {
+
+        $user = new User;
+        $useresults = $user->getuserById($_SESSION['userdata']['id']);
+        $userpackage = new UserPackage;
+        $status = $userpackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
+        $property = new Property;
+
         $cond = 'AND user_id = ' . $_SESSION['userdata']['id'] . ' AND properties.status = "published" ORDER BY properties.created DESC';
 
         $propertyType = new PropertyType;
@@ -147,6 +168,7 @@ class PropertyController {
     }
 
     function actionPublish($args) {
+       
 
         $property = new Property;
         $result = $property->fetchProperties('AND properties.id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
@@ -162,7 +184,10 @@ class PropertyController {
                 $property->updateProperty(array('created' => time(), 'status' => 'published'), 'id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
                 $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
             }
+            if($args['ref']=='myproperty')
             redirect('property/myproperty');
+            else if($args['ref']=='expired')
+                redirect('property/expiredproperty');
         }
 
         return(array('layout' => 'dealerlayout', 'properties' => $result));
@@ -269,12 +294,12 @@ class PropertyController {
         $categoryobj = new PropertyCategory;
         $categories = $categoryobj->getCategories();
         $propertyobj = new Property;
-        
+
         return(array('rooms' => $propertyobj->rooms(),
             'categories' => $categories,
-            'propertytypes' => $propertytypes, 
-            'layout' => 'dealerlayout', 
-            'areas' => $areas, 
+            'propertytypes' => $propertytypes,
+            'layout' => 'dealerlayout',
+            'areas' => $areas,
             'cities' => $cities,
             'propertyFieldRelation' => json_encode($propertyobj->propertyFieldRelation())));
     }
@@ -286,7 +311,7 @@ class PropertyController {
 
         $query = '';
         if (isset($rq['q']) && !empty($rq['q'])) {
-            $query .= ' AND title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%" OR title LIKE "%' . $rq['q'] . '%"';
+            $query .= ' AND title LIKE "%' . $rq['q'] . '%" OR description LIKE "%' . $rq['q'] . '%" OR location LIKE "%' . $rq['q'] . '%"';
         }
         if (isset($rq['propertyfor']) && !empty($rq['propertyfor'])) {
             $query .= ' AND properties.for ="' . $rq['propertyfor'] . '"';
@@ -301,9 +326,9 @@ class PropertyController {
             $query .= ' AND properties.price <="' . $rq['maxbudget'] . '"';
         }
         if (isset($rq['proprtybedroom']) && !empty($rq['proprtybedroom'])) {
-            
+
             $urldecoded = urldecode($rq['proprtybedroom']);
-          $urldecoded = str_replace('>10', '">10"', $urldecoded);
+            $urldecoded = str_replace('>10', '">10"', $urldecoded);
             $query .= ' AND properties.bedroom IN (' . $urldecoded . ')';
         }
         if (isset($rq['city']) && !empty($rq['city'])) {
@@ -312,13 +337,13 @@ class PropertyController {
         if (isset($rq['area']) && !empty($rq['area'])) {
             $query .= ' AND properties.area =' . $rq['area'];
         }
-        
-$query .= '  AND properties.status = "published" ';
+
+        $query .= '  AND properties.status = "published" ';
         include 'component/Pagination.php';
         $page = isset($rq['page']) ? $rq['page'] : '/page/1';
         $page = str_replace('/page/', '', $page);
         $limit = 10;
-       // $cond = 'AND properties.status = "published"  ORDER BY properties.created DESC';
+        // $cond = 'AND properties.status = "published"  ORDER BY properties.created DESC';
 
         $requeturi = str_replace('&page=/page/' . $page, '', strstr($_SERVER['REQUEST_URI'], '?'));
         $pagination = pagination(BASE_URL . 'property/searchresult' . $requeturi . '&page=', $page, $property->fetchPropertiesCount($query), $limit);

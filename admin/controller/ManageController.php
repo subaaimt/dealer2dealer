@@ -93,7 +93,7 @@ class ManageController {
                 'currentPackId' => $_POST['package'],
                 'activationDate'=> time(),
                 'remainingCredits' => ($usresult['remainingCredits'] + $result['credits']),
-                'memberExpiryDate' => ($usresult['memberExpiryDate'] == 0) ? (strtotime(date('Y-m-d')) + 86400 * $result['days']) : ($usresult['memberExpiryDate'] + 86400 * $result['days']),
+                'memberExpiryDate' => ($usresult['memberExpiryDate'] == 0) ? (strtotime(date('Y-m-d')) + 86399 * $result['days']) : ($usresult['memberExpiryDate'] + 86399 * $result['days']),
                     ), 'id=' . $_POST['uid']);
 
             $userpackage->addUserPackage(array(

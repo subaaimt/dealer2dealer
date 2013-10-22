@@ -120,7 +120,17 @@ class UserController {
         return(array('layout' => 'dealerlayout', 'properties' => $result));
     }
     function actionExpired() {
+       $user = new User;
+        $userresult = $user->getUserProfile($_SESSION['userdata']['id']);
+        if($userresult['memberExpiryDate'] <= time()){
+        $property = new Property;
        
+            $property->expireProperty($_SESSION['userdata']['id']);
+        
+        }else{
+            redirect('user');
+            
+        }
         return(array('layout' => 'dealerlayout'));
     }
 }

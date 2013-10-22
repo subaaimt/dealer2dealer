@@ -29,11 +29,11 @@ Welcome,&nbsp;<?php echo $userresult['name'] ?> !</p><br />
     </tr>
     <tr>
     <td style="font-weight:bold;">Activation Date:</td>
-    <td><?php echo date('d-F-Y', $userresult['activationDate']) ?></td>
+    <td><?php echo date('d-F-Y h:i a', $userresult['activationDate']) ?></td>
     </tr>
     <tr>
     <td style="font-weight:bold;">Expiry Date:</td>
-    <td><?php echo date('d-F-Y', $userresult['memberExpiryDate']) ?></td>
+    <td><?php echo date('d-F-Y h:i a', $userresult['memberExpiryDate']) ?></td>
     </tr>
     </table>
 <?php } else { ?>

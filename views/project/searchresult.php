@@ -12,7 +12,7 @@ foreach($projects as $proj){?>
     </div>
     <div class="pdiv1inner2">
         <p> 
-            <?php echo $proj['description']?> <br/>
+            <?php echo strlen($proj['description'])>200?substr($proj['description'],0,200):$proj['description']?>... <br/>
             
 
     </div>

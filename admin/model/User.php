@@ -8,7 +8,7 @@ class User {
     }
 
     function fetchUsers($offset=0, $limit=10) {
-         $query = 'SELECT * FROM ' . $this->tbl . ' LIMIT '.$offset.','.$limit;
+         $query = 'SELECT * FROM ' . $this->tbl . ' ORDER BY modified DESC LIMIT '.$offset.','.$limit;
         return $this->db->fetch_all_array($query);
     }
     

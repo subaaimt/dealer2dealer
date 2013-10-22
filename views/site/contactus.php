@@ -18,6 +18,6 @@
     Advertising/Marketing and business queries:business@deals2dealers.com 
     </h4>
     <h3 style="color:#1c558a; margin:10px; margin-bottom:-5px;">Location Map</h3>
-   <img src="/img/map.jpg" height="170px" width="400px" style="margin:15px;"/>
+   <img src="<?php echo BASE_URL?>img/map.jpg" height="170px" width="400px" style="margin:15px;"/>
     
 </div>

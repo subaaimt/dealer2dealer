@@ -61,7 +61,7 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
         </div>
     </div>
     <div class="banner" style="width:100%; margin-top:15px; margin-bottom:10px;">
-        Properties Details
+        Property Details
     </div>
 
     <table style="width:756px; height:auto; font-size:12px;">
@@ -96,7 +96,7 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
         </tr>
         <tr>
             <td>Transaction Type</td>
-            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['transType'] ?></p></td>
+            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold; text-transform: capitalize;"><?php echo $property['transType'] ?></p></td>
             <?php
              if (!isset($hidefields['coveredarea'])) {
                 ?>
@@ -129,7 +129,7 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
         <tr>
              <?php if (!isset($hidefields['furnished'])) { ?>
             <td>Furnished</td>
-            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['furnished'] ?></p></td>
+            <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;text-transform: capitalize;"><?php echo $property['furnished'] ?></p></td>
              <?php
             }
             if (!isset($hidefields['totalfloors'])) {?>

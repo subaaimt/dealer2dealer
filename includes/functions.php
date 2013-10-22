@@ -127,9 +127,9 @@ function moneyFormatIndia($num){$pos = strpos((string)$num, ".");
          $last3digits = substr($num, -3 );
          $numexceptlastdigits = substr($num, 0, -3 );
          $formatted = makeComma($numexceptlastdigits);
-         $stringtoreturn = $formatted.",".$last3digits.".".$decimalpart ;
+         $stringtoreturn = $formatted.",".$last3digits ;
      }elseif(strlen($num)<=3){
-        $stringtoreturn = $num.".".$decimalpart ;
+        $stringtoreturn = $num ;
      }elseif(strlen($num)>12){
         $stringtoreturn = number_format($num, 2);
      }

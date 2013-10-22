@@ -1,8 +1,6 @@
 <h2 style="color:#1c558a">Post Properties</h2><br  />
 
 
-<?php if ($status && $status !== 2) { ?>   
-
     <div ><?php echo getmessage(); ?></div>
 
     <script type="text/javascript">
@@ -243,14 +241,7 @@
             </div>
         </div>
     </form>
-<?php } elseif ($status === 2) { ?>
 
-    <div style="text-align:center; color:red;">No more Credits</div>
-
-<?php } else { ?>
-
-    <div style="text-align:center; color:red;">Membership Expired or not taken</div>
-<?php } ?>
     <script>
         $(function(){
             

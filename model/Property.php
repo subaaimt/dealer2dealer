@@ -70,7 +70,7 @@ WHERE ' . $cond);
     }
 
     function expireProperty($uid) {
-        $this->updateProperty(array('status' => 'expired'), 'user_id=' . $uid);
+        $this->updateProperty(array('status' => 'expired'), ' status="published" AND user_id=' . $uid);
     }
 
     function propertyFieldRelation() {

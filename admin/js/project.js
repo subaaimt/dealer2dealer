@@ -101,7 +101,18 @@ function getLocality(this_) {
         }
     });
 }
-
+function getLocalityComp(this_) {
+    $.ajax({
+        url: baseurl + "city",
+        type: 'POST',
+        data: {
+            'cityid': $(this_).val()
+        },
+        success: function(response) {
+            $('#companyarea').html(response);
+        }
+    });
+}
 function array_flip(trans) {
     var key, tmp_ar = {};
     for (key in trans) {

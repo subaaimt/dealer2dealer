@@ -279,9 +279,18 @@ $.fn.jCarouselLite = function(o) {
         function vis() {
             return li.slice(curr).slice(0,v);
         };
+		
+		//<!--add by koumei
+		var isMouseOver = false;
+		$(this).mouseover(function(){
+			isMouseOver = true;
+		}).mouseout(function(){
+			isMouseOver = false;
+		});
+		//add by koumei-->
 
         function go(to) {
-            if(!running) {
+            if(!running && !isMouseOver) {
 
                 if(o.beforeStart)
                     o.beforeStart.call(this, vis());

@@ -5,7 +5,6 @@
     var projectVariableFields = <?php echo $projectVariableFields ?>;
 
     function projectType(this_) {
-
         $.each(projectVariableFields, function(key, val) {
             $('#' + val).parents('.control-group').show();
 
@@ -20,7 +19,7 @@
 
 <?php if (isset($project['id'])) { ?>
         $(function() {
-            projectType(($('#type')));
+            projectType($('#type').val());
         });
 <?php } ?>
 </script>
@@ -42,6 +41,52 @@
             <input type="text"  value="<?php echo isset($project['projectName']) ? $project['projectName'] : '' ?>" id="comptitle" name="projectcomptitle" placeholder="Company Name" autocomplete="off">
         </div>
     </div>
+        <div class="control-group">
+        <label class="control-label" for="emailid">Company Email</label>
+        <div class="controls">
+            <input type="text"  value="<?php echo isset($project['emailid']) ? $project['emailid'] : '' ?>" id="companyemailid" name="companyemailid" placeholder="Company Email" autocomplete="off">
+        </div>
+    </div>
+        <div class="control-group">
+        <label class="control-label" for="copmanyphoneNo">Company Phone</label>
+        <div class="controls">
+            <input type="text"  value="<?php echo isset($project['phoneNumber']) ? $project['phoneNumber'] : '' ?>" id="copmanyphoneNo" name="copmanyphoneNo" placeholder="Phone Number" autocomplete="off">
+        </div>
+    </div>
+   
+   
+       <div class="control-group">
+        <label class="control-label" for="companyaddress">Company Address</label>
+        <div class="controls">
+            <input type="text" value="<?php echo isset($project['address']) ? $project['address'] : '' ?>" id="companyaddress" name="companyaddress" placeholder="Company Address" autocomplete="off">
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label" for="companycity">Company City</label>
+        <div class="controls">
+            <select id="companycity" name="companycity" onchange="getLocalityComp(this)">
+                <option value="" >--Select--</option>
+                <?php foreach ($cities as $ct) { ?>
+                    <option <?php echo isset($project['projectCity']) ? (($ct['id'] == $project['projectCity']) ? 'selected' : '') : '' ?> value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="companyarea">Company Area</label>
+        <div class="controls">
+
+            <select id="companyarea" name="companyarea">
+                <option value="">--Select--</option>
+                <?php foreach ($areas as $ar) { ?>
+                    <option <?php echo isset($project['projectArea']) ?(($ar['id'] == $project['projectCity']) ? 'selected' : ''):'' ?> value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
+                <?php } ?>
+            </select>
+
+        </div>
+    </div> 
     <div class="control-group " >
         <label class="control-label"  for="projecttype">Project Type</label>
         <div class="controls ">
@@ -98,6 +143,18 @@
         </div>
     </div>
 
+        <div class="control-group">
+        <label class="control-label" for="plotLandArea">Plot/Land Area</label>
+        <div class="controls">
+            <input  value="<?php echo $project['plotLandArea'] ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off" >
+            <select  name="plotLandAreaUnit" id="plotLandAreaUnit" style="width:100px;">
+
+                <option <?php echo ('Sq-ft' == $project['plotLandAreaUnit']) ? 'selected' : '' ?>  value="Sq-ft">Sq-ft</option>
+                <option <?php echo ('Sq-m' == $project['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
+                <option <?php echo ('Sq-yrd' == $project['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
+            </select>
+        </div>
+    </div>
     <div class="control-group">
         <label class="control-label" for="coveredarea">Covered Area</label>
         <div class="controls">
@@ -162,7 +219,7 @@
     <div class="control-group">
         <label class="control-label" for="projectlocation">Location</label>
         <div class="controls">
-            <input type="text" value="<?php echo isset($project['description']) ? $project['location'] : '' ?>" id="location" name="projectlocation" placeholder="Project Location" autocomplete="off">
+            <input type="text" value="<?php echo isset($project['location']) ? $project['location'] : '' ?>" id="location" name="projectlocation" placeholder="Project Location" autocomplete="off">
         </div>
     </div>
 
@@ -172,7 +229,7 @@
         <div class="controls">
             <select id="city" name="projectcity" onchange="getLocality(this)">
                 <option value="" >--Select--</option>
-<?php foreach ($cities as $ct) { ?>
+                <?php foreach ($cities as $ct) { ?>
                     <option <?php echo isset($project['floorNo']) ? (($ct['id'] == $project['city']) ? 'selected' : '') : '' ?> value="<?php echo $ct['id'] ?>"><?php echo $ct['city_name'] ?></option>
                 <?php } ?>
             </select>
@@ -184,7 +241,7 @@
 
             <select id="area" name="projectarea">
                 <option value="">--Select--</option>
-<?php foreach ($areas as $ar) { ?>
+                <?php foreach ($areas as $ar) { ?>
                     <option <?php echo ($ar['id'] == $project['area']) ? 'selected' : '' ?> value="<?php echo $ar['id'] ?>"><?php echo $ar['localityName'] ?></option>
                 <?php } ?>
             </select>
