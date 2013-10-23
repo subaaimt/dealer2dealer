@@ -1,4 +1,4 @@
-<head>
+
 <style type="text/css">
 a:hover{
 text-decoration:none;
@@ -6,8 +6,15 @@ font-weight:normal;
 style="color:#105698;"
 }
 </style>
-</head>
 
+<script>
+    function confirmation(){
+    if(confirm('Are you sure you want to delete this property.')){
+        return true;
+    }else
+        return false;
+}
+    </script>
 <h2 style="color:green">Manage Properties</h2>
 <div><?php echo getmessage(); ?></div>
 <table style="font-family:sans-serif; width:756px; border:1px solid #EFEFEF; border-radius:8px;" border="1px">
@@ -42,6 +49,9 @@ foreach ($properties as $property){
        <?php if($status==1 || $status!=2){?>
        | <a href="<?php echo BASE_URL?>property/publish/id/<?php echo $property['pid']?>/ref/myproperty" style="color:#105698;">Publish</a>
        <?php }?>
+       |         
+     <a onclick="return confirmation()" href="<?php echo BASE_URL?>property/delete/pid/<?php echo $property['pid']?>/ref/myproperty" style="font-size:12px; color:#000066;"><u>Delete 
+     </u></a> 
         </td>
     </tr>
 

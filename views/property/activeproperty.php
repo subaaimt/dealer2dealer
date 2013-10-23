@@ -51,7 +51,7 @@ foreach ($properties as $property){
      <a  href="<?php echo BASE_URL?>property/view/id/<?php echo $property['pid']?>" style="font-size:12px; color:#000066;"><u>View
      </u></a>     
      |         
-     <a onclick="return confirmation()" href="<?php echo BASE_URL?>property/delete/pid/<?php echo $property['pid']?>" style="font-size:12px; color:#000066;"><u>Delete 
+     <a onclick="return confirmation()" href="<?php echo BASE_URL?>property/delete/pid/<?php echo $property['pid']?>/ref/activeproperty" style="font-size:12px; color:#000066;"><u>Delete 
      </u></a>  
      
     </td>

@@ -43,7 +43,7 @@ class PropertyController {
                 'city' => $_POST['propertycity'],
                 'area' => isset($areaid) ? $areaid : $_POST['propertyarea'],
                 'user_id' => $_SESSION['userdata']['id'],
-                'status'=>'moderator',
+                'status' => 'moderator',
                 'created' => time(),
                 'modified' => time()
             );
@@ -99,7 +99,7 @@ class PropertyController {
         return(array('layout' => 'dealerlayout',
             'propertyType' => $propertyType->getProperty(),
             'properties' => $result,
-            'status'=>$status,
+            'status' => $status,
             'pagination' => $pagination['pagination']));
     }
 
@@ -161,14 +161,21 @@ class PropertyController {
             redirect('site/notfound');
         } else {
             $property->deleteProperty('properties.id = ' . $args['pid'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
+        }
+        setmessage('Property has been successfully deleted.');
+        if ($args['ref'] == 'myproperty')
             redirect('property/myproperty');
+        else if ($args['ref'] == 'expired')
+            redirect('property/expiredproperty');
+        elseif ($args['ref'] == 'activeproperty') {
+            redirect('property/activeproperty');
         }
 
         return(array('layout' => 'dealerlayout', 'properties' => $result));
     }
 
     function actionPublish($args) {
-       
+
 
         $property = new Property;
         $result = $property->fetchProperties('AND properties.id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
@@ -180,13 +187,14 @@ class PropertyController {
             $useresults = $user->getuserById($_SESSION['userdata']['id']);
             $userpackage = new UserPackage;
             $status = $userpackage->checkMembershipStatus($_SESSION['userdata']['id'], $useresults['remainingCredits'], $useresults['memberExpiryDate']);
-            if ($status) {
+            if ($status==1 || $status!=2) {
                 $property->updateProperty(array('created' => time(), 'status' => 'published'), 'id = ' . $args['id'] . ' AND user_id = ' . $_SESSION['userdata']['id']);
                 $user->updateUser(array('remainingCredits' => $useresults['remainingCredits'] - 1), $_SESSION['userdata']['id']);
             }
-            if($args['ref']=='myproperty')
-            redirect('property/myproperty');
-            else if($args['ref']=='expired')
+            setmessage('Property has been successfully updated');
+            if ($args['ref'] == 'myproperty')
+                redirect('property/myproperty');
+            else if ($args['ref'] == 'expired')
                 redirect('property/expiredproperty');
         }
 
