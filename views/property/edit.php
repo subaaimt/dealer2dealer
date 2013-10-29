@@ -151,7 +151,7 @@
             </label>
         </div>
     </div>
-<!--    <div class="control-group " >
+    <div class="control-group" >
         <label class="control-label resi"  for="floors">Floor No</label>
         <div class="controls ">
             <select name="floors" id="floors" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
@@ -172,7 +172,7 @@
         <div class="controls">
             <input type="text" value="<?php echo $properties['totalFloor'] ?>" id="totalfloors" name="totalfloors" placeholder="Total floors" autocomplete="off" style="height:35px; width:200px; color:#000066; font-size:16px; font-family:'Times New Roman', Times, serif;">
         </div>
-    </div>-->
+    </div>
     <div class="control-group">
         <label class="control-label" for="propertydescription">Description</label>
         <div class="controls">

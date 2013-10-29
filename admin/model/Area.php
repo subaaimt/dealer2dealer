@@ -14,7 +14,7 @@ class Area {
     }
   function getAreasByCity($cityid) {
         
-        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE cityId = "'.$cityid.'" AND  status=1');
+        return $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . ' WHERE cityId = "'.$cityid.'" ');
     }
     function getCities() {
         return $states = $this->db->fetch_all_array('SELECT * FROM ' . $this->tbl . '');

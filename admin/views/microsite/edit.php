@@ -1,13 +1,13 @@
 <div ><?php echo getmessage(); ?></div>
 <h2>Update Microsite</h2>
-<?php addJs(array('js/admin.js')); ?>
+<?php addJs(array('js/microsite.js')); ?>
 
-<form class="form-horizontal" method="post" id="admicrosite" enctype="multipart/form-data" onsubmit="return validateMicrositeform()">
+<form class="form-horizontal" method="post" id="micrositeform" enctype="multipart/form-data" >
     <div class="control-group">
-        <label class="control-label" for="title">Microsite Title</label>
+        <label class="control-label" for="title"> Microsite Directory</label>
         <div class="controls">
-            <input type="text" id="title" name="title" placeholder="Title" value="<?php echo $micrositedata['title']   ?>">
-        <input type="hidden" name="mid" value="<?php echo $micrositedata['id'];?>" />
+            <input type="text" id="title" name="title" placeholder="Title" value="<?php echo $micrositedata['title'] ?>">
+            <input type="hidden" name="mid" value="<?php echo $micrositedata['id']; ?>" />
         </div>
     </div>
     <div class="control-group ">
@@ -19,7 +19,7 @@
     <div class="control-group">
 
         <div class="controls">
-            <button type="submit" class="btn btn-primary" id="updateregisterbtn" >Submit</button>
+            <button type="button"  onclick="return validateMicrositeform('<?php echo $micrositedata['id']; ?>')" class="btn btn-primary" id="updateregisterbtn" >Submit</button>
         </div>
     </div>
 </form>

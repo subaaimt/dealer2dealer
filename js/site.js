@@ -139,7 +139,7 @@ function validatelogin() {
         strmsg = strmsg + 'Please enter your password.' + "\n";
     }
     if ($.trim(strmsg) == '') {
-        $('#signinform').ajaxloader();
+        //$('#signinform').ajaxloader();
         $.ajax({
             url: baseurl + "site/login",
             type: 'POST',
@@ -270,5 +270,5 @@ function validatechangepwd() {
 function refreshCaptcha() {
 
     document.getElementById('captchaimg').src = baseurl + 'component/cool-php-captcha/captcha.php?' + Math.random();
-    document.getElementById('captcha').focus();
+    //document.getElementById('captcha').focus();
 }

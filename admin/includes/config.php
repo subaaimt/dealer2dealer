@@ -10,7 +10,7 @@ define('SITE_URL', 'http://localhost/dealer2dealer/');
 define('SITE_NAME', 'Dealer2Dealer');
 
 define('DIRECTORY_ROOT', dirname(dirname(__FILE__)));
-define('MEDIA_PATH', dirname(dirname(dirname(__FILE__))).'/media/banner/');
+define('MEDIA_PATH', dirname(dirname(dirname(__FILE__))).'/media/');
 define('PROJECT_MEDIA_PATH', dirname(dirname(dirname(__FILE__))).'/media/project/');
 define('MICROSITE_PATH', dirname(dirname(dirname(__FILE__))).'/realstate/');
 session_start();

@@ -146,12 +146,11 @@
         <div class="control-group">
         <label class="control-label" for="plotLandArea">Plot/Land Area</label>
         <div class="controls">
-            <input  value="<?php echo $project['plotLandArea'] ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off" >
+            <input  value="<?php echo isset($project['plotLandArea'])?$project['plotLandArea']:'' ?>" type="text"  id="plotLandArea" name="plotLandArea" placeholder="Plot/Land Area" autocomplete="off" >
             <select  name="plotLandAreaUnit" id="plotLandAreaUnit" style="width:100px;">
-
-                <option <?php echo ('Sq-ft' == $project['plotLandAreaUnit']) ? 'selected' : '' ?>  value="Sq-ft">Sq-ft</option>
-                <option <?php echo ('Sq-m' == $project['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
-                <option <?php echo ('Sq-yrd' == $project['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
+                <option <?php echo (isset($project['plotLandAreaUnit']) && 'Sq-ft' == $project['plotLandAreaUnit']) ? 'selected' : '' ?>  value="Sq-ft">Sq-ft</option>
+                <option <?php echo (isset($project['plotLandAreaUnit']) && 'Sq-m' == $project['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-m">Sq-m</option>
+                <option <?php echo (isset($project['plotLandAreaUnit']) && 'Sq-yrd' == $project['plotLandAreaUnit']) ? 'selected' : '' ?> value="Sq-yrd">Sq-yrd</option>
             </select>
         </div>
     </div>

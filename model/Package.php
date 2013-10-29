@@ -18,6 +18,7 @@ class Package {
 
     function fetchPackagedata($id) {
         $query = 'SELECT * FROM ' . $this->tbl . ' WHERE id=' . $id;
+        
         return $this->db->query_first($query);
     }
 

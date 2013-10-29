@@ -117,7 +117,7 @@ class PropertyController {
         include 'component/Pagination.php';
         $page = isset($arg['page']) ? $arg['page'] : 1;
         $limit = 10;
-        $pagination = pagination(BASE_URL . 'property/myproperty', $page, $property->fetchPropertiesCount($cond), $limit);
+        $pagination = pagination(BASE_URL . 'property/activeproperty', $page, $property->fetchPropertiesCount($cond), $limit);
 
         $result = $property->fetchProperties($cond, $pagination['start']);
         return(array('layout' => 'dealerlayout',
@@ -211,7 +211,7 @@ class PropertyController {
                 $area = new Area();
                 if (isset($_POST['othaid'])) {
                     if ($result['city'] == $_POST['propertycity']) {
-                        echo"created";
+                        
                         $areaid = $result['area'];
                         $area->updatearea($result['area'], $_POST['otherAreaRegis']);
                     }
@@ -230,7 +230,7 @@ class PropertyController {
                 'modified' => time()
             );
 
-            if ($result['pstatus'] == 'expired') {
+            if ($result['pstatus'] == 'expired' || $result['pstatus'] == 'moderator') {
                 $expireddata = array(
                     'for' => $_POST['propertyfor'],
                     'type' => $_POST['propertytype'],
@@ -270,8 +270,8 @@ class PropertyController {
         $cities = $cityobj->getCities();
 
         $areaobj = new Area;
-        $areas = $areaobj->getAreas();
-        $otherareaname = $areaobj->getAreasNameBy($result['area'], 0);
+        $areas = $areaobj->getAreasByCity($result['pcity']);
+        $otherareaname = $areaobj->getAreasNameBy($result['parea'], 0);
         $categoryobj = new PropertyCategory;
         $categories = $categoryobj->getCategories();
         $propertytypeyobj = new PropertyType;

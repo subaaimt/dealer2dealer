@@ -12,7 +12,7 @@ class SiteController {
             $result = $admin->authenticate($_POST);
             if ($result) {
                 $_SESSION['admin']=true;
-                 redirect('manage/user');
+                 redirect('user');
             } else {
                  redirect('');
             }

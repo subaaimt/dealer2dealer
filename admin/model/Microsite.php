@@ -15,6 +15,11 @@ class Microsite {
         return $this->db->query("DELETE FROM " . $this->tbl . " WHERE id=" . $id);
     }
 
+    function checkMicrositeDirectory($title) {
+        $query = 'SELECT * FROM ' . $this->tbl . ' WHERE title=' . $title;
+        return $this->db->query_first($query);
+    }
+    
     function fetchMicrositedata($id) {
         $query = 'SELECT * FROM ' . $this->tbl . ' WHERE id=' . $id;
         return $this->db->query_first($query);

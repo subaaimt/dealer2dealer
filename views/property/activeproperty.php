@@ -11,7 +11,7 @@ font-weight:normal;
 </style>
 </head>
 
-<h2 style="color:#1c558a;">Ative Properties</h2><br  />
+<h2 style="color:#1c558a;">Active Properties</h2><br  />
 
 <script>
     function confirmation(){

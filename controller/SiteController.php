@@ -72,7 +72,7 @@ class SiteController {
             $filename = mt_rand() . '__' . clean($_FILES['pic']['name']);
             $data = array(
                 'name' => $_POST['name'],
-                'email' => $_POST['emailid'],
+                'email' => $_POST['email'],
                 'dob' => $_POST['yy'] . '-' . $_POST['mm'] . '-' . $_POST['dd'],
                 'password' => md5($_POST['passwd']),
                 'usertype' => $_POST['accnttype'],

@@ -96,7 +96,7 @@ class UserController {
         $cities = $cityobj->getCities();
 
         $areaobj = new Area;
-        $areas = $areaobj->getAreas();
+        $areas = $areaobj->getAreasByCity($useresults['city']);
         $otherareaname = $areaobj->getAreasNameBy($useresults['area'], 0);
 
 

@@ -66,7 +66,12 @@
                     <div class="well sidebar-nav">
                         <ul class="nav nav-list">
                             <li class="nav-header">Admin</li>
-                            <li ><a href="<?php echo BASE_URL ?>manage/user">Manage Users</a></li>
+                            <li ><a href="<?php echo BASE_URL ?>user">Manage Users</a>
+                                <ul class="nav nav-list">  
+                                    <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>user/unregistereduser">Un-Registered Users</a></li>
+                                    <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>user/adduser">Add Un-Registered User</a></li>
+                                </ul>
+                            </li>
                             <li><a href="<?php echo BASE_URL ?>manage/banner">Manage Banners</a>
                                 <ul class="nav nav-list">                           
                                     <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>manage/addbanner">Add Banner</a></li>
@@ -90,17 +95,17 @@
                                     <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>area/approve">Approve Area</a></li>
                                 </ul>
                             </li>
-                           <li ><a href="<?php echo BASE_URL ?>manage/package">Change Password</a>
-                               
+                            <li ><a href="<?php echo BASE_URL ?>manage/package">Change Password</a>
+
                             </li>
                             <li ><a href="<?php echo BASE_URL ?>microsite/manage">Manage Microsites</a>
-                               <ul class="nav nav-list">                           
+                                <ul class="nav nav-list">                           
                                     <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>microsite/add">Add Microsite</a></li>
 <!--                                    <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>project/approve">Approve Area</a></li>-->
                                 </ul>
                             </li>
                             <li ><a href="<?php echo BASE_URL ?>project/manage">Manage Project</a>
-                               <ul class="nav nav-list">                           
+                                <ul class="nav nav-list">                           
                                     <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>project/add">Add Project</a></li>
 <!--                                    <li><a style="font-size:12px;" href="<?php echo BASE_URL ?>project/approve">Approve Area</a></li>-->
                                 </ul>

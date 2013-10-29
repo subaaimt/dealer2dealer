@@ -16,7 +16,7 @@ function getLocality(this_) {
 
 
 function validatepopertyform() {
-    var resi = $.inArray($('#propertytype').val(), ['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+
 
     var propertyfor = $.trim($('#propertyfor').val());
     var propertytype = $.trim($('#propertytype').val());
@@ -33,7 +33,8 @@ function validatepopertyform() {
     var floors = $.trim($('#floors').val());
     var totalfloors = $.trim($('#totalfloors').val());
     var plotLandArea = $.trim($('#plotLandArea').val());
-var propertylocation = $.trim($('#propertylocation').val());
+    var propertylocation = $.trim($('#propertylocation').val());
+    var otherAreain = $.trim($('#otherAreain').val());
 
     if (propertyFieldRelation[propertytype] === undefined) {
 
@@ -62,7 +63,7 @@ var propertylocation = $.trim($('#propertylocation').val());
         strmsg = strmsg + 'Please enter the property price.' + "\n";
     }
 
-   
+
 
     if (bedrooms == '' && hidefields['bedrooms'] == undefined) {
         strmsg = strmsg + 'Please enter the number of bedrooms.' + "\n";
@@ -100,7 +101,10 @@ var propertylocation = $.trim($('#propertylocation').val());
     if (propertyarea == '') {
         strmsg = strmsg + 'Please select property area.' + "\n";
     }
-    
+
+    if (propertyarea == 'otherarea' && otherAreain == '') {
+        strmsg = strmsg + 'Please enter the other area.' + "\n";
+    }
 
     if ($.trim(strmsg) != '') {
         alert(strmsg);
@@ -187,11 +191,11 @@ function validatepopertyupdateform() {
     if (propertytitle == '') {
         strmsg = strmsg + 'Please Enter the property title.' + "\n";
     }
-     if (propertylocation == '') {
+    if (propertylocation == '') {
         strmsg = strmsg + 'Please Enter the property description.' + "\n";
     }
-    
-    
+
+
     if (propertycity == '') {
         strmsg = strmsg + 'Please select your property city.' + "\n";
     }

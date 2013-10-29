@@ -46,8 +46,8 @@ if (isset($propertyFieldRelation[$property['ptype']])) {
                     <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['email']; ?></p></td>
                 </tr>
                 <tr>
-                    <td>Address</td><td style="width:15px; font-weight:bold;">:</td>
-                    <td><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['address']; ?></p></td>
+                    <td style="vertical-align: top;">Address</td><td style="vertical-align: top;width:15px; font-weight:bold;">:</td>
+                    <td style="width:440px"><p style="color:#1c558a; margin:0px; padding:0px; font-weight:bold;"><?php echo $property['address']; ?></p></td>
                 </tr>
                 <tr>
                     <td>City</td><td style="width:15px; font-weight:bold;">:</td>

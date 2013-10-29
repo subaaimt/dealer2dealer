@@ -4,6 +4,7 @@
   <li class="topitem spaced_li"><div class="buttonbg" style="width: 80px; height: 43px;"><a class="button_1" href="<?php echo BASE_URL?>user">Profile</a></div></li>
   <li class="topitem spaced_li"><div class="arrow buttonbg" style="width: 168px;"><a href='<?php echo BASE_URL?>property/myproperty'>Manage Properties</a></div>
   <ul class="gradient_menu gradient97">
+      <li><a href='<?php echo BASE_URL?>property/myproperty' title="">My Dairy</a></li>
   <li><a href='<?php echo BASE_URL?>property/activeproperty' title="">Active Properties</a></li>
   <li><a href='<?php echo BASE_URL?>property' title="">Post Properties</a></li>
   <li><a href='<?php echo BASE_URL?>property/expiredproperty' title="">Expire Properties</a></li>
