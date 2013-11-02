@@ -72,7 +72,7 @@ class SiteController {
             $filename = mt_rand() . '__' . clean($_FILES['pic']['name']);
             $data = array(
                 'name' => $_POST['name'],
-                'email' => $_POST['email'],
+                'email' => $_POST['emailid'],
                 'dob' => $_POST['yy'] . '-' . $_POST['mm'] . '-' . $_POST['dd'],
                 'password' => md5($_POST['passwd']),
                 'usertype' => $_POST['accnttype'],
@@ -100,10 +100,10 @@ class SiteController {
 
             $body = filerender('views/site/newUserMailTemplate.php', array('userresult' => $userobj->getUserProfile($uid)));
 
-            $mailer->sendMail(ADMIN_EMAIL, 'A new user has registered', $body);
+            $mailer->sendMail(ADMIN_EMAIL, "User Registration", $body);
 
             setmessage('Thanks for registering. We will contact you soon.');
-            redirect('site/register');
+           redirect('site/register');
         }
 
         $stateobj = new State;
